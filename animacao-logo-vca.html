@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação do Logo VCA — para vídeos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+
+        /* Palco (fundo trocável para gravação) */
+        .stage {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--stage-bg, #0A0D13);
+            transition: background 0.3s ease;
+        }
+
+        /* fundo xadrez para visualizar "transparente" */
+        .stage.transparente {
+            background-color: #2b2b2b;
+            background-image:
+                linear-gradient(45deg, #3a3a3a 25%, transparent 25%),
+                linear-gradient(-45deg, #3a3a3a 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #3a3a3a 75%),
+                linear-gradient(-45deg, transparent 75%, #3a3a3a 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+        }
+
+        .logo-svg {
+            width: min(60vw, 60vh * 2.9);
+            height: auto;
+            overflow: visible;
+            filter: drop-shadow(0 0 26px rgba(226, 185, 60, 0.28));
+        }
+
+        .vca-path {
+            stroke: #E2B93C;
+            stroke-width: 2.5;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            fill-opacity: 0;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+        }
+
+        /* dispara a animação quando o palco tem a classe .go */
+        .go .vca-path {
+            animation:
+                vcaDraw 1.3s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+                vcaFill 0.7s ease forwards,
+                vcaStrokeOut 0.5s ease forwards;
+        }
+        .go .vca-p1 { animation-delay: 0s, 1.05s, 1.35s; }
+        .go .vca-p2 { animation-delay: 0.2s, 1.25s, 1.55s; }
+
+        @keyframes vcaDraw      { to { stroke-dashoffset: 0; } }
+        @keyframes vcaFill      { to { fill-opacity: 1; } }
+        @keyframes vcaStrokeOut { to { stroke-opacity: 0; } }
+
+        /* Controles (sumir pra gravar) */
+        .controls {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px 12px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+        .controls.hidden { opacity: 0; pointer-events: none; }
+
+        .controls button {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            padding: 8px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .controls button:hover { background: rgba(226, 185, 60, 0.2); border-color: #E2B93C; }
+        .controls .sep { width: 1px; background: rgba(255, 255, 255, 0.15); margin: 2px 4px; }
+        .controls small { color: rgba(255,255,255,0.5); font-size: 11px; align-self: center; padding: 0 6px; }
+    </style>
+</head>
+
+<body>
+    <div class="stage" id="stage">
+        <svg class="logo-svg" viewBox="0 0 794 272" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="VCA">
+            <path class="vca-path vca-p1" pathLength="1"
+                d="M794 271.192H723.993L602.97 64.722L517.336 209.269C460.463 282.496 354.604 290.37 288.666 224.907L330.551 181.246C342.528 185.746 350.997 196.068 364.518 201.13C470.532 240.831 503.76 86.8115 551.942 25.5058C578.134 -7.82148 626.328 -8.82504 652.63 24.4801L793.978 271.192H794Z"
+                fill="url(#g0)" />
+            <path class="vca-path vca-p2" pathLength="1"
+                d="M73.5581 0.572266L189.862 207.086C191.207 208.112 193.38 204.307 194.196 203.138C224.159 160.415 245.83 104.745 276.665 62.4956C330.251 -10.9302 443.025 -19.6645 505.401 46.8576L463.593 90.6065C436.574 67.9546 407.437 58.3711 372.555 68.2193C312.341 85.2137 279.896 198.793 242.047 246.259C213.87 281.604 164.364 278.726 138.977 242.542L0 0.572266H73.5581Z"
+                fill="url(#g1)" />
+            <defs>
+                <linearGradient id="g0" x1="331.608" y1="342.302" x2="1210.06" y2="11.1767"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#C7A81E" />
+                    <stop offset="1" stop-color="white" />
+                </linearGradient>
+                <linearGradient id="g1" x1="42.9472" y1="342.264" x2="921.096" y2="10.6183"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#C7A81E" />
+                    <stop offset="1" stop-color="white" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <div class="controls" id="controls">
+        <button onclick="play()">▶ Repetir</button>
+        <span class="sep"></span>
+        <small>Fundo:</small>
+        <button onclick="setBg('#0A0D13')">Escuro</button>
+        <button onclick="setBg('#000000')">Preto</button>
+        <button onclick="setBg('#FFFFFF')">Branco</button>
+        <button onclick="setBg('#00B140')">Verde (chroma)</button>
+        <button onclick="setBg('transparente')">Transparente</button>
+        <span class="sep"></span>
+        <button onclick="toggleControls()">Ocultar controles (H)</button>
+    </div>
+
+    <script>
+        const stage = document.getElementById('stage');
+        const controls = document.getElementById('controls');
+
+        // Reinicia a animação (loop)
+        function play() {
+            stage.classList.remove('go');
+            void stage.offsetWidth; // força reflow para reiniciar
+            stage.classList.add('go');
+        }
+
+        function setBg(color) {
+            stage.classList.remove('transparente');
+            if (color === 'transparente') {
+                stage.classList.add('transparente');
+                stage.style.removeProperty('--stage-bg');
+            } else {
+                stage.style.setProperty('--stage-bg', color);
+            }
+        }
+
+        function toggleControls() {
+            controls.classList.toggle('hidden');
+        }
+
+        // Tecla H esconde/mostra os controles; clicar no palco mostra de novo
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'h') toggleControls();
+            if (e.key === ' ') { e.preventDefault(); play(); }
+        });
+        stage.addEventListener('click', () => controls.classList.remove('hidden'));
+
+        // Autoplay em loop a cada 4.5s
+        play();
+        setInterval(play, 4500);
+    </script>
+</body>
+
+</html>
