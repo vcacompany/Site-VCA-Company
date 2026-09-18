@@ -3531,3 +3531,230 @@ html[data-theme="light"] .whatsapp-fab {
 .logo-img-light { display: none; }
 html[data-theme="light"] .logo-img-light { display: block; }
 html[data-theme="light"] .logo-img-dark { display: none; }
+
+/* ============================================
+   AGENDAR DIAGNÓSTICO (calendário + formulário)
+   Puxa os horários livres da agenda do Google e grava o lead no sistema da VCA.
+   ============================================ */
+.agenda {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.agenda-estado {
+  padding: 1.75rem 0;
+  text-align: center;
+  color: var(--color-text-sec);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.agenda-estado[data-estado="erro"] { color: var(--color-danger); }
+
+.agenda-estado button {
+  margin-left: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--color-brand-gold);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* dias */
+.agenda-dias {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.agenda-dia {
+  flex: 0 0 auto;
+  min-width: 86px;
+  padding: 0.7rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-white-10);
+  background: var(--color-white-02);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color var(--transition-medium), background var(--transition-medium), transform var(--transition-medium);
+}
+
+.agenda-dia:hover { border-color: rgba(216, 184, 107, 0.5); transform: translateY(-2px); }
+
+.agenda-dia.ativo {
+  border-color: var(--color-brand-gold);
+  background: rgba(216, 184, 107, 0.12);
+}
+
+.agenda-dia-semana {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-sec);
+  margin-bottom: 0.2rem;
+}
+
+.agenda-dia-num { display: block; font-size: 1.05rem; font-weight: 600; font-family: var(--font-display); }
+.agenda-dia-mes { display: block; font-size: 0.72rem; color: var(--color-text-sec); }
+
+/* horários */
+.agenda-horas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+}
+
+.agenda-hora {
+  padding: 0.65rem 0.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-white-10);
+  background: var(--color-white-02);
+  color: var(--color-text-main);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color var(--transition-medium), background var(--transition-medium);
+}
+
+.agenda-hora:hover { border-color: rgba(216, 184, 107, 0.5); }
+.agenda-hora.ativo { border-color: var(--color-brand-gold); background: var(--color-brand-gold); color: #0F1115; font-weight: 700; }
+
+.agenda-obs {
+  margin-top: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-sec);
+  font-weight: 300;
+  text-align: center;
+}
+
+/* passo 2 */
+.agenda-escolhido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(216, 184, 107, 0.1);
+  border: 1px solid rgba(216, 184, 107, 0.28);
+  margin-bottom: 1.25rem;
+  font-size: 0.92rem;
+}
+
+.agenda-trocar {
+  background: none;
+  border: none;
+  color: var(--color-brand-gold);
+  font: inherit;
+  font-size: 0.82rem;
+  text-decoration: underline;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.agenda-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.agenda-campo { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.agenda-campo-largo { grid-column: 1 / -1; }
+
+.agenda-campo > span {
+  font-size: 0.78rem;
+  color: var(--color-text-sec);
+  letter-spacing: 0.04em;
+}
+
+.agenda-campo i { color: var(--color-brand-gold); font-style: normal; margin-left: 2px; }
+
+.agenda-campo input,
+.agenda-campo select,
+.agenda-campo textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-white-10);
+  background: var(--color-white-02);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-medium);
+  resize: vertical;
+}
+
+.agenda-campo input::placeholder,
+.agenda-campo textarea::placeholder { color: rgba(154, 164, 178, 0.6); }
+
+.agenda-campo input:focus,
+.agenda-campo select:focus,
+.agenda-campo textarea:focus { outline: none; border-color: var(--color-brand-gold); }
+
+.agenda-campo select option { background: var(--color-card); color: var(--color-text-main); }
+
+.agenda-armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.agenda-erro {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
+  font-size: 0.88rem;
+}
+
+.agenda-enviar { width: 100%; justify-content: center; margin-top: 1.4rem; }
+.agenda-enviar[disabled] { opacity: 0.6; cursor: progress; }
+
+/* passo 3 */
+.agenda-pronto { text-align: center; }
+
+.agenda-check {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agenda-pronto-titulo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.6rem; }
+.agenda-pronto-txt { color: var(--color-text-sec); font-weight: 300; line-height: 1.6; }
+
+.agenda-meet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.agenda-meet:hover { filter: brightness(1.08); }
+
+@media (max-width: 600px) {
+  .agenda-campos { grid-template-columns: 1fr; }
+  .agenda-horas { grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); }
+}

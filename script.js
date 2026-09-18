@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const menuClose = document.getElementById('menuClose');
     const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-menu-links .btn');
 
     const toggleMenu = (show) => {
         if (show) {
@@ -412,4 +412,173 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+/* ============================================
+   AGENDAR DIAGNÓSTICO
+   Os horários vêm da agenda do Google da VCA (n8n) e o agendamento cai no
+   sistema: vira lead no CRM (etapa "Reunião agendada") e reunião na Agenda.
+   ============================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const caixa = document.getElementById('agenda');
+  if (!caixa) return;
+
+  const API = 'https://webhook.vcacompany.com/webhook/';
+  const estado = caixa.querySelector('.agenda-estado');
+  const listaDias = caixa.querySelector('.agenda-dias');
+  const listaHoras = caixa.querySelector('.agenda-horas');
+  const etapa1 = caixa.querySelector('[data-etapa="1"]');
+  const form = caixa.querySelector('[data-etapa="2"]');
+  const pronto = caixa.querySelector('[data-etapa="3"]');
+  const escolhido = caixa.querySelector('.agenda-escolhido-txt');
+  const erroBox = caixa.querySelector('.agenda-erro');
+  const botao = caixa.querySelector('.agenda-enviar');
+
+  let dias = [], diaAtivo = null, horaAtiva = null, carregou = false, enviando = false;
+
+  const mostrar = (n) => {
+    etapa1.hidden = n !== 1;
+    form.hidden = n !== 2;
+    pronto.hidden = n !== 3;
+  };
+  const dizer = (txt, tipo) => {
+    if (!estado) return;
+    estado.hidden = !txt;
+    estado.textContent = txt || '';
+    estado.setAttribute('data-estado', tipo || 'carregando');
+    if (tipo === 'erro') {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = 'tentar de novo';
+      b.addEventListener('click', () => carregarHorarios(true));
+      estado.appendChild(b);
+    }
+  };
+
+  const carregarHorarios = (forcar) => {
+    if (carregou && !forcar) return;
+    carregou = true;
+    dizer('Buscando os horários livres…');
+    listaDias.innerHTML = '';
+    listaHoras.innerHTML = '';
+    fetch(API + 'vca-agenda-horarios', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    })
+      .then(r => r.json())
+      .then(d => {
+        dias = (d && d.dias) || [];
+        if (!dias.length) {
+          dizer('Sem horário livre nos próximos dias. Chame a gente no WhatsApp que damos um jeito.', 'erro');
+          return;
+        }
+        dizer('');
+        desenharDias();
+        escolherDia(dias[0].data);
+      })
+      .catch(() => {
+        carregou = false;
+        dizer('Não consegui carregar os horários agora.', 'erro');
+      });
+  };
+
+  const desenharDias = () => {
+    listaDias.innerHTML = '';
+    dias.forEach(dia => {
+      const partes = String(dia.rotulo || '').split(', ');       // "segunda, 22 de set"
+      const semana = (partes[0] || '').slice(0, 3);
+      const resto = (partes[1] || '').split(' de ');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'agenda-dia';
+      b.dataset.data = dia.data;
+      b.innerHTML = '<span class="agenda-dia-semana">' + semana + '</span>' +
+                    '<span class="agenda-dia-num">' + (resto[0] || '') + '</span>' +
+                    '<span class="agenda-dia-mes">' + (resto[1] || '') + '</span>';
+      b.addEventListener('click', () => escolherDia(dia.data));
+      listaDias.appendChild(b);
+    });
+  };
+
+  const escolherDia = (data) => {
+    diaAtivo = dias.find(d => d.data === data) || null;
+    horaAtiva = null;
+    listaDias.querySelectorAll('.agenda-dia').forEach(b => b.classList.toggle('ativo', b.dataset.data === data));
+    listaHoras.innerHTML = '';
+    if (!diaAtivo) return;
+    diaAtivo.horarios.forEach(h => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'agenda-hora';
+      b.textContent = h;
+      b.addEventListener('click', () => {
+        horaAtiva = h;
+        listaHoras.querySelectorAll('.agenda-hora').forEach(x => x.classList.toggle('ativo', x === b));
+        escolhido.textContent = 'Diagnóstico ' + diaAtivo.rotulo + ' às ' + h;
+        erroBox.hidden = true;
+        mostrar(2);
+        const primeiro = form.querySelector('input[name="nome"]');
+        if (primeiro && window.matchMedia('(hover: hover)').matches) primeiro.focus();
+      });
+      listaHoras.appendChild(b);
+    });
+  };
+
+  caixa.querySelector('.agenda-trocar').addEventListener('click', () => mostrar(1));
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (enviando) return;
+    const dados = Object.fromEntries(new FormData(form).entries());
+    const falta = !String(dados.nome || '').trim() || !String(dados.email || '').trim() || !String(dados.whatsapp || '').trim();
+    if (falta) { erroBox.hidden = false; erroBox.textContent = 'Preencha nome, WhatsApp e e-mail.'; return; }
+    if (!diaAtivo || !horaAtiva) { mostrar(1); return; }
+
+    enviando = true;
+    botao.disabled = true;
+    botao.textContent = 'Marcando…';
+    erroBox.hidden = true;
+
+    fetch(API + 'vca-agenda-marcar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({}, dados, { data: diaAtivo.data, hora: horaAtiva }))
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, j })))
+      .then(({ ok, j }) => {
+        if (!ok || !j || !j.ok) throw new Error((j && j.erro) || 'Não deu para marcar agora.');
+        caixa.querySelector('.agenda-pronto-txt').textContent =
+          'Sua conversa com a VCA está marcada para ' + diaAtivo.rotulo + ' às ' + horaAtiva + ' (horário de Brasília).';
+        const meet = caixa.querySelector('.agenda-meet');
+        if (j.meet) { meet.href = j.meet; meet.hidden = false; } else { meet.hidden = true; }
+        mostrar(3);
+        if (window.gtag) window.gtag('event', 'diagnostico_agendado');
+      })
+      .catch(err => {
+        erroBox.hidden = false;
+        erroBox.textContent = (err && err.message) || 'Não deu para marcar agora.';
+        carregou = false;                    // horários podem ter mudado
+        carregarHorarios(true);
+      })
+      .finally(() => {
+        enviando = false;
+        botao.disabled = false;
+        botao.textContent = 'Confirmar diagnóstico';
+      });
+  });
+
+  // só busca os horários quando a pessoa chega perto da seção (não atrasa o site)
+  if ('IntersectionObserver' in window) {
+    const olho = new IntersectionObserver((entradas) => {
+      entradas.forEach(en => { if (en.isIntersecting) { carregarHorarios(); olho.disconnect(); } });
+    }, { rootMargin: '400px' });
+    olho.observe(caixa);
+  } else {
+    carregarHorarios();
+  }
+  // se alguém clicar em "quero contratar", já começa a carregar
+  document.querySelectorAll('a[href="#contato"], a[href="#agenda"]').forEach(a => {
+    a.addEventListener('click', () => carregarHorarios());
+  });
 });
