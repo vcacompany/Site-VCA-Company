@@ -577,8 +577,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     carregarHorarios();
   }
-  // se alguém clicar em "quero contratar", já começa a carregar
-  document.querySelectorAll('a[href="#contato"], a[href="#agenda"]').forEach(a => {
+  // se alguém clicar num botão de diagnóstico, já começa a carregar
+  document.querySelectorAll('a[href="#agendar"], a[href="#contato"]').forEach(a => {
     a.addEventListener('click', () => carregarHorarios());
   });
 });

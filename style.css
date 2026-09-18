@@ -3536,6 +3536,29 @@ html[data-theme="light"] .logo-img-dark { display: none; }
    AGENDAR DIAGNÓSTICO (calendário + formulário)
    Puxa os horários livres da agenda do Google e grava o lead no sistema da VCA.
    ============================================ */
+/* a caixa que segura o agendador na seção "Agendar" */
+.agenda-caixa {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--color-card);
+  border: 1px solid var(--color-white-05);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 25px 60px rgba(15, 17, 21, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.agenda-caixa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(202, 158, 53, 0.07), transparent 60%);
+  pointer-events: none;
+}
+
+.agenda-caixa > * { position: relative; z-index: 1; }
+
 .agenda {
   width: 100%;
   max-width: 600px;
@@ -3755,6 +3778,7 @@ html[data-theme="light"] .logo-img-dark { display: none; }
 .agenda-meet:hover { filter: brightness(1.08); }
 
 @media (max-width: 600px) {
+  .agenda-caixa { padding: 2rem 1.35rem; border-radius: 16px; }
   .agenda-campos { grid-template-columns: 1fr; }
   .agenda-horas { grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); }
 }

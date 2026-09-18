@@ -95,12 +95,12 @@
                 <a href="#solucoes" class="nav-link">Soluções</a>
                 <a href="#metodo" class="nav-link">Método</a>
                 <a href="#depoimentos" class="nav-link">Depoimentos</a>
-                <a href="#planos" class="nav-link">Planos</a>
+                <a href="#agendar" class="nav-link">Agendar</a>
                 <a href="#faq" class="nav-link">Dúvidas</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#contato" class="btn btn-primary" style="padding: 0.75rem 2rem;">Diagnóstico
+                <a href="#agendar" class="btn btn-primary" style="padding: 0.75rem 2rem;">Diagnóstico
                     Gratuito</a>
                 <button class="theme-toggle" type="button" aria-label="Alternar modo claro/escuro">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
@@ -133,9 +133,9 @@
             <a href="#solucoes" class="mobile-nav-link">Soluções</a>
             <a href="#metodo" class="mobile-nav-link">Método</a>
             <a href="#depoimentos" class="mobile-nav-link">Depoimentos</a>
-            <a href="#planos" class="mobile-nav-link">Planos</a>
+            <a href="#agendar" class="mobile-nav-link">Agendar</a>
             <a href="#faq" class="mobile-nav-link">Dúvidas</a>
-            <a href="#contato" class="btn btn-primary"
+            <a href="#agendar" class="btn btn-primary"
                 style="width: 100%; margin-top: 2rem;">Diagnóstico Gratuito</a>
         </div>
     </div>
@@ -155,7 +155,7 @@
                         Implementamos sistemas sob medida e automações com inteligência artificial para empresas de qualquer nicho. Processos, atendimento e gestão trabalhando 24h por você
                     </p>
                     <div class="hero-cta">
-                        <a href="#contato" class="btn btn-primary">Agendar diagnóstico gratuito</a>
+                        <a href="#agendar" class="btn btn-primary">Agendar diagnóstico gratuito</a>
                         <a href="#solucoes" class="hero-secondary-cta">
                             Ver como funciona
                         </a>
@@ -486,68 +486,81 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section id="planos" class="pricing">
+        <!-- Agendar diagnóstico -->
+        <section id="agendar" class="agendar-section">
             <div class="container">
                 <div class="section-heading" data-animate>
-                    <span class="section-badge">Investimento</span>
-                    <h2 class="section-title">O sistema completo.<br>Em um único contrato.</h2>
-                    <p class="section-subtitle">Sem surpresas, sem taxas escondidas. Um valor mensal que cabe no
-                        crescimento.</p>
+                    <span class="section-badge">Diagnóstico Gratuito</span>
+                    <h2 class="section-title">Escolha o melhor dia<br>e converse com a gente.</h2>
+                    <p class="section-subtitle">30 minutos por Google Meet. Olhamos a sua operação e mostramos onde dá
+                        para automatizar — sem compromisso.</p>
                 </div>
 
-                <div class="pricing-grid">
-                    <div class="pricing-card" data-animate>
-                        <span class="pricing-tag">Plano mensal</span>
-                        <div class="pricing-value">
-                            <span class="pv-prefix">R$</span>
-                            <span class="pv-amount premium-gradient">2.000</span>
-                            <span class="pv-period">/mês</span>
+                <div class="agenda-caixa" data-animate>
+                    <div class="agenda" id="agenda">
+                        <!-- Passo 1: escolher o dia e a hora (vem da agenda do Google) -->
+                        <div class="agenda-etapa" data-etapa="1">
+                            <div class="agenda-estado" data-estado="carregando">Buscando os horários livres…</div>
+                            <div class="agenda-dias" role="group" aria-label="Escolha o dia"></div>
+                            <div class="agenda-horas" role="group" aria-label="Escolha o horário"></div>
+                            <p class="agenda-obs">Conversa de 30 minutos por Google Meet · horário de Brasília</p>
                         </div>
-                        <p class="pricing-note">Sem taxa de setup. Sem fidelidade. Cancele quando quiser.</p>
-                        <ul class="pricing-list">
-                            <li>Sistema / CRM com IA sob medida</li>
-                            <li>Automação de processos e tarefas repetitivas</li>
-                            <li>Integração com as ferramentas que você já usa</li>
-                            <li>Atendimento automático 24/7 com IA</li>
-                            <li>Site ou plataforma web integrada</li>
-                            <li>Relatórios e visão única do negócio</li>
-                            <li>Lembretes automáticos e pós-venda</li>
-                            <li>Dashboard de resultados mensal</li>
-                            <li>Suporte dedicado</li>
-                        </ul>
-                        <a href="#contato" class="btn btn-primary pricing-btn">Quero contratar a VCA →</a>
-                    </div>
 
-                    <div class="pricing-compare" data-animate>
-                        <h3 class="compare-title">Se contratasse separado:</h3>
-                        <div class="compare-row">
-                            <span>Desenvolvimento de sistema</span>
-                            <span>R$ 2.500/mês</span>
-                        </div>
-                        <div class="compare-row">
-                            <span>CRM com IA</span>
-                            <span>R$ 1.200/mês</span>
-                        </div>
-                        <div class="compare-row">
-                            <span>Automação & integrações </span>
-                            <span>R$ 900/mês</span>
-                        </div>
-                        <div class="compare-row">
-                            <span>Site com IA</span>
-                            <span>R$ 8.000 único</span>
-                        </div>
-                        <div class="compare-total">
-                            <span>Total separado</span>
-                            <span>R$ 4.600+/mês</span>
-                        </div>
-                        <div class="compare-save">
-                            <i data-lucide="check" style="width: 18px;"></i>
-                            Com a VCA você economiza mais de R$ 2.600/mês e ainda tem o site e implementação inclusas.
-                        </div>
-                        <div class="compare-note">
-                            O tempo que você e sua equipe economiza já paga o investimento. A maioria dos negócios sente a diferença na operação já nos primeiros 30 dias.
-Perguntas frequentes
+                        <!-- Passo 2: dados de quem vai receber o diagnóstico -->
+                        <form class="agenda-etapa" data-etapa="2" hidden novalidate>
+                            <div class="agenda-escolhido">
+                                <span class="agenda-escolhido-txt"></span>
+                                <button type="button" class="agenda-trocar">trocar</button>
+                            </div>
+                            <div class="agenda-campos">
+                                <label class="agenda-campo">
+                                    <span>Nome<i>*</i></span>
+                                    <input name="nome" type="text" autocomplete="name" placeholder="Como te chamamos?" required>
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>WhatsApp<i>*</i></span>
+                                    <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required>
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>E-mail<i>*</i></span>
+                                    <input name="email" type="email" autocomplete="email" placeholder="voce@suaempresa.com" required>
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>Empresa</span>
+                                    <input name="empresa" type="text" autocomplete="organization" placeholder="Nome da sua empresa">
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>Segmento</span>
+                                    <select name="segmento">
+                                        <option value="">Selecione</option>
+                                        <option>Clínica / consultório</option>
+                                        <option>Contabilidade</option>
+                                        <option>Imobiliária</option>
+                                        <option>Advocacia</option>
+                                        <option>Comércio / loja</option>
+                                        <option>Serviços</option>
+                                        <option>Infoproduto / agência</option>
+                                        <option>Outro</option>
+                                    </select>
+                                </label>
+                                <label class="agenda-campo agenda-campo-largo">
+                                    <span>O que mais te atrapalha hoje?</span>
+                                    <textarea name="desafio" rows="3" placeholder="Ex.: perco cliente porque demoro pra responder no WhatsApp"></textarea>
+                                </label>
+                            </div>
+                            <input class="agenda-armadilha" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="agenda-erro" role="alert" hidden></div>
+                            <button type="submit" class="btn btn-primary agenda-enviar">Confirmar diagnóstico</button>
+                            <p class="agenda-obs">Seus dados ficam só com a VCA. Sem spam, sem ligação de vendas.</p>
+                        </form>
+
+                        <!-- Passo 3: confirmado -->
+                        <div class="agenda-etapa agenda-pronto" data-etapa="3" hidden>
+                            <div class="agenda-check" aria-hidden="true">✓</div>
+                            <h3 class="agenda-pronto-titulo">Diagnóstico marcado!</h3>
+                            <p class="agenda-pronto-txt"></p>
+                            <a class="agenda-meet" target="_blank" rel="noopener" hidden>Entrar pelo Google Meet</a>
+                            <p class="agenda-obs">O convite chegou no seu e-mail. Se precisar remarcar, é só responder o convite.</p>
                         </div>
                     </div>
                 </div>
@@ -626,72 +639,8 @@ Perguntas frequentes
                     <p class="final-cta-desc">
                         Em 30 minutos analisamos seus processos e mostramos exatamente onde sua empresa perde tempo e dinheiro por falta de sistema — e como automatizar isso, seja qual for o seu nicho.
                     </p>
-                    <div class="agenda" id="agenda">
-                        <!-- Passo 1: escolher o dia e a hora (vem da agenda do Google) -->
-                        <div class="agenda-etapa" data-etapa="1">
-                            <div class="agenda-estado" data-estado="carregando">Buscando os horários livres…</div>
-                            <div class="agenda-dias" role="group" aria-label="Escolha o dia"></div>
-                            <div class="agenda-horas" role="group" aria-label="Escolha o horário"></div>
-                            <p class="agenda-obs">Conversa de 30 minutos por Google Meet · horário de Brasília</p>
-                        </div>
-
-                        <!-- Passo 2: dados de quem vai receber o diagnóstico -->
-                        <form class="agenda-etapa" data-etapa="2" hidden novalidate>
-                            <div class="agenda-escolhido">
-                                <span class="agenda-escolhido-txt"></span>
-                                <button type="button" class="agenda-trocar">trocar</button>
-                            </div>
-                            <div class="agenda-campos">
-                                <label class="agenda-campo">
-                                    <span>Nome<i>*</i></span>
-                                    <input name="nome" type="text" autocomplete="name" placeholder="Como te chamamos?" required>
-                                </label>
-                                <label class="agenda-campo">
-                                    <span>WhatsApp<i>*</i></span>
-                                    <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required>
-                                </label>
-                                <label class="agenda-campo">
-                                    <span>E-mail<i>*</i></span>
-                                    <input name="email" type="email" autocomplete="email" placeholder="voce@suaempresa.com" required>
-                                </label>
-                                <label class="agenda-campo">
-                                    <span>Empresa</span>
-                                    <input name="empresa" type="text" autocomplete="organization" placeholder="Nome da sua empresa">
-                                </label>
-                                <label class="agenda-campo">
-                                    <span>Segmento</span>
-                                    <select name="segmento">
-                                        <option value="">Selecione</option>
-                                        <option>Clínica / consultório</option>
-                                        <option>Contabilidade</option>
-                                        <option>Imobiliária</option>
-                                        <option>Advocacia</option>
-                                        <option>Comércio / loja</option>
-                                        <option>Serviços</option>
-                                        <option>Infoproduto / agência</option>
-                                        <option>Outro</option>
-                                    </select>
-                                </label>
-                                <label class="agenda-campo agenda-campo-largo">
-                                    <span>O que mais te atrapalha hoje?</span>
-                                    <textarea name="desafio" rows="3" placeholder="Ex.: perco cliente porque demoro pra responder no WhatsApp"></textarea>
-                                </label>
-                            </div>
-                            <input class="agenda-armadilha" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-                            <div class="agenda-erro" role="alert" hidden></div>
-                            <button type="submit" class="btn btn-primary agenda-enviar">Confirmar diagnóstico</button>
-                            <p class="agenda-obs">Seus dados ficam só com a VCA. Sem spam, sem ligação de vendas.</p>
-                        </form>
-
-                        <!-- Passo 3: confirmado -->
-                        <div class="agenda-etapa agenda-pronto" data-etapa="3" hidden>
-                            <div class="agenda-check" aria-hidden="true">✓</div>
-                            <h3 class="agenda-pronto-titulo">Diagnóstico marcado!</h3>
-                            <p class="agenda-pronto-txt"></p>
-                            <a class="agenda-meet" target="_blank" rel="noopener" hidden>Entrar pelo Google Meet</a>
-                            <p class="agenda-obs">O convite chegou no seu e-mail. Se precisar remarcar, é só responder o convite.</p>
-                        </div>
-                    </div>
+                    <a href="#agendar" class="btn btn-primary btn-portal">Agendar diagnóstico gratuito ↗</a>
+                    <p class="portal-footer">Sem compromisso · Sem letras miúdas · 100% online</p>
                 </div>
             </div>
         </section>
@@ -732,7 +681,7 @@ Perguntas frequentes
                     <a href="#solucoes" class="footer-nav-link">Soluções</a>
                     <a href="#metodo" class="footer-nav-link">Método VCA</a>
                     <a href="#depoimentos" class="footer-nav-link">Depoimentos</a>
-                    <a href="#planos" class="footer-nav-link">Planos</a>
+                    <a href="#agendar" class="footer-nav-link">Agendar</a>
                     <a href="#faq" class="footer-nav-link">Dúvidas</a>
                 </div>
 
