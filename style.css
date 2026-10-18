@@ -3449,19 +3449,11 @@ html[data-theme="light"] .whatsapp-fab {
   position: fixed;
   inset: 0;
   z-index: 100000;
-  background: #0A0D13;
+  background: #FFFFFF;   /* sempre branco, nos dois temas (pedido do cliente) */
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.intro::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(202, 158, 53, 0.12), transparent 55%);
-  pointer-events: none;
 }
 
 .intro.hide {
@@ -3481,12 +3473,11 @@ html[data-theme="light"] .whatsapp-fab {
   width: clamp(180px, 40vw, 320px);
   height: auto;
   overflow: visible;
-  filter: drop-shadow(0 0 20px rgba(202, 158, 53, 0.22));
 }
 
 /* Desenha o traço -> preenche -> remove o contorno */
 .vca-path {
-  stroke: var(--color-brand-gold);
+  stroke: #CA9E35;
   stroke-width: 2.5;
   stroke-linejoin: round;
   stroke-linecap: round;
@@ -3506,25 +3497,11 @@ html[data-theme="light"] .whatsapp-fab {
 @keyframes vcaFill     { to { fill-opacity: 1; } }
 @keyframes vcaStrokeOut { to { stroke-opacity: 0; } }
 
-.intro-bar {
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  margin-top: 0.3rem;
-  background: linear-gradient(90deg, transparent, var(--color-brand-gold), transparent);
-  animation: introBar 1.2s ease forwards 0.6s;
-}
-
-@keyframes introBar {
-  to { width: 210px; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .vca-path {
     animation: vcaFill 0.4s ease forwards;
     stroke-opacity: 0;
   }
-  .intro-bar { animation: none; width: 210px; }
 }
 
 /* Logo por tema */
