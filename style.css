@@ -247,8 +247,15 @@ section {
 
 @media (min-width: 1024px) {
   .navbar.navbar-scrolled .nav-links {
-    gap: 2.75rem;
+    gap: clamp(1rem, 2vw, 2.5rem);
   }
+  /* logo | links (centralizados) | botões — a grade impede os links de passarem por baixo do botão */
+  .navbar .container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .navbar .logo { justify-self: start; }
+  .navbar .nav-actions { justify-self: end; }
 }
 
 .navbar .container {
@@ -313,18 +320,19 @@ section {
 }
 
 @media (min-width: 1024px) {
+  /* links ocupam o próprio espaço entre o logo e os botões (antes ficavam soltos no centro e,
+     com 6 itens, passavam por baixo do "Diagnóstico gratuito"); espaçamento encolhe em telas menores */
   .nav-links {
     display: flex;
     justify-content: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    gap: 3.5rem;
+    flex: 0 1 auto;
+    margin: 0 1.25rem;
+    white-space: nowrap;
+    gap: clamp(1rem, 2.3vw, 3rem);
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 0.4em;
+    letter-spacing: clamp(1.5px, 0.22vw, 4px);
     color: rgba(255, 255, 255, 0.6);
   }
 }

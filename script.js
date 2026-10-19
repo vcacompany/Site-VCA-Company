@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const caixa = document.getElementById('agenda');
   if (!caixa) return;
 
-  const API = 'https://webhook.vcacompany.com/webhook/';
+  const API = 'https://webbhook.vcacompany.com/webhook/';
   const estado = caixa.querySelector('.agenda-estado');
   const listaDias = caixa.querySelector('.agenda-dias');
   const listaHoras = caixa.querySelector('.agenda-horas');
