@@ -35,6 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>/* modo claro é o padrão; só fica escuro quem escolheu escuro no botão */(function(){var t=null;try{t=localStorage.getItem('vca-theme');}catch(e){}if(t!=='dark'){document.documentElement.setAttribute('data-theme','light');}})();</script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sistema-demo.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -92,6 +93,7 @@
 
             <div class="nav-links">
                 <a href="#solucoes" class="nav-link">Soluções</a>
+                <a href="#sistema" class="nav-link">Sistema</a>
                 <a href="#metodo" class="nav-link">Método</a>
                 <a href="#depoimentos" class="nav-link">Depoimentos</a>
                 <a href="#agendar" class="nav-link">Agendar</a>
@@ -130,6 +132,7 @@
         </div>
         <div class="mobile-menu-links">
             <a href="#solucoes" class="mobile-nav-link">Soluções</a>
+            <a href="#sistema" class="mobile-nav-link">Sistema</a>
             <a href="#metodo" class="mobile-nav-link">Método</a>
             <a href="#depoimentos" class="mobile-nav-link">Depoimentos</a>
             <a href="#agendar" class="mobile-nav-link">Agendar</a>
@@ -249,10 +252,14 @@
                         </div>
                     </div>
                     <div class="solution-visual">
-                        <div class="logos-panel">
-                            <img src="imagens/google-meta.png" alt="Google Ads e Meta Ads" class="logos-img"
-                                loading="lazy">
-                            <span class="logos-caption">Anunciamos onde o seu cliente já está.</span>
+                        <div class="sd-flowcard" aria-label="Exemplo de automação">
+                            <div class="sd-node" style="--icb:rgba(16,185,129,.12);--icc:#10B981"><span class="sd-ic"><i data-lucide="file-input"></i></span><div><b>Novo cadastro no site</b><small>Gatilho</small></div></div>
+                            <div class="sd-link" style="--d:0s"></div>
+                            <div class="sd-node" style="--icb:rgba(59,130,246,.12);--icc:#3B82F6"><span class="sd-ic"><i data-lucide="database"></i></span><div><b>CRM e planilha atualizados</b><small>Integração</small></div></div>
+                            <div class="sd-link" style="--d:.5s"></div>
+                            <div class="sd-node" style="--icb:rgba(201,162,77,.14);--icc:#C9A24D"><span class="sd-ic"><i data-lucide="receipt"></i></span><div><b>Cobrança enviada sozinha</b><small>Pix ou cartão</small></div></div>
+                            <div class="sd-link" style="--d:1s"></div>
+                            <div class="sd-node" style="--icb:rgba(139,92,246,.12);--icc:#8B5CF6"><span class="sd-ic"><i data-lucide="bar-chart-3"></i></span><div><b>Relatório no seu e-mail</b><small>Toda segunda, 8h</small></div></div>
                         </div>
                     </div>
                 </div>
@@ -279,6 +286,165 @@
             </div>
         </section>
 
+        <!-- Por dentro do sistema: vitrine animada + demonstração interativa (dados fictícios) -->
+        <section id="sistema" class="sd-section">
+            <div class="container">
+                <div class="section-heading" data-animate>
+                    <span class="section-badge">Por dentro do sistema</span>
+                    <h2 class="section-title">Veja o sistema VCA<br>trabalhando por você</h2>
+                    <p class="section-subtitle">Primeiro, um dia comum no automático. Depois, explore você mesmo — clique, arraste e converse com a IA.</p>
+                </div>
+
+                <!-- Parte 1: vitrine animada -->
+                <h3 class="sd-part-title" data-animate><span class="sd-num">1</span>Um dia no automático</h3>
+                <p class="sd-part-sub" data-animate>Do primeiro “oi” no WhatsApp ao pagamento confirmado — sem ninguém da sua equipe precisar fazer nada.</p>
+
+                <div class="sd-show" id="sdShow" data-animate role="region" aria-roledescription="carrossel" aria-label="Um dia no automático">
+                    <div class="sd-stage">
+                        <!-- Cena 1 -->
+                        <article class="sd-slide" aria-roledescription="slide" aria-label="1 de 4">
+                            <div class="sd-slide-txt">
+                                <span class="sd-step">01 · Atendimento</span>
+                                <h3>O lead chama no WhatsApp e a IA responde na hora</h3>
+                                <p>Dia, noite ou feriado: o agente entende a pergunta, responde com a sua linguagem e já oferece horários livres.</p>
+                            </div>
+                            <div class="sd-scene">
+                                <div class="sd-scene-top"><span class="sd-av" style="--av:#3B82F6">RC</span><div><b>Rafael Costa</b><small>● online · WhatsApp</small></div><span class="sd-chip gold">✦ IA ativa</span></div>
+                                <div class="sd-msgs">
+                                    <div class="sd-msg in sd-a" style="--d:.3s">Oi! Quero saber os valores do plano mensal 🙂<small>21:47</small></div>
+                                    <div class="sd-typing sd-a" style="--d:1s;--h:2s"><i></i><i></i><i></i></div>
+                                    <div class="sd-msg out sd-a" style="--d:2.1s"><span class="sd-ia">✦ RESPONDIDO PELA IA</span>Olá, Rafael! O plano mensal é R$ 890 e inclui acompanhamento completo. Quer conhecer pessoalmente?<small>✓✓ 21:47</small></div>
+                                    <div class="sd-msg in sd-a" style="--d:3.3s">Quero! Tem horário amanhã?<small>21:48</small></div>
+                                    <div class="sd-typing sd-a" style="--d:3.8s;--h:4.6s"><i></i><i></i><i></i></div>
+                                    <div class="sd-msg out sd-a" style="--d:4.7s"><span class="sd-ia">✦ RESPONDIDO PELA IA</span>Tenho às 10h ou às 15h. Qual fica melhor? 📅<small>✓✓ 21:48</small></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Cena 2 -->
+                        <article class="sd-slide" aria-roledescription="slide" aria-label="2 de 4">
+                            <div class="sd-slide-txt">
+                                <span class="sd-step">02 · Funil de vendas</span>
+                                <h3>A IA qualifica e move o cliente no funil sozinha</h3>
+                                <p>Cada conversa vira um card no CRM. Conforme o cliente avança, ele muda de etapa — e sua equipe vê tudo em tempo real.</p>
+                            </div>
+                            <div class="sd-scene">
+                                <div class="sd-scene-top"><span class="sd-av" style="--av:#C9A24D">VC</span><div><b>Funil de vendas</b><small>Atualizado automaticamente</small></div><span class="sd-chip ok sd-a" style="--d:2.2s">✓ movido pela IA</span></div>
+                                <div class="sd-mini-board">
+                                    <div class="sd-mini-col"><h5><i style="--dot:#3B82F6"></i>Novo lead</h5>
+                                        <div class="sd-mini-card">Diego Martins<small>Pacote anual</small></div>
+                                        <div class="sd-mini-card sd-slot" aria-hidden="true"></div>
+                                        <div class="sd-mini-card">André Lima<small>Consultoria</small></div>
+                                    </div>
+                                    <div class="sd-mini-col"><h5><i style="--dot:#8B5CF6"></i>Qualificado</h5>
+                                        <div class="sd-mini-card">Juliana Prado<small>Pacote trimestral</small></div>
+                                    </div>
+                                    <div class="sd-mini-col"><h5><i style="--dot:#F59E0B"></i>Reunião marcada</h5>
+                                        <div class="sd-mini-card">Pedro Nogueira<small>Projeto completo</small></div>
+                                    </div>
+                                    <div class="sd-mini-card sd-traveler"><b>Rafael Costa</b><small>Plano mensal · R$ 890</small><span class="sd-chip gold">✦ alta intenção</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Cena 3 -->
+                        <article class="sd-slide" aria-roledescription="slide" aria-label="3 de 4">
+                            <div class="sd-slide-txt">
+                                <span class="sd-step">03 · Agenda</span>
+                                <h3>Reunião marcada e lembrete enviado — sem ligação</h3>
+                                <p>O horário escolhido entra direto na agenda, sem conflito. Uma hora antes, o cliente recebe o lembrete no WhatsApp. Menos faltas, mais vendas.</p>
+                            </div>
+                            <div class="sd-scene">
+                                <div class="sd-scene-top"><span class="sd-av" style="--av:#10B981">AG</span><div><b>Agenda da semana</b><small>Sincronizada com o Google Agenda</small></div></div>
+                                <div class="sd-mini-cal">
+                                    <div class="sd-mini-day"><span>Seg<b>14</b></span><div class="sd-mini-ev" style="top:52px;height:34px;--evc:#3B82F6;--evb:#3B82F622">Avaliação · Bianca</div><div class="sd-mini-ev" style="top:150px;height:40px;--evc:#8B5CF6;--evb:#8B5CF622">Equipe</div></div>
+                                    <div class="sd-mini-day today"><span>Ter<b>15</b></span><div class="sd-mini-ev" style="top:70px;height:34px;--evc:#10B981;--evb:#10B98122">Retorno · Juliana</div><div class="sd-mini-ev sd-a pop" style="--d:1.1s;top:140px;height:44px;--evc:#C9A24D;--evb:#C9A24D2e"><b>Rafael Costa</b><br>10:00 · novo ✦</div></div>
+                                    <div class="sd-mini-day"><span>Qua<b>16</b></span><div class="sd-mini-ev" style="top:110px;height:34px;--evc:#F59E0B;--evb:#F59E0B22">Pedro · 15h</div></div>
+                                    <div class="sd-mini-day sd-hide-m"><span>Qui<b>17</b></span><div class="sd-mini-ev" style="top:60px;height:48px;--evc:#10B981;--evb:#10B98122">Onboarding</div></div>
+                                    <div class="sd-mini-day sd-hide-m"><span>Sex<b>18</b></span><div class="sd-mini-ev" style="top:170px;height:34px;--evc:#F43F5E;--evb:#F43F5E22">Fechamento</div></div>
+                                </div>
+                                <div class="sd-toast sd-a" style="--d:2.6s"><span class="sd-ic"><i data-lucide="bell-ring"></i></span><div><b>Lembrete enviado no WhatsApp</b><small>“Rafael, sua reunião é amanhã às 10h. Te esperamos!”</small></div></div>
+                            </div>
+                        </article>
+
+                        <!-- Cena 4 -->
+                        <article class="sd-slide" aria-roledescription="slide" aria-label="4 de 4">
+                            <div class="sd-slide-txt">
+                                <span class="sd-step">04 · Financeiro</span>
+                                <h3>Pagamento confirmado e o financeiro se atualiza</h3>
+                                <p>Cobrança por Pix ou cartão, baixa automática e relatório do mês pronto. Você abre o painel e os números já estão lá.</p>
+                            </div>
+                            <div class="sd-scene">
+                                <div class="sd-scene-top"><span class="sd-av" style="--av:#8B5CF6">FN</span><div><b>Financeiro · Outubro</b><small>Baixa automática de pagamentos</small></div><span class="sd-chip ok sd-a" style="--d:.5s">✓ Pix recebido</span></div>
+                                <div class="sd-pay">
+                                    <div class="sd-card sd-a" style="--d:.3s"><small style="color:var(--sd-muted)">Pagamento · Rafael Costa</small><strong data-n="890" data-f="brl" data-delay="500">R$ 0</strong><span class="sd-chip ok" style="margin-top:.4rem">Pago</span></div>
+                                    <div class="sd-card sd-a" style="--d:.45s"><small style="color:var(--sd-muted)">Receita do mês</small><strong data-n="48290" data-f="brl" data-delay="700">R$ 0</strong><span class="sd-up">↑ 12% vs setembro</span></div>
+                                </div>
+                                <div class="sd-card sd-a" style="--d:.6s;margin-top:.7rem">
+                                    <p class="sd-card-t">Receita por mês <span>R$ mil</span></p>
+                                    <div class="sd-bars">
+                                        <div class="sd-bar-col"><i style="--h:58%;--i:0"></i><span>Mai</span></div>
+                                        <div class="sd-bar-col"><i style="--h:64%;--i:1"></i><span>Jun</span></div>
+                                        <div class="sd-bar-col"><i style="--h:61%;--i:2"></i><span>Jul</span></div>
+                                        <div class="sd-bar-col"><i style="--h:76%;--i:3"></i><span>Ago</span></div>
+                                        <div class="sd-bar-col"><i style="--h:82%;--i:4"></i><span>Set</span></div>
+                                        <div class="sd-bar-col"><i class="hl" style="--h:94%;--i:5"></i><span>Out</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="sd-ctrl">
+                        <button class="sd-arrow" type="button" data-prev aria-label="Cena anterior"><i data-lucide="chevron-left"></i></button>
+                        <div class="sd-pips">
+                            <button class="sd-pip" type="button" aria-label="Cena 1"><span></span></button>
+                            <button class="sd-pip" type="button" aria-label="Cena 2"><span></span></button>
+                            <button class="sd-pip" type="button" aria-label="Cena 3"><span></span></button>
+                            <button class="sd-pip" type="button" aria-label="Cena 4"><span></span></button>
+                        </div>
+                        <button class="sd-arrow" type="button" data-next aria-label="Próxima cena"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="sd-gap"></div>
+
+                <!-- Parte 2: demonstração interativa -->
+                <h3 class="sd-part-title" data-animate><span class="sd-num">2</span>Explore o painel</h3>
+                <p class="sd-part-sub" data-animate>Clique no menu, arraste os cards do funil, converse com a IA e teste uma automação.</p>
+
+                <div class="sd-window" data-animate>
+                    <div class="sd-bar">
+                        <div class="sd-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                        <div class="sd-url">app.suaempresa.com.br/painel</div>
+                        <div class="sd-brand" role="group" aria-label="Cor da marca">
+                            <span>Cor da sua marca:</span>
+                            <button class="sd-swatch" type="button" style="--c:#C9A24D" data-c="#C9A24D" aria-pressed="true" aria-label="Dourado"></button>
+                            <button class="sd-swatch" type="button" style="--c:#3B82F6" data-c="#3B82F6" aria-pressed="false" aria-label="Azul"></button>
+                            <button class="sd-swatch" type="button" style="--c:#10B981" data-c="#10B981" aria-pressed="false" aria-label="Verde"></button>
+                            <button class="sd-swatch" type="button" style="--c:#8B5CF6" data-c="#8B5CF6" aria-pressed="false" aria-label="Roxo"></button>
+                            <button class="sd-swatch" type="button" style="--c:#F43F5E" data-c="#F43F5E" aria-pressed="false" aria-label="Rosa"></button>
+                        </div>
+                    </div>
+                    <div class="sd-app" id="sdApp">
+                        <nav class="sd-side" role="tablist" aria-label="Menu do painel">
+                            <div class="sd-logo"><b>SA</b><span>Studio Aurora<small>Painel da empresa</small></span></div>
+                            <button class="sd-nav" role="tab" data-view="inicio" aria-selected="true"><i data-lucide="layout-dashboard"></i><span>Início</span></button>
+                            <button class="sd-nav" role="tab" data-view="conversas" aria-selected="false"><i data-lucide="message-circle"></i><span>Conversas</span><em class="sd-pill">3</em></button>
+                            <button class="sd-nav" role="tab" data-view="funil" aria-selected="false"><i data-lucide="kanban"></i><span>Funil de vendas</span></button>
+                            <button class="sd-nav" role="tab" data-view="agenda" aria-selected="false"><i data-lucide="calendar-days"></i><span>Agenda</span></button>
+                            <button class="sd-nav" role="tab" data-view="financeiro" aria-selected="false"><i data-lucide="wallet"></i><span>Financeiro</span></button>
+                            <button class="sd-nav" role="tab" data-view="automacoes" aria-selected="false"><i data-lucide="workflow"></i><span>Automações</span></button>
+                            <div class="sd-side-foot"><span class="sd-av" style="--av:#C9A24D">MA</span><div>Mariana Alves<small>Administradora</small></div></div>
+                        </nav>
+                        <div class="sd-main">
+                            <div class="sd-drawer" aria-live="polite"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="sd-caption">Demonstração com dados fictícios — o seu sistema é montado sob medida para o seu negócio.</p>
+            </div>
+        </section>
+
         <!-- Process Section -->
         <section id="processo" class="steps-section">
             <div class="container">
@@ -302,7 +468,7 @@
                     </div>
                     <div class="step-card tilt-surface" data-animate>
                         <span class="step-num">03</span>
-                        <h3 class="step-title">Ativação das campanhas</h3>
+                        <h3 class="step-title">Ativação do sistema</h3>
                         <p class="step-desc">Colocamos tudo no ar funcionando junto: sistema, automações e atendimento.</p>
                     </div>
                     <div class="step-card tilt-surface" data-animate>
@@ -719,6 +885,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="sistema-demo.js"></script>
 </body>
 
 </html>
