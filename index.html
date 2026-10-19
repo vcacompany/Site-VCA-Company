@@ -667,24 +667,49 @@
 
                 <div class="agenda-caixa" data-animate>
                     <div class="agenda" id="agenda">
-                        <!-- Passo 1: escolher o dia e a hora (vem da agenda do Google) -->
-                        <div class="agenda-etapa" data-etapa="1">
-                            <div class="agenda-estado" data-estado="carregando">Buscando os horários livres…</div>
-                            <div class="agenda-dias" role="group" aria-label="Escolha o dia"></div>
-                            <div class="agenda-horas" role="group" aria-label="Escolha o horário"></div>
-                            <p class="agenda-obs">Conversa de 30 minutos por Google Meet · horário de Brasília</p>
-                        </div>
-
-                        <!-- Passo 2: dados de quem vai receber o diagnóstico -->
-                        <form class="agenda-etapa" data-etapa="2" hidden novalidate>
-                            <div class="agenda-escolhido">
-                                <span class="agenda-escolhido-txt"></span>
-                                <button type="button" class="agenda-trocar">trocar</button>
-                            </div>
+                        <!-- Passo 1: dados de quem vai receber o diagnóstico -->
+                        <form class="agenda-etapa" data-etapa="1" novalidate>
+                            <p class="agenda-passo"><b>1</b> Conte um pouco sobre você e a sua empresa</p>
                             <div class="agenda-campos">
                                 <label class="agenda-campo">
                                     <span>Nome<i>*</i></span>
                                     <input name="nome" type="text" autocomplete="name" placeholder="Como te chamamos?" required>
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>Nome da empresa<i>*</i></span>
+                                    <input name="empresa" type="text" autocomplete="organization" placeholder="Nome da sua empresa" required>
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>Nicho de atuação<i>*</i></span>
+                                    <select name="nicho_sel" required>
+                                        <option value="">Selecione</option>
+                                        <option>Clínica / consultório</option>
+                                        <option>Estética / beleza</option>
+                                        <option>Contabilidade</option>
+                                        <option>Advocacia</option>
+                                        <option>Imobiliária</option>
+                                        <option>Comércio / loja</option>
+                                        <option>Eventos / casa de festas</option>
+                                        <option>Serviços</option>
+                                        <option>Infoproduto / agência</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </label>
+                                <label class="agenda-campo agenda-nicho-outro" hidden>
+                                    <span>Qual nicho?<i>*</i></span>
+                                    <input name="nicho_outro" type="text" maxlength="60" placeholder="Ex.: pet shop, escola de idiomas">
+                                </label>
+                                <label class="agenda-campo">
+                                    <span>Quantidade de clientes atuais<i>*</i></span>
+                                    <select name="clientes" required>
+                                        <option value="">Selecione</option>
+                                        <option>Ainda não tenho clientes</option>
+                                        <option>Até 20</option>
+                                        <option>21 a 50</option>
+                                        <option>51 a 200</option>
+                                        <option>201 a 500</option>
+                                        <option>Mais de 500</option>
+                                    </select>
                                 </label>
                                 <label class="agenda-campo">
                                     <span>WhatsApp<i>*</i></span>
@@ -694,34 +719,34 @@
                                     <span>E-mail<i>*</i></span>
                                     <input name="email" type="email" autocomplete="email" placeholder="voce@suaempresa.com" required>
                                 </label>
-                                <label class="agenda-campo">
-                                    <span>Empresa</span>
-                                    <input name="empresa" type="text" autocomplete="organization" placeholder="Nome da sua empresa">
-                                </label>
-                                <label class="agenda-campo">
-                                    <span>Segmento</span>
-                                    <select name="segmento">
-                                        <option value="">Selecione</option>
-                                        <option>Clínica / consultório</option>
-                                        <option>Contabilidade</option>
-                                        <option>Imobiliária</option>
-                                        <option>Advocacia</option>
-                                        <option>Comércio / loja</option>
-                                        <option>Serviços</option>
-                                        <option>Infoproduto / agência</option>
-                                        <option>Outro</option>
-                                    </select>
-                                </label>
                                 <label class="agenda-campo agenda-campo-largo">
-                                    <span>O que mais te atrapalha hoje?</span>
-                                    <textarea name="desafio" rows="3" placeholder="Ex.: perco cliente porque demoro pra responder no WhatsApp"></textarea>
+                                    <span>O que mais te atrapalha hoje? <em>(opcional)</em></span>
+                                    <textarea name="desafio" rows="2" placeholder="Ex.: perco cliente porque demoro pra responder no WhatsApp"></textarea>
                                 </label>
                             </div>
                             <input class="agenda-armadilha" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-                            <div class="agenda-erro" role="alert" hidden></div>
-                            <button type="submit" class="btn btn-primary agenda-enviar">Confirmar diagnóstico</button>
+                            <div class="agenda-erro" data-erro="1" role="alert" hidden></div>
+                            <button type="submit" class="btn btn-primary agenda-seguir">Ver horários disponíveis →</button>
                             <p class="agenda-obs">Seus dados ficam só com a VCA. Sem spam, sem ligação de vendas.</p>
                         </form>
+
+                        <!-- Passo 2: escolher o dia e a hora (só dias úteis e horários livres) -->
+                        <div class="agenda-etapa" data-etapa="2" hidden>
+                            <div class="agenda-escolhido">
+                                <span class="agenda-quem"></span>
+                                <button type="button" class="agenda-trocar agenda-voltar">editar dados</button>
+                            </div>
+                            <p class="agenda-passo"><b>2</b> Escolha o dia e o horário</p>
+                            <div class="agenda-estado" data-estado="carregando">Buscando os horários livres…</div>
+                            <div class="agenda-dias" role="group" aria-label="Escolha o dia"></div>
+                            <div class="agenda-horas" role="group" aria-label="Escolha o horário"></div>
+                            <div class="agenda-confirmar" hidden>
+                                <span class="agenda-escolhido-txt"></span>
+                                <button type="button" class="btn btn-primary agenda-enviar">Confirmar diagnóstico</button>
+                            </div>
+                            <div class="agenda-erro" data-erro="2" role="alert" hidden></div>
+                            <p class="agenda-obs">Segunda a sexta, em horário comercial · conversa de 30 minutos · horário de Brasília</p>
+                        </div>
 
                         <!-- Passo 3: confirmado -->
                         <div class="agenda-etapa agenda-pronto" data-etapa="3" hidden>
@@ -729,7 +754,7 @@
                             <h3 class="agenda-pronto-titulo">Diagnóstico marcado!</h3>
                             <p class="agenda-pronto-txt"></p>
                             <a class="agenda-meet" target="_blank" rel="noopener" hidden>Entrar pelo Google Meet</a>
-                            <p class="agenda-obs">O convite chegou no seu e-mail. Se precisar remarcar, é só responder o convite.</p>
+                            <p class="agenda-obs agenda-pronto-obs"></p>
                         </div>
                     </div>
                 </div>

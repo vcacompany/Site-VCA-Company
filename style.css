@@ -3670,6 +3670,17 @@ html[data-theme="light"] .logo-img-dark { display: none; }
   flex-shrink: 0;
 }
 
+/* passos: 1) dados → 2) horário → 3) confirmado */
+.agenda-passo { display: flex; align-items: center; gap: .6rem; font-size: .95rem; font-weight: 600; margin: 0 0 1.1rem; color: var(--color-text-main); }
+.agenda-passo b { width: 26px; height: 26px; border-radius: 8px; display: inline-grid; place-items: center; background: var(--color-brand-gold); color: #0F1115; font-size: .8rem; flex-shrink: 0; }
+.agenda-campo em { font-style: normal; font-weight: 300; color: var(--color-text-sec); }
+.agenda-campo[hidden] { display: none; }
+.agenda-seguir { width: 100%; justify-content: center; margin-top: 1.2rem; }
+.agenda-confirmar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.2rem; padding: .9rem 1rem; border-radius: 12px; background: rgba(216, 184, 107, 0.1); border: 1px solid rgba(216, 184, 107, 0.28); }
+.agenda-confirmar[hidden] { display: none; }
+.agenda-confirmar .agenda-escolhido-txt { font-size: .92rem; font-weight: 600; }
+@media (max-width: 600px) { .agenda-confirmar .btn { width: 100%; justify-content: center; } }
+
 .agenda-campos {
   display: grid;
   grid-template-columns: 1fr 1fr;

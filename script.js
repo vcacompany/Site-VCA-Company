@@ -415,34 +415,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   AGENDAR DIAGNÓSTICO
-   Os horários vêm da agenda do Google da VCA (n8n) e o agendamento cai no
-   sistema: vira lead no CRM (etapa "Reunião agendada") e reunião na Agenda.
+   AGENDAR DIAGNÓSTICO (site ↔ n8n ↔ dashboard)
+   1) a pessoa conta quem é (nome, empresa, nicho, nº de clientes, contato);
+   2) escolhe um horário livre — só dias úteis e horário comercial, vindos do n8n,
+      que confere a agenda do painel (e o Google Agenda, quando conectado);
+   3) o n8n confere de novo se ainda está livre (sem conflito), grava o lead no CRM
+      (etapa "Reunião agendada") e a reunião na Agenda do dashboard com todos os dados.
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
   const caixa = document.getElementById('agenda');
   if (!caixa) return;
 
   const API = 'https://webbhook.vcacompany.com/webhook/';
-  const estado = caixa.querySelector('.agenda-estado');
-  const listaDias = caixa.querySelector('.agenda-dias');
-  const listaHoras = caixa.querySelector('.agenda-horas');
-  const etapa1 = caixa.querySelector('[data-etapa="1"]');
-  const form = caixa.querySelector('[data-etapa="2"]');
+  const form = caixa.querySelector('[data-etapa="1"]');
+  const etapa2 = caixa.querySelector('[data-etapa="2"]');
   const pronto = caixa.querySelector('[data-etapa="3"]');
-  const escolhido = caixa.querySelector('.agenda-escolhido-txt');
-  const erroBox = caixa.querySelector('.agenda-erro');
-  const botao = caixa.querySelector('.agenda-enviar');
+  const estado = etapa2.querySelector('.agenda-estado');
+  const listaDias = etapa2.querySelector('.agenda-dias');
+  const listaHoras = etapa2.querySelector('.agenda-horas');
+  const confirmar = etapa2.querySelector('.agenda-confirmar');
+  const escolhido = etapa2.querySelector('.agenda-escolhido-txt');
+  const botao = etapa2.querySelector('.agenda-enviar');
+  const erro1 = form.querySelector('[data-erro="1"]');
+  const erro2 = etapa2.querySelector('[data-erro="2"]');
+  const nichoSel = form.querySelector('[name="nicho_sel"]');
+  const nichoOutro = form.querySelector('.agenda-nicho-outro');
 
-  let dias = [], diaAtivo = null, horaAtiva = null, carregou = false, enviando = false;
+  let dias = [], diaAtivo = null, horaAtiva = null, carregou = false, enviando = false, dados = null;
 
   const mostrar = (n) => {
-    etapa1.hidden = n !== 1;
-    form.hidden = n !== 2;
+    form.hidden = n !== 1;
+    etapa2.hidden = n !== 2;
     pronto.hidden = n !== 3;
+    const alvo = n === 1 ? form : n === 2 ? etapa2 : pronto;
+    const topo = caixa.getBoundingClientRect().top;
+    if (topo < 0) caixa.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return alvo;
   };
+  const avisar = (box, txt) => { box.hidden = !txt; box.textContent = txt || ''; };
   const dizer = (txt, tipo) => {
-    if (!estado) return;
     estado.hidden = !txt;
     estado.textContent = txt || '';
     estado.setAttribute('data-estado', tipo || 'carregando');
@@ -455,32 +466,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  nichoSel.addEventListener('change', () => {
+    nichoOutro.hidden = nichoSel.value !== 'outro';
+    if (!nichoOutro.hidden) nichoOutro.querySelector('input').focus();
+  });
+
+  /* ---------- passo 1: dados ---------- */
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = Object.fromEntries(new FormData(form).entries());
+    const nicho = f.nicho_sel === 'outro' ? String(f.nicho_outro || '').trim() : String(f.nicho_sel || '').trim();
+    const digitos = String(f.whatsapp || '').replace(/\D/g, '');
+    let falta = '';
+    if (String(f.nome || '').trim().length < 2) falta = 'Escreva seu nome.';
+    else if (String(f.empresa || '').trim().length < 2) falta = 'Escreva o nome da empresa.';
+    else if (nicho.length < 2) falta = 'Escolha o nicho de atuação.';
+    else if (!f.clientes) falta = 'Informe quantos clientes a empresa tem hoje.';
+    else if (digitos.length < 10 || digitos.length > 13) falta = 'Confira o WhatsApp (com DDD).';
+    else if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(String(f.email || '').trim())) falta = 'Confira o e-mail.';
+    if (falta) { avisar(erro1, falta); return; }
+    avisar(erro1, '');
+    dados = {
+      nome: f.nome.trim(), empresa: f.empresa.trim(), nicho, clientes: f.clientes,
+      whatsapp: f.whatsapp.trim(), email: f.email.trim(), desafio: String(f.desafio || '').trim(), site: f.site || ''
+    };
+    etapa2.querySelector('.agenda-quem').textContent = dados.nome.split(' ')[0] + ' · ' + dados.empresa;
+    mostrar(2);
+    carregarHorarios();
+  });
+  caixa.querySelector('.agenda-voltar').addEventListener('click', () => mostrar(1));
+
+  /* ---------- passo 2: horários livres ---------- */
   const carregarHorarios = (forcar) => {
     if (carregou && !forcar) return;
     carregou = true;
     dizer('Buscando os horários livres…');
     listaDias.innerHTML = '';
     listaHoras.innerHTML = '';
-    fetch(API + 'vca-agenda-horarios', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: '{}'
-    })
+    confirmar.hidden = true;
+    fetch(API + 'vca-agenda-horarios', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
       .then(r => r.json())
       .then(d => {
         dias = (d && d.dias) || [];
-        if (!dias.length) {
-          dizer('Sem horário livre nos próximos dias. Chame a gente no WhatsApp que damos um jeito.', 'erro');
-          return;
-        }
+        if (!dias.length) { dizer('Sem horário livre nos próximos dias. Chame a gente no WhatsApp que damos um jeito.', 'erro'); return; }
         dizer('');
         desenharDias();
         escolherDia(dias[0].data);
       })
-      .catch(() => {
-        carregou = false;
-        dizer('Não consegui carregar os horários agora.', 'erro');
-      });
+      .catch(() => { carregou = false; dizer('Não consegui carregar os horários agora.', 'erro'); });
   };
 
   const desenharDias = () => {
@@ -504,6 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const escolherDia = (data) => {
     diaAtivo = dias.find(d => d.data === data) || null;
     horaAtiva = null;
+    confirmar.hidden = true;
     listaDias.querySelectorAll('.agenda-dia').forEach(b => b.classList.toggle('ativo', b.dataset.data === data));
     listaHoras.innerHTML = '';
     if (!diaAtivo) return;
@@ -516,30 +550,21 @@ document.addEventListener('DOMContentLoaded', () => {
         horaAtiva = h;
         listaHoras.querySelectorAll('.agenda-hora').forEach(x => x.classList.toggle('ativo', x === b));
         escolhido.textContent = 'Diagnóstico ' + diaAtivo.rotulo + ' às ' + h;
-        erroBox.hidden = true;
-        mostrar(2);
-        const primeiro = form.querySelector('input[name="nome"]');
-        if (primeiro && window.matchMedia('(hover: hover)').matches) primeiro.focus();
+        avisar(erro2, '');
+        confirmar.hidden = false;
       });
       listaHoras.appendChild(b);
     });
   };
 
-  caixa.querySelector('.agenda-trocar').addEventListener('click', () => mostrar(1));
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (enviando) return;
-    const dados = Object.fromEntries(new FormData(form).entries());
-    const falta = !String(dados.nome || '').trim() || !String(dados.email || '').trim() || !String(dados.whatsapp || '').trim();
-    if (falta) { erroBox.hidden = false; erroBox.textContent = 'Preencha nome, WhatsApp e e-mail.'; return; }
-    if (!diaAtivo || !horaAtiva) { mostrar(1); return; }
-
+  /* ---------- confirmar: o n8n confere conflito e grava no dashboard ---------- */
+  botao.addEventListener('click', () => {
+    if (enviando || !dados) return;
+    if (!diaAtivo || !horaAtiva) { avisar(erro2, 'Escolha o dia e o horário.'); return; }
     enviando = true;
     botao.disabled = true;
     botao.textContent = 'Marcando…';
-    erroBox.hidden = true;
-
+    avisar(erro2, '');
     fetch(API + 'vca-agenda-marcar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -548,17 +573,19 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(r => r.json().then(j => ({ ok: r.ok, j })))
       .then(({ ok, j }) => {
         if (!ok || !j || !j.ok) throw new Error((j && j.erro) || 'Não deu para marcar agora.');
-        caixa.querySelector('.agenda-pronto-txt').textContent =
+        pronto.querySelector('.agenda-pronto-txt').textContent =
           'Sua conversa com a VCA está marcada para ' + diaAtivo.rotulo + ' às ' + horaAtiva + ' (horário de Brasília).';
-        const meet = caixa.querySelector('.agenda-meet');
+        const meet = pronto.querySelector('.agenda-meet');
         if (j.meet) { meet.href = j.meet; meet.hidden = false; } else { meet.hidden = true; }
+        pronto.querySelector('.agenda-pronto-obs').textContent = j.meet
+          ? 'O convite chegou no seu e-mail. Se precisar remarcar, é só responder o convite.'
+          : 'Vamos te mandar o link da reunião pelo WhatsApp. Se precisar remarcar, é só chamar a gente.';
         mostrar(3);
         if (window.gtag) window.gtag('event', 'diagnostico_agendado');
       })
       .catch(err => {
-        erroBox.hidden = false;
-        erroBox.textContent = (err && err.message) || 'Não deu para marcar agora.';
-        carregou = false;                    // horários podem ter mudado
+        avisar(erro2, (err && err.message) || 'Não deu para marcar agora.');
+        carregou = false;                    // os horários podem ter mudado: busca de novo
         carregarHorarios(true);
       })
       .finally(() => {
@@ -568,16 +595,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  // só busca os horários quando a pessoa chega perto da seção (não atrasa o site)
+  // já deixa os horários carregando quando a pessoa chega perto da seção (o passo 2 abre na hora)
   if ('IntersectionObserver' in window) {
     const olho = new IntersectionObserver((entradas) => {
       entradas.forEach(en => { if (en.isIntersecting) { carregarHorarios(); olho.disconnect(); } });
     }, { rootMargin: '400px' });
     olho.observe(caixa);
-  } else {
-    carregarHorarios();
   }
-  // se alguém clicar num botão de diagnóstico, já começa a carregar
   document.querySelectorAll('a[href="#agendar"], a[href="#contato"]').forEach(a => {
     a.addEventListener('click', () => carregarHorarios());
   });
