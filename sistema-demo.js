@@ -10,7 +10,7 @@
   var brl = function (n) { return 'R$ ' + Number(n).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); };
   var icones = function () { if (window.lucide && window.lucide.createIcons) window.lucide.createIcons(); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  var CORES_AV = ['#C9A24D', '#3B82F6', '#10B981', '#8B5CF6', '#F43F5E', '#0EA5E9', '#F59E0B', '#14B8A6'];
+  var CORES_AV = ['#CA9E35', '#3B82F6', '#10B981', '#8B5CF6', '#F43F5E', '#0EA5E9', '#F59E0B', '#14B8A6'];
   var ini = function (n) { return n.split(' ').map(function (p) { return p[0]; }).slice(0, 2).join('').toUpperCase(); };
   var av = function (n, i) { return '<span class="sd-av" style="--av:' + CORES_AV[(i || n.length) % CORES_AV.length] + '">' + ini(n) + '</span>'; };
 
@@ -259,9 +259,9 @@
 
     /* ---------- Agenda ---------- */
     var EVS = [
-      [0, 9, 1, 'Avaliação — Bianca Torres', '#3B82F6'], [0, 14, 1.5, 'Apresentação — Diego M.', '#C9A24D'],
+      [0, 9, 1, 'Avaliação — Bianca Torres', '#3B82F6'], [0, 14, 1.5, 'Apresentação — Diego M.', '#CA9E35'],
       [1, 10, 1, 'Retorno — Juliana Prado', '#10B981'], [1, 16, 1, 'Reunião de equipe', '#8B5CF6'],
-      [2, 8.5, 1, 'Café com parceiro', '#F59E0B'], [2, 15, 1, 'Reunião — Pedro Nogueira', '#C9A24D'],
+      [2, 8.5, 1, 'Café com parceiro', '#F59E0B'], [2, 15, 1, 'Reunião — Pedro Nogueira', '#CA9E35'],
       [3, 11, 1.5, 'Onboarding — Lucas F.', '#10B981'], [4, 9, 1, 'Avaliação — Camila R.', '#3B82F6'], [4, 13.5, 1, 'Fechamento do mês', '#F43F5E']
     ];
     function vAgenda(v) {
@@ -276,7 +276,7 @@
         col.addEventListener('click', function (ev) {
           if (ev.target.closest('.sd-ev')) return;
           var r = col.getBoundingClientRect(); var h = 8 + Math.floor((ev.clientY - r.top) / 46 * 2) / 2;
-          var novo = [+col.dataset.d, Math.min(17, h), 1, 'Nova reunião (exemplo)', getComputedStyle(win).getPropertyValue('--sd-accent').trim() || '#C9A24D'];
+          var novo = [+col.dataset.d, Math.min(17, h), 1, 'Nova reunião (exemplo)', getComputedStyle(win).getPropertyValue('--sd-accent').trim() || '#CA9E35'];
           EVS.push(novo); pintarEv(v, novo);
         });
       });
@@ -411,7 +411,7 @@
             '<div><small><i data-lucide="' + m[4] + '"></i>' + m[0] + '</small><strong>' + fmt(m[1], m[3]) + '</strong><span>meta: ' + fmt(m[2], m[3]) + '</span></div></div>';
         }).join('') + '</div>' +
         '<div class="sd-card" style="margin-top:.8rem"><p class="sd-card-t">Ranking da equipe <span>vendas fechadas no mês</span></p>' +
-        [['Mariana Alves', 16, '#C9A24D'], ['Rafael Lima', 13, '#3B82F6'], ['Carla Souza', 12, '#10B981']].map(function (p, i) {
+        [['Mariana Alves', 16, '#CA9E35'], ['Rafael Lima', 13, '#3B82F6'], ['Carla Souza', 12, '#10B981']].map(function (p, i) {
           return '<div class="sd-rank">' + av(p[0], i) + '<b>' + p[0] + '</b><div class="sd-prog"><i style="transform:scaleX(' + (p[1] / 16) + ');background:' + p[2] + '"></i></div><strong>' + p[1] + '</strong></div>';
         }).join('') + '</div>';
     }
@@ -419,7 +419,7 @@
     /* ---------- Relatórios ---------- */
     function vRelatorios(v) {
       var funil = [['Leads', 344, '#3B82F6'], ['Qualificados', 186, '#8B5CF6'], ['Propostas', 74, '#F59E0B'], ['Fechados', 41, '#10B981']];
-      var origens = [['Instagram', 38, '#E1306C'], ['WhatsApp', 27, '#10B981'], ['Google', 19, '#3B82F6'], ['Indicação', 16, '#C9A24D']];
+      var origens = [['Instagram', 38, '#E1306C'], ['WhatsApp', 27, '#10B981'], ['Google', 19, '#3B82F6'], ['Indicação', 16, '#CA9E35']];
       var acc = 0, conic = origens.map(function (o) { var s = acc; acc += o[1]; return o[2] + ' ' + s + '% ' + acc + '%'; }).join(',');
       v.innerHTML = '<div class="sd-head"><h3 class="sd-h">Relatório geral<small>Últimos 30 dias · gerado automaticamente</small></h3><button class="sd-btn ghost" type="button" data-pdf><i data-lucide="download"></i>Exportar PDF</button></div>' +
         '<div class="sd-grid2"><div class="sd-card"><p class="sd-card-t">Funil de conversão <span>taxa final: 11,9%</span></p><div class="sd-funnel">' +

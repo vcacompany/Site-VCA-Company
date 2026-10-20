@@ -83,7 +83,7 @@ h1, h2, h3, h4, .font-display {
 }
 
 .premium-gradient {
-  background: linear-gradient(135deg, #EBD59C 0%, #D8B86B 50%, #BB9848 100%);
+  background: linear-gradient(135deg, #CA9E35 0%, #D8B86B 50%, #E8D3A3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -171,7 +171,7 @@ section {
 }
 
 .btn-primary:hover {
-  background: #E3C983;
+  background: #E2CB8E;
   color: #0F1115;
 }
 
@@ -792,7 +792,7 @@ section {
   font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.7;
-  color: #9A7724;
+  color: #CA9E35;
 }
 
 .reason-label {
@@ -1632,7 +1632,7 @@ html[data-theme="light"] {
   --color-bg-sec: #EDEFF3;
   --color-card: #FFFFFF;
   --color-card-2: #F3F4F7;
-  --color-brand-gold: #B3924A;
+  --color-brand-gold: #CA9E35;
   --color-brand-cream: #F3F4F7;
   --color-text-main: #12161F;
   --color-text-sec: #525C6B;
@@ -1670,7 +1670,7 @@ html[data-theme="light"] .navbar.navbar-scrolled .container {
 }
 
 html[data-theme="light"] .hero-glow {
-  background: radial-gradient(circle at 50% 35%, rgba(156, 122, 40, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 50% 35%, rgba(202, 158, 53, 0.1) 0%, transparent 50%);
 }
 
 html[data-theme="light"] .hero-secondary-cta::after {
@@ -1678,7 +1678,7 @@ html[data-theme="light"] .hero-secondary-cta::after {
 }
 
 html[data-theme="light"] .premium-gradient {
-  background: linear-gradient(135deg, #C6A552 0%, #B3924A 50%, #8F7433 100%);
+  background: linear-gradient(135deg, #CA9E35 0%, #CA9E35 55%, #D8B86B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1723,13 +1723,13 @@ html[data-theme="light"] .btn-primary {
 }
 
 html[data-theme="light"] .btn-primary:hover {
-  background: #E3C983;
-  box-shadow: 0 16px 34px rgba(156, 122, 40, 0.3);
+  background: #E2CB8E;
+  box-shadow: 0 16px 34px rgba(202, 158, 53, 0.3);
 }
 
 html[data-theme="light"] .whatsapp-fab {
-  background: #C7981C;
-  box-shadow: 0 15px 40px rgba(156, 122, 40, 0.35);
+  background: #CA9E35;
+  box-shadow: 0 15px 40px rgba(202, 158, 53, 0.35);
 }
 
 /* Custom Scrollbar */
@@ -2667,7 +2667,7 @@ html[data-theme="light"] .whatsapp-fab {
 
 .result-stat:nth-child(1) .rs-num,
 .result-stat:nth-child(3) .rs-num {
-  color: #9A7724;
+  color: #CA9E35;
 }
 
 .result-stat:nth-child(2) .rs-num,
@@ -2943,7 +2943,7 @@ html[data-theme="light"] .whatsapp-fab {
   background: rgba(202, 158, 53, 0.12);
   border: 1px solid rgba(202, 158, 53, 0.35);
   border-radius: 999px;
-  color: #9A7528;
+  color: #CA9E35;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
