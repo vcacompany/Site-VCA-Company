@@ -42,7 +42,7 @@
         <div class="container">
             <a href="/" class="logo"><img src="/imagens/logo-vca.webp" alt="VCA Company" width="123" height="42" style="height: 42px; width: auto;"></a>
             <div class="nav-links">
-                <a href="/#sistema" class="nav-link">Sistema</a>
+                <a href="/solucoes" class="nav-link">Soluções</a>
                 <a href="/#metodo" class="nav-link">Método</a>
                 <a href="/#depoimentos" class="nav-link">Depoimentos</a>
                 <a href="/blog" class="nav-link is-active" aria-current="page">Blog</a>
@@ -50,7 +50,7 @@
                 <a href="/#faq" class="nav-link">Dúvidas</a>
             </div>
             <div class="nav-actions">
-                <a href="/#agendar" class="btn btn-primary" style="padding: 0.75rem 2rem;">Diagnóstico Gratuito</a>
+                <a href="/#agendar" class="btn btn-primary" style="padding: 0.75rem 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
                 <button class="theme-toggle" type="button" aria-label="Alternar modo claro/escuro"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
             </div>
             <button class="theme-toggle theme-toggle-mobile" type="button" aria-label="Alternar modo claro/escuro"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
@@ -63,13 +63,13 @@
             <button class="menu-close" id="menuClose" type="button" aria-label="Fechar o menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
         </div>
         <div class="mobile-menu-links">
-            <a href="/#sistema" class="mobile-nav-link">Sistema</a>
+            <a href="/solucoes" class="mobile-nav-link">Soluções</a>
                 <a href="/#metodo" class="mobile-nav-link">Método</a>
                 <a href="/#depoimentos" class="mobile-nav-link">Depoimentos</a>
                 <a href="/blog" class="mobile-nav-link is-active" aria-current="page">Blog</a>
                 <a href="/#agendar" class="mobile-nav-link">Agendar</a>
                 <a href="/#faq" class="mobile-nav-link">Dúvidas</a>
-            <a href="/#agendar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Diagnóstico Gratuito</a>
+            <a href="/#agendar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
         </div>
     </div>
     <main class="blog-main">
@@ -98,7 +98,7 @@
     <span class="post-cta-tag">Diagnóstico gratuito</span>
     <p class="post-cta-tit">Quer saber o que dá para automatizar na sua empresa?</p>
     <p>Em 30 minutos, por vídeo, olhamos a sua operação e mostramos onde a automação traz mais resultado. Sem compromisso.</p>
-    <a class="btn btn-primary" href="/#agendar">Agendar diagnóstico gratuito</a>
+    <div class="post-cta-botoes"><a class="btn btn-primary" href="/#agendar" data-cta="diagnostico">Agendar diagnóstico gratuito</a></div>
 </aside>
 <h3 id="organizacao-das-vendas">Organização das vendas</h3>
 <p>Cada contato que chega vira um registro em um CRM, com a etapa em que está e a data para retomar o contato. No fim da temporada, você sabe quantos contatos chegaram, quantos viraram clientes e de onde eles vieram.</p>
@@ -125,13 +125,22 @@
     <span class="post-cta-tag">Diagnóstico gratuito</span>
     <p class="post-cta-tit">Quer ver isso funcionando na sua empresa?</p>
     <p>Em 30 minutos, por vídeo, olhamos a sua operação e mostramos onde a automação traz mais resultado. Sem compromisso.</p>
-    <a class="btn btn-primary" href="/#agendar">Agendar diagnóstico gratuito</a>
+    <div class="post-cta-botoes"><a class="btn btn-primary" href="/#agendar" data-cta="diagnostico">Agendar diagnóstico gratuito</a></div>
 </aside>
             </div>
         </article>
         <section class="post-rel" aria-labelledby="leia-tambem">
             <h2 id="leia-tambem" class="post-rel-tit">Leia também</h2>
             <div class="blog-grid">
+                <article class="blog-card" data-cat="clinicas">
+    <a class="blog-card-link" href="/blog/agendamento-online-para-clinicas">
+        <span class="blog-card-img"><img src="/blog/img/agendamento-online-para-clinicas/capa.webp" alt="" width="1600" height="900" loading="lazy" decoding="async"></span>
+        <span class="blog-card-cat">Clínicas</span>
+        <h3 class="blog-card-tit">Agendamento online para clínicas: como funciona e o que muda na recepção</h3>
+        <p class="blog-card-resumo">Como o paciente marca sozinho pelo site ou pelo WhatsApp e o que isso muda no dia da recepção.</p>
+        <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 3 min de leitura</span>
+    </a>
+</article>
                 <article class="blog-card" data-cat="automacao">
     <a class="blog-card-link" href="/blog/automacao-whatsapp-para-empresas">
         <span class="blog-card-img"><img src="/blog/img/automacao-whatsapp-para-empresas/capa.webp" alt="" width="1600" height="900" loading="lazy" decoding="async"></span>
@@ -141,22 +150,13 @@
         <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 5 min de leitura</span>
     </a>
 </article>
-                <article class="blog-card" data-cat="clinicas">
-    <a class="blog-card-link" href="/blog/crm-para-clinicas">
-        <span class="blog-card-img"><img src="/blog/img/crm-para-clinicas/capa.webp" alt="" width="1580" height="889" loading="lazy" decoding="async"></span>
-        <span class="blog-card-cat">Clínicas</span>
-        <h3 class="blog-card-tit">CRM para clínicas: como parar de perder pacientes entre o WhatsApp e a agenda</h3>
-        <p class="blog-card-resumo">Onde a clínica perde pacientes sem perceber e como um CRM ligado ao WhatsApp e à agenda resolve isso.</p>
-        <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 4 min de leitura</span>
-    </a>
-</article>
-                <article class="blog-card" data-cat="vendas">
-    <a class="blog-card-link" href="/blog/funil-de-vendas-no-whatsapp">
-        <span class="blog-card-img"><img src="/blog/img/funil-de-vendas-no-whatsapp/capa.webp" alt="" width="1600" height="900" loading="lazy" decoding="async"></span>
-        <span class="blog-card-cat">Vendas</span>
-        <h3 class="blog-card-tit">Funil de vendas no WhatsApp: o passo a passo para nenhum contato esfriar</h3>
-        <p class="blog-card-resumo">Etapas, mensagens de acompanhamento e números para transformar mais conversas em clientes.</p>
-        <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 4 min de leitura</span>
+                <article class="blog-card" data-cat="contabilidade">
+    <a class="blog-card-link" href="/blog/controle-de-certidoes-negativas-dos-clientes">
+        <span class="blog-card-img"><img src="/blog/img/controle-de-certidoes-negativas-dos-clientes/capa.webp" alt="" width="1600" height="900" loading="lazy" decoding="async"></span>
+        <span class="blog-card-cat">Contabilidade</span>
+        <h3 class="blog-card-tit">Como controlar as certidões negativas dos clientes sem planilha</h3>
+        <p class="blog-card-resumo">Validade, pendências e aviso antes de vencer, para todas as empresas, sem planilha.</p>
+        <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 2 min de leitura</span>
     </a>
 </article>
             </div>
@@ -177,18 +177,20 @@
                 </div>
                 <div class="footer-col">
                     <p class="footer-heading">Navegação</p>
-                    <a href="/#sistema" class="footer-nav-link">Sistema</a>
+                    <a href="/solucoes" class="footer-nav-link">Soluções</a>
                     <a href="/#metodo" class="footer-nav-link">Método VCA</a>
                     <a href="/blog" class="footer-nav-link">Blog</a>
                     <a href="/#agendar" class="footer-nav-link">Agendar</a>
                     <a href="/#faq" class="footer-nav-link">Dúvidas</a>
                 </div>
                 <div class="footer-col">
-                    <p class="footer-heading">Soluções</p>
-                    <span class="footer-item">Sistemas &amp; CRM com IA</span>
-                    <span class="footer-item">Automação de processos</span>
-                    <span class="footer-item">Integração de ferramentas</span>
-                    <span class="footer-item">Site integrado ao sistema</span>
+                    <p class="footer-heading">Sistemas por nicho</p>
+                    <a href="/sistema-para-clinicas" class="footer-nav-link">Clínicas e consultórios</a>
+                    <a href="/sistema-para-clinicas-de-estetica" class="footer-nav-link">Estética e beleza</a>
+                    <a href="/sistema-para-restaurantes" class="footer-nav-link">Restaurantes e bares</a>
+                    <a href="/sistema-para-contabilidade" class="footer-nav-link">Contabilidade</a>
+                    <a href="/sistema-para-advocacia" class="footer-nav-link">Advocacia</a>
+                    <a href="/sistema-para-casa-de-eventos" class="footer-nav-link">Eventos e buffets</a>
                 </div>
                 <div class="footer-col footer-contact">
                     <p class="footer-heading">Fale conosco</p>

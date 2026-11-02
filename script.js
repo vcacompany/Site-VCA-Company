@@ -3,6 +3,13 @@
  * Vanilla JS Implementation
  */
 
+/* primeira página da visita (para saber se o diagnóstico veio do blog ou de uma página de nicho) e cliques nos botões do diagnóstico */
+try { if (!sessionStorage.getItem('vca_origem')) sessionStorage.setItem('vca_origem', location.pathname); } catch (e) {}
+document.addEventListener('click', (e) => {
+  const a = e.target.closest && e.target.closest('a[href*="#agendar"], [data-cta="diagnostico"]');
+  if (a && window.vcaSite) window.vcaSite('clique_diagnostico', { pagina: location.pathname });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Intro / Splash — mostra a animação do logo e depois revela o site
     const intro = document.getElementById('intro');
@@ -466,6 +473,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // quem chega de uma página de nicho (/?nicho=clinica#agendar) já encontra o nicho escolhido
+  const NICHO_URL = { clinica: 'Clínica / consultório', estetica: 'Estética / beleza', restaurante: 'Restaurante / bar', contabilidade: 'Contabilidade',
+    advocacia: 'Advocacia', eventos: 'Eventos / casa de festas', imobiliaria: 'Imobiliária', loja: 'Comércio / loja' };
+  try {
+    const n = NICHO_URL[new URLSearchParams(location.search).get('nicho')];
+    if (n) nichoSel.value = n;
+  } catch (e) {}
+
   nichoSel.addEventListener('change', () => {
     nichoOutro.hidden = nichoSel.value !== 'outro';
     if (!nichoOutro.hidden) nichoOutro.querySelector('input').focus();
@@ -582,6 +597,10 @@ document.addEventListener('DOMContentLoaded', () => {
           : 'Vamos te mandar o link da reunião pelo WhatsApp. Se precisar remarcar, é só chamar a gente.';
         mostrar(3);
         if (window.gtag) window.gtag('event', 'diagnostico_agendado');
+        // conversão no rastreamento próprio (Tráfego → Site no painel), com a página por onde a pessoa entrou no site
+        let origem = '/';
+        try { origem = sessionStorage.getItem('vca_origem') || '/'; } catch (e) {}
+        if (window.vcaSite) window.vcaSite('diagnostico_agendado', { nicho: dados.nicho, origem: origem });
       })
       .catch(err => {
         avisar(erro2, (err && err.message) || 'Não deu para marcar agora.');

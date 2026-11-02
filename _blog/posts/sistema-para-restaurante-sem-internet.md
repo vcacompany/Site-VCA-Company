@@ -1,11 +1,12 @@
 ---
 slug: sistema-para-restaurante-sem-internet
-titulo: Sistema para restaurante que funciona sem internet: o que avaliar antes de escolher
-titulo_seo: Sistema para restaurante que funciona sem internet
+titulo: Como escolher um sistema para restaurante (e por que ele precisa funcionar sem internet)
+titulo_seo: Como escolher um sistema para restaurante
 descricao: Mesas, comandas, cozinha, caixa e estoque: o que um sistema para restaurante precisa ter e por que ele deve funcionar sem internet.
 resumo: Mesas, cozinha, caixa e estoque em um lugar só, e por que o sistema não pode parar quando a internet cai.
 categoria: Restaurantes
-palavra_chave: sistema para restaurante
+nicho: sistema-para-restaurantes
+palavra_chave: como escolher sistema para restaurante
 capa: /blog/img/sistema-para-restaurante-sem-internet/capa.webp
 capa_alt: Garçom anotando o pedido de um cliente no salão do restaurante
 capa_credito: Foto: RDNE Stock project / Pexels

@@ -5,6 +5,7 @@ titulo_seo: CRM para clínicas: pare de perder pacientes
 descricao: Como um CRM para clínicas organiza contatos do WhatsApp, agenda, retornos e faltas, e o que avaliar antes de escolher o sistema da sua clínica.
 resumo: Onde a clínica perde pacientes sem perceber e como um CRM ligado ao WhatsApp e à agenda resolve isso.
 categoria: Clínicas
+nicho: sistema-para-clinicas
 palavra_chave: CRM para clínicas
 capa: /blog/img/crm-para-clinicas/capa.webp
 capa_alt: Recepcionista de clínica atendendo uma paciente no balcão com um tablet

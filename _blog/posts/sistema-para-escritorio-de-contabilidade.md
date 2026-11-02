@@ -1,11 +1,12 @@
 ---
 slug: sistema-para-escritorio-de-contabilidade
-titulo: Sistema para escritório de contabilidade: guias, certidões e documentos dos clientes em um só lugar
-titulo_seo: Sistema para escritório de contabilidade
+titulo: Como organizar guias, certidões e documentos dos clientes do escritório contábil
+titulo_seo: Guias, certidões e documentos dos clientes em ordem
 descricao: Como um sistema para escritório de contabilidade organiza guias, certidões e documentos, com portal do cliente e avisos automáticos.
 resumo: Como tirar o escritório do e-mail e do WhatsApp e dar a cada cliente um portal com guias, certidões e documentos.
 categoria: Contabilidade
-palavra_chave: sistema para escritório de contabilidade
+nicho: sistema-para-contabilidade
+palavra_chave: organizar documentos dos clientes contabilidade
 capa: /blog/img/sistema-para-escritorio-de-contabilidade/capa.webp
 capa_alt: Contadora conferindo documentos e fazendo contas na mesa do escritório
 capa_credito: Foto: Mikhail Nilov / Pexels

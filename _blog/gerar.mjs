@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { NICHOS } from "./nichos.mjs";
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://www.vcacompany.com";
@@ -38,6 +39,7 @@ function lerPost(arq) {
   meta.atualizado = meta.atualizado || meta.data;
   meta.resumo = meta.resumo || meta.descricao;
   if (meta.capa && !tamanhoImg(meta.capa)) throw new Error(`capa não encontrada (${meta.capa}) em ${arq}`);
+  if (meta.nicho && !NICHOS.some((n) => n.slug === meta.nicho)) throw new Error(`nicho "${meta.nicho}" não existe em _blog/nichos.mjs (${arq})`);
   const corpo = mdParaHtml(m[2], meta);
   const palavras = m[2].replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/[#>*\-\[\]()]/g, " ").split(/\s+/).filter(Boolean).length;
   return { ...meta, ...corpo, palavras, minutos: Math.max(2, Math.round(palavras / 200)) };
@@ -120,7 +122,7 @@ function mdParaHtml(md, meta) {
     } else if ((r = l.match(/^> (.+)/))) {
       fechaTudo(); out.push("<blockquote><p>" + inline(r[1]) + "</p></blockquote>");
     } else if (l.trim() === "[[cta]]") {
-      fechaTudo(); out.push(caixaCta(false));
+      fechaTudo(); out.push(caixaCta(false, meta.nicho));
     } else if ((r = l.trim().match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/))) {
       fechaTudo(); out.push(figura(r[2], r[1], r[3] ? inline(r[3]) : ""));
       (meta.imagens = meta.imagens || []).push(r[2]);
@@ -182,8 +184,8 @@ ${extra}
 </head>`;
 }
 
-function topo(ativo) {
-  const links = [["/#sistema", "Sistema"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
+function topo(ativo, nicho) {
+  const links = [["/solucoes", "Soluções"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
   const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
   return `
     <nav class="navbar">
@@ -193,7 +195,7 @@ function topo(ativo) {
                 ${lk("nav-link")}
             </div>
             <div class="nav-actions">
-                <a href="/#agendar" class="btn btn-primary" style="padding: 0.75rem 2rem;">Diagnóstico Gratuito</a>
+                <a href="${linkDiag(nicho)}" class="btn btn-primary" style="padding: 0.75rem 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
                 <button class="theme-toggle" type="button" aria-label="Alternar modo claro/escuro">${ICONE.sol}${ICONE.lua}</button>
             </div>
             <button class="theme-toggle theme-toggle-mobile" type="button" aria-label="Alternar modo claro/escuro">${ICONE.sol}${ICONE.lua}</button>
@@ -207,7 +209,7 @@ function topo(ativo) {
         </div>
         <div class="mobile-menu-links">
             ${lk("mobile-nav-link")}
-            <a href="/#agendar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Diagnóstico Gratuito</a>
+            <a href="${linkDiag(nicho)}" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
         </div>
     </div>`;
 }
@@ -228,18 +230,15 @@ function rodape() {
                 </div>
                 <div class="footer-col">
                     <p class="footer-heading">Navegação</p>
-                    <a href="/#sistema" class="footer-nav-link">Sistema</a>
+                    <a href="/solucoes" class="footer-nav-link">Soluções</a>
                     <a href="/#metodo" class="footer-nav-link">Método VCA</a>
                     <a href="/blog" class="footer-nav-link">Blog</a>
                     <a href="/#agendar" class="footer-nav-link">Agendar</a>
                     <a href="/#faq" class="footer-nav-link">Dúvidas</a>
                 </div>
                 <div class="footer-col">
-                    <p class="footer-heading">Soluções</p>
-                    <span class="footer-item">Sistemas &amp; CRM com IA</span>
-                    <span class="footer-item">Automação de processos</span>
-                    <span class="footer-item">Integração de ferramentas</span>
-                    <span class="footer-item">Site integrado ao sistema</span>
+                    <p class="footer-heading">Sistemas por nicho</p>
+                    ${NICHOS.map((n) => `<a href="/${n.slug}" class="footer-nav-link">${esc(n.nome)}</a>`).join("\n                    ")}
                 </div>
                 <div class="footer-col footer-contact">
                     <p class="footer-heading">Fale conosco</p>
@@ -261,12 +260,17 @@ function rodape() {
 `;
 }
 
-function caixaCta(final) {
+/* nicho = slug de uma página de _blog/nichos.mjs: o botão já leva o nicho escolhido para o formulário e a caixa
+   aponta também para a página do sistema daquele nicho (o caminho artigo → página de venda → diagnóstico) */
+const nichoDe = (slug) => slug ? NICHOS.find((n) => n.slug === slug) : null;
+const linkDiag = (n) => n ? `/?nicho=${n.id}#agendar` : "/#agendar";
+function caixaCta(final, nichoSlug) {
+  const n = nichoDe(nichoSlug);
   return `<aside class="post-cta${final ? " post-cta-final" : ""}">
     <span class="post-cta-tag">Diagnóstico gratuito</span>
-    <p class="post-cta-tit">${final ? "Quer ver isso funcionando na sua empresa?" : "Quer saber o que dá para automatizar na sua empresa?"}</p>
+    <p class="post-cta-tit">${final ? (n ? `Quer ver o sistema funcionando em ${esc(n.curto)}?` : "Quer ver isso funcionando na sua empresa?") : "Quer saber o que dá para automatizar na sua empresa?"}</p>
     <p>Em 30 minutos, por vídeo, olhamos a sua operação e mostramos onde a automação traz mais resultado. Sem compromisso.</p>
-    <a class="btn btn-primary" href="/#agendar">Agendar diagnóstico gratuito</a>
+    <div class="post-cta-botoes"><a class="btn btn-primary" href="${linkDiag(n)}" data-cta="diagnostico">Agendar diagnóstico gratuito</a>${n ? `<a class="post-cta-link" href="/${n.slug}">Conhecer o sistema para ${esc(n.curto)} →</a>` : ""}</div>
 </aside>`;
 }
 
@@ -319,7 +323,8 @@ function paginaPost(p, todos) {
     `    <meta property="article:section" content="${esc(p.categoria)}">`,
     ...ld.map((x) => "    " + x),
   ].join("\n");
-  const relacionados = todos.filter((o) => o.slug !== p.slug).sort((a, b) => (b.categoria === p.categoria) - (a.categoria === p.categoria) || b.data.localeCompare(a.data)).slice(0, 3);
+  const perto = (o) => (p.nicho && o.nicho === p.nicho ? 2 : 0) + (o.categoria === p.categoria ? 1 : 0);
+  const relacionados = todos.filter((o) => o.slug !== p.slug).sort((a, b) => perto(b) - perto(a) || b.data.localeCompare(a.data)).slice(0, 3);
   return cabecaComum({ titulo: `${p.titulo_seo} | VCA Company`, descricao: p.descricao, url, imagem: capa, tipo: "article", extra }) + `
 <body class="blog-page">
 ${topo("Blog")}
@@ -337,7 +342,7 @@ ${topo("Blog")}
             ${p.capa ? figura(p.capa, p.capa_alt || "", p.capa_credito ? (p.capa_link ? `<a href="${esc(p.capa_link)}" target="_blank" rel="noopener">${esc(p.capa_credito)}</a>` : esc(p.capa_credito)) : "", { classe: "post-capa", prioridade: true }) : ""}
             <div class="post-corpo">
 ${p.html}
-${caixaCta(true)}
+${caixaCta(true, p.nicho)}
             </div>
         </article>
         <section class="post-rel" aria-labelledby="leia-tambem">
@@ -409,6 +414,163 @@ ${topo("")}
 ${rodape()}`;
 }
 
+/* ---------- páginas por nicho (www.vcacompany.com/<slug>) ----------
+   Página de venda para quem pesquisa "sistema para <nicho>": o problema, como funciona, telas reais, implantação,
+   perguntas frequentes, artigos do mesmo assunto e o diagnóstico com o nicho já escolhido. */
+const IMPLANTACAO = [
+  ["Diagnóstico gratuito", "Em 30 minutos, por vídeo, olhamos a sua operação e onde a automação traz mais resultado."],
+  ["Montagem sob medida", "Estruturamos o sistema, as integrações e as automações para o jeito de trabalhar do seu negócio."],
+  ["Ativação e treinamento", "Colocamos tudo no ar junto com a sua equipe, migrando o que você já usa sem travar o dia a dia."],
+  ["Acompanhamento", "Ajustamos as automações com os primeiros dados e expandimos mês após mês."],
+];
+const SELOS = ["WhatsApp oficial (API da Meta)", "Implantação e treinamento pela VCA", "Diagnóstico gratuito de 30 minutos"];
+const artigosDo = (n, posts) => posts.filter((p) => p.nicho === n.slug || p.categoria === n.categoria);
+
+function paginaNicho(n, posts) {
+  const url = `${SITE}/${n.slug}`;
+  const artigos = artigosDo(n, posts);
+  const diag = linkDiag(n);
+  const ld = [
+    jsonLd({
+      "@context": "https://schema.org", "@type": "Service", "@id": url + "#servico", name: n.h1, serviceType: `Sistema para ${n.curto}`,
+      description: n.descricao, url, provider: { "@id": SITE + "/#organizacao" }, image: SITE + n.hero[0],
+      audience: { "@type": "BusinessAudience", audienceType: n.nome },
+      areaServed: [{ "@type": "Country", name: "Brasil" }, { "@type": "AdministrativeArea", name: "Litoral Norte de São Paulo" }],
+    }),
+    jsonLd({
+      "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: SITE + "/" },
+        { "@type": "ListItem", position: 2, name: "Soluções", item: SITE + "/solucoes" },
+        { "@type": "ListItem", position: 3, name: n.nome, item: url },
+      ],
+    }),
+    jsonLd({
+      "@context": "https://schema.org", "@type": "FAQPage",
+      mainEntity: n.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+    }),
+  ].map((x) => "    " + x).join("\n");
+  const recurso = ([t, p, img, alt], i) => img
+    ? `<div class="nicho-rec${i % 2 ? " inverte" : ""}">
+                    <div class="nicho-rec-txt"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>
+                    ${figura(img, alt, "Tela real do sistema, com dados de exemplo.", { classe: "post-fig nicho-rec-fig" })}
+                </div>`
+    : `<div class="nicho-rec so-texto"><div class="nicho-rec-txt"><h3>${esc(t)}</h3><p>${esc(p)}</p></div></div>`;
+  return cabecaComum({ titulo: `${n.titulo_seo} | VCA Company`, descricao: n.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
+<body class="blog-page nicho-page">
+${topo("Soluções", n)}
+    <main class="nicho-main">
+        <section class="nicho-hero">
+            <div class="nicho-hero-txt">
+                <nav class="post-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><a href="/solucoes">Soluções</a><span aria-hidden="true">/</span><span>${esc(n.nome)}</span></nav>
+                <span class="post-cat">Sistema para ${esc(n.curto)}</span>
+                <h1 class="nicho-tit">${esc(n.h1)}</h1>
+                <p class="nicho-sub">${esc(n.sub)}</p>
+                <div class="nicho-botoes"><a class="btn btn-primary" href="${diag}" data-cta="diagnostico">Agendar diagnóstico gratuito</a><a class="btn btn-outline" href="#como-funciona">Ver como funciona</a></div>
+                <ul class="nicho-selos">${SELOS.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+            </div>
+            ${figura(n.hero[0], n.hero[1], "Tela real do sistema, com dados de exemplo.", { classe: "post-fig nicho-hero-fig", prioridade: true })}
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="dores">
+            <h2 id="dores" class="nicho-h2">O que trava ${esc(n.curto)} hoje</h2>
+            <div class="nicho-dores">
+                ${n.dores.map(([t, p]) => `<div class="nicho-dor"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join("\n                ")}
+            </div>
+        </section>
+
+        <section class="nicho-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
+            <h2 id="como-funciona-tit" class="nicho-h2">Como o sistema funciona em ${esc(n.curto)}</h2>
+            <ol class="nicho-passos">
+                ${n.passos.map(([t, p]) => `<li><h3>${esc(t)}</h3><p>${esc(p)}</p></li>`).join("\n                ")}
+            </ol>
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="recursos">
+            <h2 id="recursos" class="nicho-h2">O que muda no dia a dia</h2>
+            <div class="nicho-recs">
+                ${n.recursos.map(recurso).join("\n                ")}
+            </div>
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="conexoes">
+            <h2 id="conexoes" class="nicho-h2">Conecta com o que você já usa</h2>
+            <ul class="nicho-conexoes">${n.conexoes.map((c) => `<li>${esc(c)}</li>`).join("")}<li>E outras ferramentas com integração</li></ul>
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="implantacao">
+            <h2 id="implantacao" class="nicho-h2">Como é a implantação</h2>
+            <ol class="nicho-passos nicho-passos-impl">
+                ${IMPLANTACAO.map(([t, p]) => `<li><h3>${esc(t)}</h3><p>${esc(p)}</p></li>`).join("\n                ")}
+            </ol>
+            ${caixaCta(true, n.slug).replace(/<a class="post-cta-link"[^>]*>.*?<\/a>/, "")}
+        </section>
+
+        <section class="nicho-sec nicho-faq" aria-labelledby="duvidas">
+            <h2 id="duvidas" class="nicho-h2">Perguntas frequentes</h2>
+            ${n.faq.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><h3>${esc(q)}</h3></summary><p>${esc(a)}</p></details>`).join("\n            ")}
+        </section>
+${artigos.length ? `
+        <section class="nicho-sec" aria-labelledby="artigos">
+            <h2 id="artigos" class="nicho-h2">Artigos para ${esc(n.curto)}</h2>
+            <div class="blog-grid">
+                ${artigos.slice(0, 6).map((p) => cartao(p)).join("\n                ")}
+            </div>
+        </section>` : ""}
+    </main>
+    <div class="nicho-fixo"><a class="btn btn-primary" href="${diag}" data-cta="diagnostico">Agendar diagnóstico gratuito</a></div>
+${rodape()}`;
+}
+
+function paginaSolucoes(posts) {
+  const url = SITE + "/solucoes";
+  const titulo = "Sistemas por nicho: clínicas, restaurantes e mais | VCA Company";
+  const descricao = "Sistema, CRM e automação montados para o seu nicho: clínicas, estética, restaurantes, contabilidade, advocacia e casas de eventos. Diagnóstico gratuito.";
+  const extra = [
+    jsonLd({
+      "@context": "https://schema.org", "@type": "CollectionPage", name: "Sistemas por nicho", url, description: descricao, inLanguage: "pt-BR",
+      mainEntity: { "@type": "ItemList", itemListElement: NICHOS.map((n, i) => ({ "@type": "ListItem", position: i + 1, name: n.h1, url: `${SITE}/${n.slug}` })) },
+    }),
+    jsonLd({
+      "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: SITE + "/" },
+        { "@type": "ListItem", position: 2, name: "Soluções", item: url },
+      ],
+    }),
+  ].map((x) => "    " + x).join("\n");
+  const card = (n) => {
+    const t = tamanhoImg(n.hero[0]);
+    return `<article class="blog-card">
+    <a class="blog-card-link" href="/${n.slug}">
+        <span class="blog-card-img"><img src="${esc(n.hero[0])}" alt="" width="${t.w}" height="${t.h}" loading="lazy" decoding="async"></span>
+        <span class="blog-card-cat">${esc(n.nome)}</span>
+        <h2 class="blog-card-tit">${esc(n.h1)}</h2>
+        <p class="blog-card-resumo">${esc(n.sub)}</p>
+        <span class="blog-card-meta">Ver como funciona →</span>
+    </a>
+</article>`;
+  };
+  return cabecaComum({ titulo, descricao, url, imagem: OG_PADRAO, extra }) + `
+<body class="blog-page">
+${topo("Soluções")}
+    <main class="blog-main">
+        <header class="blog-cab">
+            <span class="section-badge">Soluções</span>
+            <h1 class="blog-cab-tit">Um sistema montado para o seu nicho</h1>
+            <p class="blog-cab-sub">O mesmo sistema da VCA, com agenda, CRM, WhatsApp oficial, financeiro e relatórios, montado para o jeito de trabalhar de cada tipo de negócio.</p>
+        </header>
+        <div class="blog-grid blog-grid-lista">
+            ${NICHOS.map(card).join("\n            ")}
+        </div>
+        <div class="blog-lista-cta"><aside class="post-cta post-cta-final">
+    <span class="post-cta-tag">Seu negócio não está na lista?</span>
+    <p class="post-cta-tit">O sistema se adapta a qualquer nicho</p>
+    <p>Imobiliárias, lojas, academias, estúdios, agências e outros negócios também usam o sistema. No diagnóstico gratuito mostramos como ele fica no seu.</p>
+    <div class="post-cta-botoes"><a class="btn btn-primary" href="/#agendar" data-cta="diagnostico">Agendar diagnóstico gratuito</a></div>
+</aside></div>
+    </main>
+${rodape()}`;
+}
+
 /* ---------- RSS, sitemap, llms.txt e o bloco da página inicial ---------- */
 const rfc822 = (iso) => new Date(iso + "T09:00:00-03:00").toUTCString();
 function feed(posts) {
@@ -438,6 +600,8 @@ function sitemap(posts) {
   const maisNovo = posts.reduce((m, p) => (p.atualizado > m ? p.atualizado : m), "");
   const urls = [
     [SITE + "/", hoje, "1.0"],
+    [SITE + "/solucoes", hoje, "0.9"],
+    ...NICHOS.map((n) => [`${SITE}/${n.slug}`, hoje, "0.9"]),
     [SITE + "/blog", maisNovo, "0.8"],
     ...posts.map((p) => [`${SITE}/blog/${p.slug}`, p.atualizado, "0.7"]),
   ];
@@ -458,6 +622,9 @@ function llms(posts) {
 - Automação de atendimento e vendas no WhatsApp, pela API oficial do WhatsApp Business
 - Automação de processos e integração com as ferramentas que a empresa já usa (Google Drive, Gmail, Google Agenda, planilhas, cobrança)
 - Site integrado ao sistema, com captura de contatos e agendamento
+
+## Sistemas por nicho
+${NICHOS.map((n) => `- [${n.h1}](${SITE}/${n.slug}): ${n.descricao}`).join("\n")}
 
 ## Como contratar
 - [Diagnóstico gratuito de 30 minutos](${SITE}/#agendar): conversa por vídeo, sem compromisso
@@ -493,9 +660,13 @@ for (const f of fs.readdirSync(path.join(RAIZ, "blog")).filter((f) => f.endsWith
 for (const p of posts) escreve(`blog/${p.slug}.html`, paginaPost(p, posts));
 escreve("blog/index.html", paginaLista(posts));
 escreve("blog/feed.xml", feed(posts));
+for (const n of NICHOS) escreve(`${n.slug}.html`, paginaNicho(n, posts));
+escreve("solucoes.html", paginaSolucoes(posts));
 escreve("404.html", pagina404(posts));
 escreve("sitemap.xml", sitemap(posts));
 escreve("llms.txt", llms(posts));
 blocoInicio(posts);
 console.log(`ok — ${posts.length} artigos:`);
-for (const p of posts) console.log(`  /blog/${p.slug}  (${p.palavras} palavras, ${p.minutos} min, ${p.faq.length} perguntas, capa ${capaDe(p)})`);
+for (const p of posts) console.log(`  /blog/${p.slug}  (${p.palavras} palavras, ${p.minutos} min, ${p.faq.length} perguntas${p.nicho ? ", nicho " + p.nicho : ""})`);
+console.log(`ok — ${NICHOS.length} páginas de nicho + /solucoes:`);
+for (const n of NICHOS) console.log(`  /${n.slug}  (${artigosDo(n, posts).length} artigos ligados)`);

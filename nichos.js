@@ -36,6 +36,12 @@
                ['repeat', 'Pacotes e sessões', 'Controle do que já foi usado e aviso quando é hora de voltar.'],
                ['star', 'Pagamento e avaliação', 'Cobrança automática e pedido de avaliação no Google depois do atendimento.']],
       usa: ['meta', 'whatsapp', 'agenda', 'pagamentos'] },
+    { id: 'restaurante', nome: 'Restaurantes e bares', ic: 'utensils-crossed', sel: 'Restaurante / bar', em: 'no seu restaurante',
+      passos: [['utensils-crossed', 'Mesa aberta', 'O garçom abre a mesa e lança o pedido pelo celular, na frente do cliente.'],
+               ['chef-hat', 'Cozinha e bar', 'Cada pedido aparece na tela da cozinha e do bar na ordem certa, com o tempo de espera.'],
+               ['receipt', 'Conta e pagamento', 'Conta dividida, taxa de serviço, Pix, cartão, dinheiro ou a prazo, com a impressão na hora.'],
+               ['bar-chart-3', 'Caixa e relatórios', 'Fechamento conferido, estoque baixado e os pratos mais vendidos do dia, mesmo sem internet.']],
+      usa: ['pagamentos', 'whatsapp', 'planilhas', 'site'] },
     { id: 'eventos', nome: 'Eventos e buffets', ic: 'party-popper', sel: 'Eventos / casa de festas', em: 'no seu espaço de eventos',
       passos: [['user-plus', 'O pedido chega', 'Site, Instagram e WhatsApp viram oportunidades com data e número de convidados.'],
                ['file-text', 'Orçamento e visita', 'Orçamento enviado na hora e visita marcada sem conflito de datas.'],
@@ -50,7 +56,7 @@
       usa: ['gmail', 'drive', 'whatsapp', 'planilhas'] },
     { id: 'advocacia', nome: 'Advocacia', ic: 'scale', sel: 'Advocacia', em: 'no seu escritório de advocacia',
       passos: [['user-plus', 'O caso chega', 'Contato do site, do Google e de indicação, com triagem antes da primeira consulta.'],
-               ['briefcase', 'Processos e prazos', 'Andamentos, audiências e prazos de cada cliente num painel só.'],
+               ['briefcase', 'Processos e prazos', 'Andamentos, audiências e prazos de cada cliente em um painel só.'],
                ['message-circle', 'Cliente informado', 'Atualizações por e-mail e WhatsApp sem o cliente precisar ligar.'],
                ['wallet', 'Honorários', 'Parcelas e cobranças com baixa automática e o relatório do escritório.']],
       usa: ['gmail', 'agenda', 'drive', 'whatsapp'] },
@@ -92,6 +98,12 @@
       usa: ['whatsapp', 'agenda', 'pagamentos', 'gmail'] }
   ];
 
+  // página completa de cada nicho (geradas por _blog/gerar.mjs a partir de _blog/nichos.mjs)
+  var PAGINAS = {
+    clinica: '/sistema-para-clinicas', estetica: '/sistema-para-clinicas-de-estetica', restaurante: '/sistema-para-restaurantes',
+    contabilidade: '/sistema-para-contabilidade', advocacia: '/sistema-para-advocacia', eventos: '/sistema-para-casa-de-eventos'
+  };
+
   var lista = raiz.querySelector('.nx-nichos');
   var palco = raiz.querySelector('.nx-palco');
   var calmo = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -119,7 +131,7 @@
         '<li class="nx-con-mais"><span class="nx-con-ic"><i data-lucide="plug"></i></span><div><b>E o que você já usa</b><p>Se a sua ferramenta tem integração, a gente conecta ao seu sistema.</p></div></li>' +
         '</ul>';
     }
-    return '<p class="nx-intro">O caminho do cliente, do primeiro contato ao pagamento, num painel com a marca da sua empresa.</p>' +
+    return '<p class="nx-intro">O caminho do cliente, do primeiro contato ao pagamento, em um painel com a marca da sua empresa.</p>' +
       '<ol class="nx-passos">' + n.passos.map(function (p, i) {
         return '<li><div class="nx-passo-cab"><span class="nx-passo-ic"><i data-lucide="' + p[0] + '"></i></span><span class="nx-passo-n">' + String(i + 1).padStart(2, '0') + '</span></div>' +
           '<b>' + esc(p[1]) + '</b><p>' + esc(p[2]) + '</p></li>';
@@ -138,7 +150,8 @@
       }).join('') + '</div>' +
       '<div class="nx-conteudo">' + conteudo(n) + '</div>' +
       '<div class="nx-pe"><p>Quer conhecer o sistema por dentro? No diagnóstico gratuito (30 minutos, por Google Meet) mostramos o sistema montado ' + esc(n.em) + ' e o que dá para automatizar.</p>' +
-        '<a href="#agendar" class="btn btn-primary nx-cta">Agendar diagnóstico gratuito</a></div>';
+        '<div class="nx-pe-acoes">' + (PAGINAS[n.id] ? '<a class="nx-pagina" href="' + PAGINAS[n.id] + '">Ver tudo sobre o sistema ' + esc(n.em) + ' →</a>' : '') +
+        '<a href="#agendar" class="btn btn-primary nx-cta" data-cta="diagnostico">Agendar diagnóstico gratuito</a></div></div>';
     palco.setAttribute('aria-labelledby', 'nx-tab-' + n.id);
     if (animar && !calmo) { palco.classList.remove('nx-troca'); void palco.offsetWidth; palco.classList.add('nx-troca'); }
     icones();

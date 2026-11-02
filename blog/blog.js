@@ -36,6 +36,23 @@
         a.addEventListener('click', function () { abre(false); });
     });
 
+    // primeira página da visita: o agendamento na página inicial manda junto, para saber qual artigo ou nicho trouxe o diagnóstico
+    try { if (!sessionStorage.getItem('vca_origem')) sessionStorage.setItem('vca_origem', location.pathname); } catch (e) {}
+    // clique em qualquer botão do diagnóstico vira evento no rastreamento próprio (Tráfego → Site no painel)
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('[data-cta="diagnostico"], a[href*="#agendar"]');
+        if (a && window.vcaSite) window.vcaSite('clique_diagnostico', { pagina: location.pathname });
+    });
+
+    // páginas de nicho: o botão fixo do diagnóstico aparece no celular depois que a pessoa passa do topo
+    var fixo = document.querySelector('.nicho-fixo');
+    var heroi = document.querySelector('.nicho-hero');
+    if (fixo && heroi) {
+        var mostraFixo = function () { fixo.classList.toggle('visivel', heroi.getBoundingClientRect().bottom < 0); };
+        window.addEventListener('scroll', mostraFixo, { passive: true });
+        mostraFixo();
+    }
+
     // filtro por assunto na lista do blog (sem JavaScript, todos os artigos continuam visíveis)
     var filtros = document.querySelectorAll('.blog-filtro');
     filtros.forEach(function (btn) {
