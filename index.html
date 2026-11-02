@@ -6,52 +6,217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:; video-src 'self' https:;">
+        content="default-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:; media-src 'self' https:;">
     <title>VCA Company | Sistemas, Automação e CRM com IA para Empresas</title>
     <meta name="description"
-        content="VCA Company implanta sistemas, automação e CRM com inteligência artificial para empresas de qualquer segmento: atendimento automático no WhatsApp, funil de vendas e agenda cheia no automático.">
+        content="Sistemas, automação e CRM com IA para empresas: atendimento automático no WhatsApp, funil de vendas e agenda no automático. Caraguatatuba e todo o Brasil.">
     <meta name="keywords"
         content="CRM para empresas, automação WhatsApp, CRM com IA, sistema de vendas, automação de atendimento, funil de vendas, agendamento automático, CRM Caraguatatuba">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="VCA Company">
     <meta name="theme-color" content="#FFFFFF">
-    <link rel="canonical" href="https://vca-company.com.br/">
+    <link rel="canonical" href="https://www.vcacompany.com/">
     <link rel="icon" type="image/svg+xml" href="Camada%202.svg">
+    <link rel="alternate" type="application/rss+xml" title="Blog da VCA Company" href="https://www.vcacompany.com/blog/feed.xml">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="VCA Company | Sistemas, Automação e CRM com IA para Empresas">
     <meta property="og:description" content="CRM com IA, automação de WhatsApp e funil de vendas: o sistema que deixa o atendimento e as vendas da sua empresa no automático.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vca-company.com.br/">
-    <meta property="og:image" content="https://vca-company.com.br/Camada%202.svg">
+    <meta property="og:url" content="https://www.vcacompany.com/">
+    <meta property="og:image" content="https://www.vcacompany.com/imagens/og-vca.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VCA Company: sistemas, automação e CRM com IA para empresas">
     <meta property="og:site_name" content="VCA Company">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="VCA Company | Sistemas, Automação e CRM com IA">
     <meta name="twitter:description" content="Sistemas, automação e CRM com IA para empresas que querem atendimento e vendas no automático.">
-    <meta name="twitter:image" content="https://vca-company.com.br/Camada%202.svg">
+    <meta name="twitter:image" content="https://www.vcacompany.com/imagens/og-vca.png">
     <meta name="geo.region" content="BR-SP">
     <meta name="geo.placename" content="Caraguatatuba">
     <meta name="geo.position" content="-23.6203;-45.4138">
     <meta name="ICBM" content="-23.6203, -45.4138">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- as fontes carregam sem travar a página (a abertura com o logo cobre a troca de fonte) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"></noscript>
     <script>/* modo claro é o padrão; só fica escuro quem escolheu escuro no botão */(function(){var t=null;try{t=localStorage.getItem('vca-theme');}catch(e){}if(t!=='dark'){document.documentElement.setAttribute('data-theme','light');}})();</script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="nichos.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "VCA Company",
-      "url": "https://vca-company.com.br/",
-      "description": "Sistemas, automação e CRM com inteligência artificial para empresas: atendimento automático, funil de vendas e agendamento no WhatsApp.",
-      "areaServed": ["Caraguatatuba", "São Sebastião", "Ubatuba", "Ilhabela", "Litoral Norte de São Paulo"],
-      "serviceType": ["CRM com IA", "Automação de WhatsApp", "Automação Comercial", "Funil de Vendas", "Sistemas para Empresas", "Marketing Digital"],
-      "sameAs": ["https://www.instagram.com/vcacompany_/"],
-      "telephone": "+55-12-98201-4685"
+      "@graph": [
+        {
+          "@type": [
+            "Organization",
+            "ProfessionalService"
+          ],
+          "@id": "https://www.vcacompany.com/#organizacao",
+          "name": "VCA Company",
+          "alternateName": "VCA — Visão, Clareza e Ação",
+          "url": "https://www.vcacompany.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.vcacompany.com/imagens/logo-vca.png",
+            "width": 245,
+            "height": 84
+          },
+          "image": "https://www.vcacompany.com/imagens/og-vca.png",
+          "description": "Sistemas, automação e CRM com inteligência artificial para empresas: atendimento automático no WhatsApp, funil de vendas, agenda e gestão em um só lugar.",
+          "email": "vcacompanyofficial@gmail.com",
+          "telephone": "+55-12-98201-4685",
+          "taxID": "65.431.552/0001-08",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Caraguatatuba",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.6203,
+            "longitude": -45.4138
+          },
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Caraguatatuba"
+            },
+            {
+              "@type": "City",
+              "name": "São Sebastião"
+            },
+            {
+              "@type": "City",
+              "name": "Ubatuba"
+            },
+            {
+              "@type": "City",
+              "name": "Ilhabela"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Litoral Norte de São Paulo"
+            },
+            {
+              "@type": "Country",
+              "name": "Brasil"
+            }
+          ],
+          "knowsAbout": [
+            "CRM com IA",
+            "Automação de WhatsApp",
+            "API oficial do WhatsApp Business",
+            "Funil de vendas",
+            "Sistemas para clínicas",
+            "Sistemas para restaurantes",
+            "Sistemas para escritórios de contabilidade",
+            "Automação de processos"
+          ],
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sistemas e CRM com IA"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Automação de atendimento no WhatsApp"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Automação de processos"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Integração de ferramentas"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Site integrado ao sistema"
+              }
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/vcacompany_/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.vcacompany.com/#site",
+          "url": "https://www.vcacompany.com/",
+          "name": "VCA Company",
+          "inLanguage": "pt-BR",
+          "publisher": {
+            "@id": "https://www.vcacompany.com/#organizacao"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.vcacompany.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Preciso entender de tecnologia?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não. Cuidamos de toda a implementação, integração e manutenção. Você foca no seu negócio, nós cuidamos do sistema e das automações."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Em quanto tempo vejo resultado?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "As primeiras automações já entram em operação nas primeiras semanas. Ganhos consistentes e previsíveis na operação costumam aparecer entre 60 e 90 dias."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Serve para o meu tipo de negócio?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Como cada sistema é feito sob medida, ele se adapta a qualquer nicho: comércio, serviços, indústria, e-commerce, profissionais liberais e mais. Para áreas regulamentadas, tudo é feito seguindo as normas da categoria."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O valor mensal inclui as ferramentas e integrações?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O valor do plano cobre o desenvolvimento, a manutenção e o suporte do sistema. Eventuais custos de ferramentas de terceiros são mapeados de forma transparente com você no diagnóstico."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Preciso trocar as ferramentas que já uso?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não necessariamente. No diagnóstico mapeamos o que você já usa e integramos o que fizer sentido. A migração é feita por nós, sem travar sua operação."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Lucide Icons (versão fixa e sem travar a página: o script.js só desenha os ícones no DOMContentLoaded) -->
+    <script defer src="https://unpkg.com/lucide@1.66.0/dist/umd/lucide.js"></script>
 </head>
 
 <body class="custom-cursor-active">
@@ -89,13 +254,14 @@
     <nav class="navbar">
         <div class="container">
             <a href="#home" class="logo">
-                <img src="Logo VCA oficial.png" alt="VCA Logo" style="height: 42px; width: auto;">
+                <img src="imagens/logo-vca.webp" alt="VCA Company" width="123" height="42" style="height: 42px; width: auto;">
             </a>
 
             <div class="nav-links">
                 <a href="#sistema" class="nav-link">Sistema</a>
                 <a href="#metodo" class="nav-link">Método</a>
                 <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="/blog" class="nav-link">Blog</a>
                 <a href="#agendar" class="nav-link">Agendar</a>
                 <a href="#faq" class="nav-link">Dúvidas</a>
             </div>
@@ -124,7 +290,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="#home" class="logo">
-                <img src="Logo VCA oficial.png" alt="VCA Logo" style="height: 40px; width: auto;">
+                <img src="imagens/logo-vca.webp" alt="VCA Company" width="117" height="40" style="height: 40px; width: auto;">
             </a>
             <button class="menu-close" id="menuClose">
                 <i data-lucide="x"></i>
@@ -134,6 +300,7 @@
             <a href="#sistema" class="mobile-nav-link">Sistema</a>
             <a href="#metodo" class="mobile-nav-link">Método</a>
             <a href="#depoimentos" class="mobile-nav-link">Depoimentos</a>
+            <a href="/blog" class="mobile-nav-link">Blog</a>
             <a href="#agendar" class="mobile-nav-link">Agendar</a>
             <a href="#faq" class="mobile-nav-link">Dúvidas</a>
             <a href="#agendar" class="btn btn-primary"
@@ -339,7 +506,7 @@
                             <li>Onboarding completo e mapeamento dos processos</li>
                             <li>Escopo do sistema e das automações definido</li>
                             <li>Sistema e integrações configurados</li>
-                            <li>CAtendimento automático com IA no ar</li>
+                            <li>Atendimento automático com IA no ar</li>
                             <li>Primeiras automações rodando</li>
                         </ul>
                     </div>
@@ -526,11 +693,51 @@
                             <div class="agenda-check" aria-hidden="true">✓</div>
                             <h3 class="agenda-pronto-titulo">Diagnóstico marcado!</h3>
                             <p class="agenda-pronto-txt"></p>
-                            <a class="agenda-meet" target="_blank" rel="noopener" hidden>Entrar pelo Google Meet</a>
+                            <a class="agenda-meet" href="#agendar" target="_blank" rel="noopener" hidden>Entrar pelo Google Meet</a>
                             <p class="agenda-obs agenda-pronto-obs"></p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Blog: os 3 artigos mais novos (gerados por _blog/gerar.mjs) -->
+        <section id="blog" class="home-blog">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-badge">Blog</span>
+                    <h2 class="section-title">Conteúdo para organizar e vender mais</h2>
+                    <p class="section-subtitle">Guias práticos sobre automação, CRM e WhatsApp para empresas de qualquer nicho.</p>
+                </div>
+                <div class="blog-grid">
+                    <!-- BLOG:INICIO -->
+                    <article class="blog-card" data-cat="automacao">
+                        <a class="blog-card-link" href="/blog/automacao-whatsapp-para-empresas">
+                            <span class="blog-card-cat">Automação</span>
+                            <h3 class="blog-card-tit">Automação de WhatsApp para empresas: como atender 24 horas sem perder o toque humano</h3>
+                            <p class="blog-card-resumo">O que automatizar, o que deixar com pessoas e como começar sem colocar o número da empresa em risco.</p>
+                            <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 5 min de leitura</span>
+                        </a>
+                    </article>
+                    <article class="blog-card" data-cat="litoral-norte">
+                        <a class="blog-card-link" href="/blog/automacao-para-empresas-caraguatatuba-litoral-norte">
+                            <span class="blog-card-cat">Litoral Norte</span>
+                            <h3 class="blog-card-tit">Automação e sistemas para empresas em Caraguatatuba e no Litoral Norte: por onde começar</h3>
+                            <p class="blog-card-resumo">Como empresas da região se preparam para a alta temporada com atendimento automático, CRM e gestão em um só sistema.</p>
+                            <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 3 min de leitura</span>
+                        </a>
+                    </article>
+                    <article class="blog-card" data-cat="clinicas">
+                        <a class="blog-card-link" href="/blog/crm-para-clinicas">
+                            <span class="blog-card-cat">Clínicas</span>
+                            <h3 class="blog-card-tit">CRM para clínicas: como parar de perder pacientes entre o WhatsApp e a agenda</h3>
+                            <p class="blog-card-resumo">Onde a clínica perde pacientes sem perceber e como um CRM ligado ao WhatsApp e à agenda resolve isso.</p>
+                            <span class="blog-card-meta"><time datetime="2026-11-02">2 de novembro de 2026</time> · 4 min de leitura</span>
+                        </a>
+                    </article>
+                    <!-- BLOG:FIM -->
+                </div>
+                <div class="home-blog-mais"><a href="/blog" class="btn btn-outline">Ver todos os artigos</a></div>
             </div>
         </section>
 
@@ -619,7 +826,7 @@
             <div class="footer-grid">
                 <!-- Brand -->
                 <div class="footer-brand" data-animate>
-                    <img src="Logo VCA oficial.png" alt="VCA Company" class="footer-logo">
+                    <img src="imagens/logo-vca.webp" alt="VCA Company" class="footer-logo" width="123" height="42" loading="lazy">
                     <p class="footer-slogan">Sistemas, automação e CRM com inteligência artificial que colocam o atendimento
                         e as vendas da sua empresa no automático.</p>
                     <div class="footer-social">
@@ -644,17 +851,18 @@
 
                 <!-- Navegação -->
                 <div class="footer-col" data-animate>
-                    <h4 class="footer-heading">Navegação</h4>
+                    <p class="footer-heading">Navegação</p>
                     <a href="#sistema" class="footer-nav-link">Sistema</a>
                     <a href="#metodo" class="footer-nav-link">Método VCA</a>
                     <a href="#depoimentos" class="footer-nav-link">Depoimentos</a>
+                    <a href="/blog" class="footer-nav-link">Blog</a>
                     <a href="#agendar" class="footer-nav-link">Agendar</a>
                     <a href="#faq" class="footer-nav-link">Dúvidas</a>
                 </div>
 
                 <!-- Soluções -->
                 <div class="footer-col" data-animate>
-                    <h4 class="footer-heading">Soluções</h4>
+                    <p class="footer-heading">Soluções</p>
                     <span class="footer-item">Sistemas & CRM com IA</span>
                     <span class="footer-item">Automação de processos</span>
                     <span class="footer-item">Integração de ferramentas</span>
@@ -663,7 +871,7 @@
 
                 <!-- Contato -->
                 <div class="footer-col footer-contact" data-animate>
-                    <h4 class="footer-heading">Fale conosco</h4>
+                    <p class="footer-heading">Fale conosco</p>
                     <a href="mailto:vcacompanyofficial@gmail.com" class="footer-contact-line">
                         <i data-lucide="mail"></i> vcacompanyofficial@gmail.com
                     </a>

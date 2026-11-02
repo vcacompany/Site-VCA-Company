@@ -1,0 +1,5 @@
+# Todos os robôs (Google, Bing e os de IA, como GPTBot, ClaudeBot e PerplexityBot) podem ler o site inteiro.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.vcacompany.com/sitemap.xml

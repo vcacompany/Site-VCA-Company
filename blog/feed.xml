@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>Blog da VCA Company</title>
+    <link>https://www.vcacompany.com/blog</link>
+    <atom:link href="https://www.vcacompany.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Automação, CRM e sistemas para empresas.</description>
+    <language>pt-BR</language>
+    <item>
+        <title>Automação de WhatsApp para empresas: como atender 24 horas sem perder o toque humano</title>
+        <link>https://www.vcacompany.com/blog/automacao-whatsapp-para-empresas</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/automacao-whatsapp-para-empresas</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Automação</category>
+        <description>O que automatizar no WhatsApp da empresa, o que deixar com pessoas, API oficial x ferramentas piratas e como começar sem travar o atendimento.</description>
+    </item>
+    <item>
+        <title>Automação e sistemas para empresas em Caraguatatuba e no Litoral Norte: por onde começar</title>
+        <link>https://www.vcacompany.com/blog/automacao-para-empresas-caraguatatuba-litoral-norte</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/automacao-para-empresas-caraguatatuba-litoral-norte</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Litoral Norte</category>
+        <description>Guia para empresas de Caraguatatuba, São Sebastião, Ubatuba e Ilhabela que querem organizar atendimento, vendas e gestão com sistema e automação.</description>
+    </item>
+    <item>
+        <title>CRM para clínicas: como parar de perder pacientes entre o WhatsApp e a agenda</title>
+        <link>https://www.vcacompany.com/blog/crm-para-clinicas</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/crm-para-clinicas</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Clínicas</category>
+        <description>Como um CRM para clínicas organiza contatos do WhatsApp, agenda, retornos e faltas, e o que avaliar antes de escolher o sistema da sua clínica.</description>
+    </item>
+    <item>
+        <title>Funil de vendas no WhatsApp: o passo a passo para nenhum contato esfriar</title>
+        <link>https://www.vcacompany.com/blog/funil-de-vendas-no-whatsapp</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/funil-de-vendas-no-whatsapp</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Vendas</category>
+        <description>Monte um funil de vendas no WhatsApp com etapas claras, CRM, mensagens de acompanhamento e números, e transforme mais conversas em clientes.</description>
+    </item>
+    <item>
+        <title>Sistema para escritório de contabilidade: guias, certidões e documentos dos clientes em um só lugar</title>
+        <link>https://www.vcacompany.com/blog/sistema-para-escritorio-de-contabilidade</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/sistema-para-escritorio-de-contabilidade</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Contabilidade</category>
+        <description>Como um sistema para escritório de contabilidade organiza guias, certidões e documentos, com portal do cliente e avisos automáticos.</description>
+    </item>
+    <item>
+        <title>Sistema para restaurante que funciona sem internet: o que avaliar antes de escolher</title>
+        <link>https://www.vcacompany.com/blog/sistema-para-restaurante-sem-internet</link>
+        <guid isPermaLink="true">https://www.vcacompany.com/blog/sistema-para-restaurante-sem-internet</guid>
+        <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Restaurantes</category>
+        <description>Mesas, comandas, cozinha, caixa e estoque: o que um sistema para restaurante precisa ter e por que ele deve funcionar sem internet.</description>
+    </item>
+</channel>
+</rss>

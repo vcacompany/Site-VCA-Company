@@ -1,0 +1,22 @@
+# VCA Company
+
+> A VCA Company implanta sistemas, automação e CRM com inteligência artificial para empresas: atendimento automático no WhatsApp (API oficial), funil de vendas, agenda, gestão financeira e portais para os clientes. Fica em Caraguatatuba (SP), atende o Litoral Norte de São Paulo de perto e empresas de todo o Brasil de forma online.
+
+## Serviços
+- Sistemas e CRM com IA sob medida para o nicho de cada empresa (clínicas, restaurantes, escritórios de contabilidade, advocacia, casas de eventos, comércio e serviços)
+- Automação de atendimento e vendas no WhatsApp, pela API oficial do WhatsApp Business
+- Automação de processos e integração com as ferramentas que a empresa já usa (Google Drive, Gmail, Google Agenda, planilhas, cobrança)
+- Site integrado ao sistema, com captura de contatos e agendamento
+
+## Como contratar
+- [Diagnóstico gratuito de 30 minutos](https://www.vcacompany.com/#agendar): conversa por vídeo, sem compromisso
+- WhatsApp: +55 12 98201-4685
+- E-mail: vcacompanyofficial@gmail.com
+
+## Blog
+- [Automação de WhatsApp para empresas: como atender 24 horas sem perder o toque humano](https://www.vcacompany.com/blog/automacao-whatsapp-para-empresas): O que automatizar no WhatsApp da empresa, o que deixar com pessoas, API oficial x ferramentas piratas e como começar sem travar o atendimento.
+- [Automação e sistemas para empresas em Caraguatatuba e no Litoral Norte: por onde começar](https://www.vcacompany.com/blog/automacao-para-empresas-caraguatatuba-litoral-norte): Guia para empresas de Caraguatatuba, São Sebastião, Ubatuba e Ilhabela que querem organizar atendimento, vendas e gestão com sistema e automação.
+- [CRM para clínicas: como parar de perder pacientes entre o WhatsApp e a agenda](https://www.vcacompany.com/blog/crm-para-clinicas): Como um CRM para clínicas organiza contatos do WhatsApp, agenda, retornos e faltas, e o que avaliar antes de escolher o sistema da sua clínica.
+- [Funil de vendas no WhatsApp: o passo a passo para nenhum contato esfriar](https://www.vcacompany.com/blog/funil-de-vendas-no-whatsapp): Monte um funil de vendas no WhatsApp com etapas claras, CRM, mensagens de acompanhamento e números, e transforme mais conversas em clientes.
+- [Sistema para escritório de contabilidade: guias, certidões e documentos dos clientes em um só lugar](https://www.vcacompany.com/blog/sistema-para-escritorio-de-contabilidade): Como um sistema para escritório de contabilidade organiza guias, certidões e documentos, com portal do cliente e avisos automáticos.
+- [Sistema para restaurante que funciona sem internet: o que avaliar antes de escolher](https://www.vcacompany.com/blog/sistema-para-restaurante-sem-internet): Mesas, comandas, cozinha, caixa e estoque: o que um sistema para restaurante precisa ter e por que ele deve funcionar sem internet.
