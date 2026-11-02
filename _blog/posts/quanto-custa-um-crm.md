@@ -11,6 +11,7 @@ capa_alt: Gráficos, calculadora e planilhas de planejamento financeiro sobre a 
 capa_credito: Foto: RDNE Stock project / Pexels
 capa_link: https://www.pexels.com/photo/7414218/
 data: 2026-11-02
+atualizado: 2026-11-02
 ---
 "Quanto custa?" é uma das primeiras perguntas de quem pensa em organizar as vendas com um CRM. A resposta honesta é: depende do que está incluído. Dois sistemas com a mesma mensalidade podem ter custos finais muito diferentes.
 
@@ -28,7 +29,7 @@ Cadastro dos dados, configuração das etapas do funil, das automações e das i
 
 ### WhatsApp oficial
 
-Se o CRM se conecta ao WhatsApp pela API oficial, há o custo das mensagens de modelo cobradas pela Meta, como lembretes e avisos. As respostas dentro de 24 horas depois da mensagem do cliente não têm esse custo.
+Se o CRM se conecta ao WhatsApp pela API oficial, há o custo das mensagens cobradas pela Meta, como lembretes, avisos e campanhas. Desde outubro de 2026, as respostas de atendimento dentro da janela de 24 horas também passaram a ser cobradas. Peça uma estimativa com base no volume de conversas da sua empresa e confira a tabela oficial da Meta.
 
 ### Integrações e automações
 

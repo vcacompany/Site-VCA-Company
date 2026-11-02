@@ -11,6 +11,7 @@ capa_alt: Mãos digitando uma mensagem no celular
 capa_credito: Foto: RDNE Stock project / Pexels
 capa_link: https://www.pexels.com/photo/6669795/
 data: 2026-11-02
+atualizado: 2026-11-02
 ---
 Quase toda empresa começa pelo aplicativo WhatsApp Business, e faz sentido: é gratuito e resolve bem quando o volume é pequeno. Mas chega um momento em que o celular da recepção vira gargalo. É aí que entra a API oficial do WhatsApp Business.
 
@@ -41,7 +42,7 @@ Veja a diferença entre os dois e os sinais de que chegou a hora de mudar.
 
 ## E os custos?
 
-O aplicativo é gratuito. Na API oficial, as respostas que a empresa dá dentro de 24 horas depois da última mensagem do cliente não têm custo da Meta. O que é cobrado são as mensagens de modelo, como lembretes, avisos e campanhas, conforme a tabela da Meta para cada tipo de mensagem. Além disso, há o custo do sistema que usa a API.
+O aplicativo é gratuito. Na API oficial, a Meta cobra por mensagem, conforme o tipo: marketing, utilidade (como lembretes e avisos) e autenticação. Desde outubro de 2026, as respostas de atendimento dentro da janela de 24 horas, que antes eram gratuitas, também passaram a ser cobradas. Como valores e franquias mudam, a referência é sempre a tabela oficial da Meta para o Brasil. Além disso, há o custo do sistema que usa a API.
 
 [[cta]]
 
