@@ -29,7 +29,7 @@ Cadastro dos dados, configuração das etapas do funil, das automações e das i
 
 ### WhatsApp oficial
 
-Se o CRM se conecta ao WhatsApp pela API oficial, há o custo das mensagens cobradas pela Meta, como lembretes, avisos e campanhas. Desde outubro de 2026, as respostas de atendimento dentro da janela de 24 horas também passaram a ser cobradas. Peça uma estimativa com base no volume de conversas da sua empresa e confira a tabela oficial da Meta.
+Se o CRM se conecta ao WhatsApp pela API oficial, há o custo das mensagens cobradas pela Meta, como lembretes, avisos e campanhas. Desde 1º de outubro de 2026, as respostas de atendimento dentro da janela de 24 horas também voltaram a ser cobradas a partir da 1.001ª mensagem do mês em cada número. Peça uma estimativa com base no volume de conversas da sua empresa e confira a [página de preços da Meta](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing).
 
 ### Integrações e automações
 

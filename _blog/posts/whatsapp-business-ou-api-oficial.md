@@ -42,7 +42,7 @@ Veja a diferença entre os dois e os sinais de que chegou a hora de mudar.
 
 ## E os custos?
 
-O aplicativo é gratuito. Na API oficial, a Meta cobra por mensagem, conforme o tipo: marketing, utilidade (como lembretes e avisos) e autenticação. Desde outubro de 2026, as respostas de atendimento dentro da janela de 24 horas, que antes eram gratuitas, também passaram a ser cobradas. Como valores e franquias mudam, a referência é sempre a tabela oficial da Meta para o Brasil. Além disso, há o custo do sistema que usa a API.
+O aplicativo é gratuito. Na API oficial, a Meta cobra por mensagem, conforme o tipo: marketing, utilidade (como lembretes e avisos) e autenticação. Desde 1º de outubro de 2026, as respostas de atendimento dentro da janela de 24 horas, que antes eram gratuitas, voltaram a ser cobradas: cada número tem 1.000 mensagens de atendimento grátis por mês e paga a partir da 1.001ª. As mensagens de utilidade enviadas dentro da janela também passaram a ser cobradas. As conversas que começam por um anúncio de clique para o WhatsApp continuam gratuitas enquanto a janela desse anúncio está aberta. Os valores por país estão na [página de preços da Meta](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing). Além disso, há o custo do sistema que usa a API.
 
 [[cta]]
 
