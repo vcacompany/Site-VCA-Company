@@ -37,13 +37,45 @@ function lerPost(arq) {
   meta.titulo_seo = meta.titulo_seo || meta.titulo;
   meta.atualizado = meta.atualizado || meta.data;
   meta.resumo = meta.resumo || meta.descricao;
+  if (meta.capa && !tamanhoImg(meta.capa)) throw new Error(`capa não encontrada (${meta.capa}) em ${arq}`);
   const corpo = mdParaHtml(m[2], meta);
-  const palavras = m[2].replace(/[#>*\-\[\]()]/g, " ").split(/\s+/).filter(Boolean).length;
+  const palavras = m[2].replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/[#>*\-\[\]()]/g, " ").split(/\s+/).filter(Boolean).length;
   return { ...meta, ...corpo, palavras, minutos: Math.max(2, Math.round(palavras / 200)) };
+}
+
+/* ---------- imagens ----------
+   Largura e altura saem do próprio arquivo (WebP, PNG ou JPEG): com elas no <img>, a página não pula enquanto carrega. */
+function tamanhoImg(src) {
+  const f = path.join(RAIZ, decodeURI(src).replace(/^\//, ""));
+  if (!fs.existsSync(f)) return null;
+  const b = fs.readFileSync(f);
+  if (b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WEBP") {
+    const tipo = b.toString("ascii", 12, 16);
+    if (tipo === "VP8 ") return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+    if (tipo === "VP8L") { const v = b.readUInt32LE(21); return { w: (v & 0x3fff) + 1, h: ((v >> 14) & 0x3fff) + 1 }; }
+    if (tipo === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+  }
+  if (b.readUInt32BE(0) === 0x89504e47) return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+  if (b[0] === 0xff && b[1] === 0xd8) {
+    for (let i = 2; i < b.length - 9;) {
+      if (b[i] !== 0xff) { i++; continue; }
+      const mk = b[i + 1];
+      if (mk >= 0xc0 && mk <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(mk)) return { w: b.readUInt16BE(i + 7), h: b.readUInt16BE(i + 5) };
+      i += 2 + b.readUInt16BE(i + 2);
+    }
+  }
+  return null;
+}
+function figura(src, alt, legenda, { classe = "post-fig", prioridade = false } = {}) {
+  const t = tamanhoImg(src);
+  if (!t) throw new Error("imagem não encontrada: " + src);
+  const img = `<img src="${esc(src)}" alt="${esc(alt)}" width="${t.w}" height="${t.h}"${prioridade ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async">`;
+  return `<figure class="${classe}"><a href="${esc(src)}" target="_blank" rel="noopener" aria-label="Abrir a imagem em tamanho maior">${img}</a>${legenda ? `<figcaption>${legenda}</figcaption>` : ""}</figure>`;
 }
 
 /* ---------- Markdown simples → HTML ----------
    ## título · ### subtítulo · - lista · 1. lista numerada · > citação · **negrito** · *itálico* · [texto](link) · `código`
+   ![texto alternativo](/blog/img/<slug>/arquivo.webp "legenda") numa linha sozinha = imagem com legenda
    [[cta]] = caixa do diagnóstico gratuito. "## Perguntas frequentes" + "### pergunta" vira também o FAQPage do Google. */
 function inline(s) {
   return esc(s)
@@ -89,6 +121,9 @@ function mdParaHtml(md, meta) {
       fechaTudo(); out.push("<blockquote><p>" + inline(r[1]) + "</p></blockquote>");
     } else if (l.trim() === "[[cta]]") {
       fechaTudo(); out.push(caixaCta(false));
+    } else if ((r = l.trim().match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/))) {
+      fechaTudo(); out.push(figura(r[2], r[1], r[3] ? inline(r[3]) : ""));
+      (meta.imagens = meta.imagens || []).push(r[2]);
     } else if (lista && /^\s+\S/.test(linha)) {
       lista.itens[lista.itens.length - 1] += " " + l.trim();
     } else { fechaLista(); par.push(l.trim()); }
@@ -242,8 +277,10 @@ const ORG = {
 const capaDe = (p) => fs.existsSync(path.join(RAIZ, "blog/og", p.slug + ".png")) ? "/blog/og/" + p.slug + ".png" : OG_PADRAO;
 
 function cartao(p, nivel = "h3") {
+  const t = p.capa && tamanhoImg(p.capa);
   return `<article class="blog-card" data-cat="${esc(slugify(p.categoria))}">
     <a class="blog-card-link" href="/blog/${p.slug}">
+        ${t ? `<span class="blog-card-img"><img src="${esc(p.capa)}" alt="" width="${t.w}" height="${t.h}" loading="lazy" decoding="async"></span>` : ""}
         <span class="blog-card-cat">${esc(p.categoria)}</span>
         <${nivel} class="blog-card-tit">${esc(p.titulo)}</${nivel}>
         <p class="blog-card-resumo">${esc(p.resumo)}</p>
@@ -259,7 +296,7 @@ function paginaPost(p, todos) {
   const ld = [
     jsonLd({
       "@context": "https://schema.org", "@type": "BlogPosting", headline: p.titulo, description: p.descricao,
-      image: SITE + capa, datePublished: p.data + "T09:00:00-03:00", dateModified: p.atualizado + "T09:00:00-03:00",
+      image: [...(p.capa ? [p.capa] : []), capa, ...(p.imagens || [])].map((i) => SITE + i), datePublished: p.data + "T09:00:00-03:00", dateModified: p.atualizado + "T09:00:00-03:00",
       author: { "@type": "Organization", name: "Equipe VCA Company", url: SITE + "/" }, publisher: ORG,
       mainEntityOfPage: { "@type": "WebPage", "@id": url }, inLanguage: "pt-BR", articleSection: p.categoria,
       keywords: p.palavra_chave || p.categoria, wordCount: p.palavras,
@@ -297,17 +334,10 @@ ${topo("Blog")}
                 <p class="post-lead">${esc(p.descricao)}</p>
                 <p class="post-meta">Por <strong>Equipe VCA Company</strong> · <time datetime="${p.data}">${dataBR(p.data)}</time> · ${p.minutos} min de leitura</p>
             </header>
-            <div class="post-grade">
-                <aside class="post-indice" aria-label="Neste artigo">
-                    <p class="post-indice-tit">Neste artigo</p>
-                    <ol>
-                        ${p.toc.map((t) => `<li><a href="#${t.id}">${inline(t.texto)}</a></li>`).join("\n                        ")}
-                    </ol>
-                </aside>
-                <div class="post-corpo">
+            ${p.capa ? figura(p.capa, p.capa_alt || "", p.capa_credito ? (p.capa_link ? `<a href="${esc(p.capa_link)}" target="_blank" rel="noopener">${esc(p.capa_credito)}</a>` : esc(p.capa_credito)) : "", { classe: "post-capa", prioridade: true }) : ""}
+            <div class="post-corpo">
 ${p.html}
 ${caixaCta(true)}
-                </div>
             </div>
         </article>
         <section class="post-rel" aria-labelledby="leia-tambem">
@@ -329,7 +359,7 @@ function paginaLista(posts) {
   const extra = [
     jsonLd({
       "@context": "https://schema.org", "@type": "Blog", "@id": url + "#blog", name: "Blog da VCA Company", url, description: descricao, inLanguage: "pt-BR", publisher: ORG,
-      blogPost: posts.map((p) => ({ "@type": "BlogPosting", headline: p.titulo, url: `${SITE}/blog/${p.slug}`, datePublished: p.data, image: SITE + capaDe(p) })),
+      blogPost: posts.map((p) => ({ "@type": "BlogPosting", headline: p.titulo, url: `${SITE}/blog/${p.slug}`, datePublished: p.data, image: SITE + (p.capa || capaDe(p)) })),
     }),
     jsonLd({
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [

@@ -6,6 +6,10 @@ descricao: Como um sistema para escritório de contabilidade organiza guias, cer
 resumo: Como tirar o escritório do e-mail e do WhatsApp e dar a cada cliente um portal com guias, certidões e documentos.
 categoria: Contabilidade
 palavra_chave: sistema para escritório de contabilidade
+capa: /blog/img/sistema-para-escritorio-de-contabilidade/capa.webp
+capa_alt: Contadora conferindo documentos e fazendo contas na mesa do escritório
+capa_credito: Foto: Mikhail Nilov / Pexels
+capa_link: https://www.pexels.com/photo/8297044/
 data: 2026-11-02
 ---
 Todo mês é a mesma corrida: gerar as guias, mandar para cada cliente, confirmar se ele recebeu, cobrar quem não pagou, pedir os documentos que faltam, conferir certidões vencendo. Boa parte do tempo do escritório vai para mensagens e anexos, e não para o trabalho contábil em si.
@@ -30,6 +34,9 @@ A peça mais importante é o **portal do cliente**: um endereço onde cada empre
 - o que o escritório está esperando dele.
 
 Com isso, a pergunta "você me mandou a guia?" deixa de existir. Está tudo no portal, e o cliente recebe um aviso quando algo novo chega.
+
+![Portal do cliente de um escritório de contabilidade com impostos, faturamento e carga tributária da empresa](/blog/img/sistema-para-escritorio-de-contabilidade/portal-do-cliente.webp "O portal que cada empresa atendida acessa: impostos do período, faturamento e carga tributária. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 [[cta]]
 
@@ -56,6 +63,9 @@ Além do portal, o sistema dá à gestão uma visão que a planilha não dá:
 - quais empresas ainda não mandaram os documentos do mês;
 - o histórico de impostos de cada cliente, mês a mês;
 - a cobrança dos honorários, com aviso de fatura em atraso.
+
+![Controle de certidões dos clientes do escritório, com as pendentes em vermelho e as datas de validade](/blog/img/sistema-para-escritorio-de-contabilidade/certidoes.webp "O controle de certidões: o que está pendente, o que vence logo e o que está em dia, empresa por empresa. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 ## Como implantar sem parar o escritório
 

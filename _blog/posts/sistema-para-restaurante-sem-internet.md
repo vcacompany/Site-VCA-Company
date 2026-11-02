@@ -6,6 +6,10 @@ descricao: Mesas, comandas, cozinha, caixa e estoque: o que um sistema para rest
 resumo: Mesas, cozinha, caixa e estoque em um lugar só, e por que o sistema não pode parar quando a internet cai.
 categoria: Restaurantes
 palavra_chave: sistema para restaurante
+capa: /blog/img/sistema-para-restaurante-sem-internet/capa.webp
+capa_alt: Garçom anotando o pedido de um cliente no salão do restaurante
+capa_credito: Foto: RDNE Stock project / Pexels
+capa_link: https://www.pexels.com/photo/4921156/
 data: 2026-11-02
 ---
 Sexta-feira, casa cheia, e a internet cai. Se o sistema do restaurante para junto, o garçom volta para o bloco de papel, a cozinha perde a ordem dos pedidos e o fechamento do caixa vira uma conta de cabeça no fim da noite.
@@ -25,6 +29,9 @@ Um bom sistema cobre a operação inteira, do salão ao caixa:
 - **Estoque:** baixa automática dos ingredientes conforme os pratos saem.
 - **Relatórios:** faturamento por dia, pratos mais vendidos, horários de pico e ticket médio.
 
+![Mapa de mesas do restaurante com as mesas livres, ocupadas e pedindo a conta](/blog/img/sistema-para-restaurante-sem-internet/mesas.webp "O mapa de mesas: a cor mostra quem está esperando, quem tem pedido pronto e quem pediu a conta. Tela real do sistema da VCA, com dados de exemplo.")
+
+
 ## Por que ele precisa funcionar sem internet
 
 Internet de restaurante sofre: muita gente no Wi-Fi, roteador escondido atrás do balcão, queda de energia, operadora instável. Um sistema que depende 100% da nuvem para cada clique transforma qualquer oscilação em fila.
@@ -38,6 +45,9 @@ O que procurar:
 
 No sistema que a VCA implanta em restaurantes, o computador do caixa funciona como um programa instalado, e não só como site aberto no navegador. Ele continua lançando, imprimindo e fechando conta sem internet, e sincroniza tudo quando a rede volta.
 
+![Aviso de sem internet no sistema do restaurante, com um lançamento guardado no aparelho](/blog/img/sistema-para-restaurante-sem-internet/sem-internet.webp "Sem internet, o sistema avisa e guarda os lançamentos no aparelho até a rede voltar. Tela real do sistema da VCA, com dados de exemplo.")
+
+
 [[cta]]
 
 ## Caixa e controle: onde o dinheiro escapa
@@ -50,6 +60,9 @@ Em muitos restaurantes o faturamento até está bom, mas o dinheiro some em deta
 - vendas fiadas para clientes conhecidos sem controle de quanto cada um deve.
 
 Um bom sistema registra quem cancelou o quê e por quê, pede autorização do gerente para descontos e prazos e mostra no fechamento se faltou ou sobrou dinheiro na gaveta. Para clientes que compram a prazo, como lojistas e empresas parceiras, ele mostra o saldo de cada um e a data combinada do acerto.
+
+![Tela do caixa com o recebido por forma de pagamento, o resumo do turno e as vendas por garçom](/blog/img/sistema-para-restaurante-sem-internet/caixa.webp "O caixa do dia: formas de pagamento, itens cancelados, movimentos da gaveta e vendas por garçom. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 ## Equipe: ponto, permissões e escala
 

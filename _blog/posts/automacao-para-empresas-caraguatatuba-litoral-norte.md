@@ -6,6 +6,10 @@ descricao: Guia para empresas de Caraguatatuba, São Sebastião, Ubatuba e Ilhab
 resumo: Como empresas da região se preparam para a alta temporada com atendimento automático, CRM e gestão em um só sistema.
 categoria: Litoral Norte
 palavra_chave: automação para empresas em Caraguatatuba
+capa: /blog/img/automacao-para-empresas-caraguatatuba-litoral-norte/capa.webp
+capa_alt: Pôr do sol na costa de Ilhabela, no Litoral Norte de São Paulo
+capa_credito: Foto: Brenner Oliveira / Pexels
+capa_link: https://www.pexels.com/photo/31983158/
 data: 2026-11-02
 ---
 Quem tem empresa no Litoral Norte de São Paulo conhece bem o ritmo da região: meses mais tranquilos e, de repente, a alta temporada, os feriados prolongados e os fins de semana de sol que multiplicam o movimento. Clínicas, restaurantes, pousadas, imobiliárias, lojas e prestadores de serviço de Caraguatatuba, São Sebastião, Ubatuba e Ilhabela sentem a mesma coisa: quando a procura dispara, o atendimento não dá conta.
@@ -38,6 +42,9 @@ Cada contato que chega vira um registro em um CRM, com a etapa em que está e a 
 ### Gestão do dia a dia
 
 Financeiro, estoque, equipe e relatórios em um só sistema, acessível pelo celular. É o que permite ao dono sair do operacional e enxergar o negócio com clareza.
+
+![Painel inicial do sistema com faturamento do mês, leads recebidos, consultas agendadas e sugestões da IA](/blog/img/automacao-para-empresas-caraguatatuba-litoral-norte/painel.webp "O painel inicial: faturamento, contatos novos, agenda e sugestões da IA em uma tela só. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 ## Exemplos por tipo de negócio
 

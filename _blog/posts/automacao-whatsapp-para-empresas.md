@@ -6,6 +6,10 @@ descricao: O que automatizar no WhatsApp da empresa, o que deixar com pessoas, A
 resumo: O que automatizar, o que deixar com pessoas e como começar sem colocar o número da empresa em risco.
 categoria: Automação
 palavra_chave: automação de WhatsApp para empresas
+capa: /blog/img/automacao-whatsapp-para-empresas/capa.webp
+capa_alt: Dona de loja sorrindo enquanto responde clientes pelo celular
+capa_credito: Foto: Mel Navala / Pexels
+capa_link: https://www.pexels.com/photo/40091036/
 data: 2026-11-02
 ---
 Se o WhatsApp é o principal canal de contato da sua empresa, você conhece a cena: mensagens chegando fora do horário, gente perguntando a mesma coisa vinte vezes por dia, cliente que some porque ninguém respondeu a tempo. Automatizar o WhatsApp resolve boa parte disso, desde que seja feito do jeito certo.
@@ -23,6 +27,9 @@ Hoje existem três níveis:
 - **Respostas automáticas simples:** mensagem de ausência e saudação. É o que o WhatsApp Business gratuito já oferece.
 - **Fluxos com botões:** o cliente escolhe uma opção ("Quero agendar", "Ver preços", "Falar com alguém") e a conversa segue um caminho definido.
 - **Atendimento com inteligência artificial:** a IA entende a pergunta escrita do jeito que o cliente escreveu, responde com as informações da sua empresa e chama uma pessoa quando o assunto foge do roteiro.
+
+![Quadro do CRM com os contatos que chegaram pelo WhatsApp e os que a inteligência artificial já qualificou](/blog/img/automacao-whatsapp-para-empresas/crm-whatsapp-ia.webp "Cada conversa do WhatsApp vira um cartão no CRM, e a IA marca quem já está qualificado. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 ## O que vale a pena automatizar
 

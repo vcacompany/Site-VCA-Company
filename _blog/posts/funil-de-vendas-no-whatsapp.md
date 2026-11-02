@@ -6,6 +6,10 @@ descricao: Monte um funil de vendas no WhatsApp com etapas claras, CRM, mensagen
 resumo: Etapas, mensagens de acompanhamento e números para transformar mais conversas em clientes.
 categoria: Vendas
 palavra_chave: funil de vendas no WhatsApp
+capa: /blog/img/funil-de-vendas-no-whatsapp/capa.webp
+capa_alt: Vendedor falando ao telefone com um cliente em frente ao notebook
+capa_credito: Foto: MART PRODUCTION / Pexels
+capa_link: https://www.pexels.com/photo/7644075/
 data: 2026-11-02
 ---
 Muitas empresas vendem quase tudo pelo WhatsApp, mas não sabem dizer quantas conversas viraram clientes no mês passado. Sem essa resposta, cada mês de vendas depende da memória e da boa vontade de quem atende.
@@ -34,6 +38,9 @@ O caminho é centralizar o número da empresa em um sistema com vários atendent
 ## Passo 2: ligue o WhatsApp a um CRM
 
 Cada nova conversa deve virar um cartão no CRM automaticamente, na etapa "Novo contato". A partir daí, a equipe move o cartão conforme a conversa avança. Em um quadro com colunas, dá para ver de relance quantos contatos estão em cada etapa e quais estão parados.
+
+![Funil de vendas em colunas no CRM, com os contatos de cada etapa](/blog/img/funil-de-vendas-no-whatsapp/funil-crm.webp "O funil no CRM: cada coluna é uma etapa, e o total de cada uma aparece no topo. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 [[cta]]
 
@@ -65,6 +72,9 @@ Com o funil organizado, quatro números contam a história das suas vendas:
 2. **Tempo da primeira resposta.** Quanto mais rápido, maior a chance de fechar.
 3. **Taxa de conversão de cada etapa.** Por exemplo, de cada 10 propostas enviadas, quantas fecharam.
 4. **Motivos de perda mais comuns.**
+
+![Relatório de faturamento e de leads por período no sistema](/blog/img/funil-de-vendas-no-whatsapp/relatorio.webp "Os números do funil no relatório: faturamento, leads e conversão por período. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 Olhando esses números todo mês, você sabe se o problema está em atrair contatos, em responder rápido ou em fechar a venda, e investe no ponto certo.
 

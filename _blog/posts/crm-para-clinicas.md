@@ -6,6 +6,10 @@ descricao: Como um CRM para clínicas organiza contatos do WhatsApp, agenda, ret
 resumo: Onde a clínica perde pacientes sem perceber e como um CRM ligado ao WhatsApp e à agenda resolve isso.
 categoria: Clínicas
 palavra_chave: CRM para clínicas
+capa: /blog/img/crm-para-clinicas/capa.webp
+capa_alt: Recepcionista de clínica atendendo uma paciente no balcão com um tablet
+capa_credito: Foto: Cedric Fauntleroy / Pexels
+capa_link: https://www.pexels.com/photo/4269203/
 data: 2026-11-02
 ---
 A maioria das clínicas não perde pacientes por falta de procura. Perde no meio do caminho: a mensagem que ficou sem resposta no sábado, o orçamento que ninguém retomou, o paciente que faltou e não foi remarcado, o retorno que ninguém lembrou de marcar.
@@ -28,6 +32,9 @@ CRM é a sigla em inglês para gestão do relacionamento com o cliente. Em uma c
 
 Na prática, ele funciona como um quadro com colunas, por exemplo: **Novo contato → Orçamento enviado → Agendado → Atendido → Retorno**. Cada paciente é um cartão que anda pelas colunas. Quando um cartão fica parado tempo demais, o sistema avisa.
 
+![Quadro do CRM de uma clínica com os pacientes divididos em etapas](/blog/img/crm-para-clinicas/crm-quadro.webp "O CRM em colunas: cada paciente é um cartão com o procedimento, o valor e a origem do contato. Tela real do sistema da VCA, com dados de exemplo.")
+
+
 [[cta]]
 
 ## O que um bom CRM para clínicas precisa ter
@@ -39,6 +46,9 @@ Se os pacientes falam com a clínica pelo WhatsApp, o CRM precisa estar ligado a
 ### Agenda no mesmo lugar
 
 Quando o CRM e a agenda conversam, o agendamento muda o paciente de etapa sozinho, e a recepção vê na hora quem já marcou e quem ainda está decidindo.
+
+![Agenda da semana de uma clínica com as consultas de cada profissional](/blog/img/crm-para-clinicas/agenda.webp "A agenda da clínica no mesmo sistema do CRM. Tela real do sistema da VCA, com dados de exemplo.")
+
 
 ### Lembretes automáticos
 
