@@ -224,7 +224,7 @@ function rodape() {
                     <p class="footer-slogan">Sistemas, automação e CRM com inteligência artificial que colocam o atendimento e as vendas da sua empresa no automático.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/vcacompany_/" aria-label="Instagram" target="_blank" rel="noopener">${ICONE.insta}</a>
-                        <a href="https://w.app/vca" aria-label="WhatsApp" target="_blank" rel="noopener">${ICONE.conversa}</a>
+                        <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." aria-label="WhatsApp" target="_blank" rel="noopener">${ICONE.conversa}</a>
                         <a href="mailto:vcacompanyofficial@gmail.com" aria-label="E-mail">${ICONE.email}</a>
                     </div>
                 </div>
@@ -243,9 +243,9 @@ function rodape() {
                 <div class="footer-col footer-contact">
                     <p class="footer-heading">Fale conosco</p>
                     <a href="mailto:vcacompanyofficial@gmail.com" class="footer-contact-line">${ICONE.email} vcacompanyofficial@gmail.com</a>
-                    <a href="https://w.app/vca" class="footer-contact-line">${ICONE.fone} (12) 98201-4685</a>
+                    <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="footer-contact-line">${ICONE.fone} (12) 98201-4685</a>
                     <span class="footer-contact-line">${ICONE.pino} Caraguatatuba e Litoral Norte de SP</span>
-                    <a href="https://w.app/vca" class="btn btn-primary footer-cta-btn">Fale com nossos especialistas</a>
+                    <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="btn btn-primary footer-cta-btn">Fale com nossos especialistas</a>
                 </div>
             </div>
             <div class="footer-base">
