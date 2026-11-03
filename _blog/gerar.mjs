@@ -622,8 +622,10 @@ ${topo("Revenda")}
         <section class="rv-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
             ${titSec("Como funciona", ["Do cadastro à ", "primeira comissão"], "como-funciona-tit")}
             <figure class="rv-video">
-                <video controls playsinline preload="none" poster="${R.video.capa}" width="1920" height="1080" aria-label="${esc(R.video.titulo)}"><source src="${R.video.src}" type="video/mp4"></video>
+                <video playsinline preload="none" poster="${R.video.capa}" width="1920" height="1080" aria-label="${esc(R.video.titulo)}"><source src="${R.video.src}" type="video/mp4"></video>
+                <button type="button" class="btn btn-primary rv-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Assistir ao vídeo</button>
             </figure>
+            <script>/* sem os controles do navegador (03/11, o João: "quero o vídeo sem esse negócio preto embaixo"): o botão toca, um clique no vídeo pausa */(function(){var f=document.querySelector('.rv-video');if(!f)return;var v=f.querySelector('video'),b=f.querySelector('.rv-play');b.addEventListener('click',function(){v.play();});v.addEventListener('click',function(){if(v.paused)v.play();else v.pause();});v.addEventListener('play',function(){f.classList.add('tocando');});v.addEventListener('pause',function(){f.classList.remove('tocando');});})();</script>
             <div class="steps-grid rv-passos-metodo">
                 ${R.passos.map(([t, p], i) => `<div class="step-card">
                     <span class="step-num">${String(i + 1).padStart(2, "0")}</span>
