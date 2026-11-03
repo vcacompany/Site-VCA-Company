@@ -6,7 +6,7 @@
 const WA = "https://wa.me/5512974030135?text=";
 export const REVENDA = {
   slug: "revendedores",
-  video: { src: "/videos/vca-partners.mp4", capa: "/videos/vca-partners-capa.webp", titulo: "Como funciona o VCA Partners", descricao: "Indique empresas para a VCA e receba 20% de comissão todos os meses enquanto seus clientes permanecerem ativos: conecte, indique e receba.", data: "2026-11-03", duracao: "PT46S" },
+  video: { src: "/videos/vca-partners.mp4", capa: "/videos/vca-partners-capa.webp", titulo: "Como funciona o VCA Partners", descricao: "Indique empresas para a VCA e receba 20% de comissão todos os meses enquanto seus clientes permanecerem ativos. Painel próprio, treinamento e sem metas por mês.", data: "2026-11-03", duracao: "PT54S" },
   titulo_seo: "Parceiros VCA: 20% de comissão recorrente",
   descricao: "Seja parceiro comercial da VCA: indique empresas e ganhe 20% da mensalidade de cada cliente ativo, todo mês. Cadastro grátis e painel próprio.",
   h1: ["Revenda sistemas com IA", "e ganhe 20% todo mês"],
