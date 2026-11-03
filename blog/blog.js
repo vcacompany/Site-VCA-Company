@@ -1,3 +1,25 @@
+/* programa de parceiros (03/11): quem chega por www.vcacompany.com/?parceiro=<código> fica ligado ao parceiro por 60 dias.
+   O código vai junto no agendamento do diagnóstico e na mensagem pronta do WhatsApp ("(indicação: <código>)"),
+   e o negócio nasce no CRM já ligado ao parceiro. */
+(function () {
+    var agora = Date.now(), cod = null;
+    try { var q = new URLSearchParams(location.search).get('parceiro'); if (q && /^[a-z0-9-]{3,40}$/i.test(q)) localStorage.setItem('vca_parceiro', JSON.stringify({ c: q.toLowerCase(), ate: agora + 60 * 864e5 })); } catch (e) {}
+    try { var g = JSON.parse(localStorage.getItem('vca_parceiro') || 'null'); if (g && g.ate > agora) cod = g.c; } catch (e) {}
+    window.vcaParceiro = cod;
+    if (!cod) return;
+    var marcar = function () {
+        document.querySelectorAll('a[href*="wa.me/5512974030135"]').forEach(function (a) {
+            if (a.dataset.parceiro) return;
+            a.dataset.parceiro = '1';
+            try {
+                var u = new URL(a.href), t = u.searchParams.get('text') || '';
+                a.href = u.origin + u.pathname + '?text=' + encodeURIComponent((t ? t + ' ' : '') + '(indicação: ' + cod + ')');
+            } catch (e) {}
+        });
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcar); else marcar();
+})();
+
 /* Páginas do blog: tema claro/escuro, barra do topo ao rolar, menu do celular e filtro por assunto.
    É o mesmo comportamento do script.js da página inicial, sem as animações que só existem lá. */
 (function () {
