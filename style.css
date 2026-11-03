@@ -4083,3 +4083,31 @@ html[data-theme="light"] .logo-img-dark { display: none; }
 }
 /* revenda: "Do cadastro à primeira comissão" com os cartões do Método da página inicial */
 .rv-passos-metodo { margin-top: 2.75rem; text-align: left; }
+
+/* 02/11, "ainda está bugado, arrume de uma vez por todas": em telas de 1100 a 1400 px a coluna do logo encolhia e a
+   imagem era espremida (34 px de altura com 94 px de largura em vez de 99). O logo não encolhe mais e mantém a proporção. */
+.navbar .logo { flex: 0 0 auto; min-width: max-content; }
+.navbar .logo img { flex-shrink: 0; max-width: none; object-fit: contain; }
+
+/* revenda: quadros maiores e mais espaço entre as partes */
+.rv-main { max-width: 1280px; }
+.rv-destaque { margin-top: 6rem; }
+.rv-sec { margin-top: 7.5rem; }
+.rv-final { margin-top: 7.5rem; }
+.rv-faq { margin-top: 3.5rem; gap: 1rem; }
+.rv-passos-metodo { margin-top: 3.5rem; gap: 1.75rem; }
+.rv-passos-metodo .step-card { padding: 2.75rem 2rem 3rem; min-height: 300px; border-radius: 18px; }
+.rv-passos-metodo .step-card .step-num { font-size: 3rem; margin-bottom: 1.6rem; }
+.rv-passos-metodo .step-title { font-size: 1.25rem; margin-bottom: 1rem; }
+.rv-passos-metodo .step-desc { font-size: 1rem; line-height: 1.7; }
+@media (min-width: 768px) and (max-width: 1100px) { .rv-passos-metodo { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) {
+  .rv-destaque { margin-top: 4rem; }
+  .rv-sec, .rv-final { margin-top: 5rem; }
+  .rv-passos-metodo .step-card { min-height: 0; padding: 2.25rem 1.75rem; }
+}
+/* barra encolhida em telas largas (1920): o espaço entre os itens crescia e empurrava os botões 3 px para fora da borda */
+@media (min-width: 1024px) { .navbar.navbar-scrolled .nav-links { gap: clamp(1rem, 1.6vw, 2rem); } }
+/* a barra encolhida deixava ver o texto que passava por trás (a linha dourada do parágrafo aparecia dentro dela) */
+.navbar.navbar-scrolled .container { background: rgba(14, 18, 26, 0.97); }
+html[data-theme="light"] .navbar.navbar-scrolled .container { background: rgba(255, 255, 255, 0.98); }
