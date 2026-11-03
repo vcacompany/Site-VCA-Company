@@ -151,7 +151,7 @@ export const PRIVACIDADE = {
       "Retirada do consentimento e oposição ao tratamento por legítimo interesse.",
     ]],
     ["11. Como pedir", [
-      "Mande um e-mail para " + CONTATO + " ou uma mensagem no WhatsApp (12) 98201-4685 dizendo o que deseja. Respondemos em até 15 dias. Se preferir, você também pode procurar a Autoridade Nacional de Proteção de Dados (ANPD).",
+      "Mande um e-mail para " + CONTATO + " ou uma mensagem no WhatsApp (12) 97403-0135 dizendo o que deseja. Respondemos em até 15 dias. Se preferir, você também pode procurar a Autoridade Nacional de Proteção de Dados (ANPD).",
     ], []],
     ["12. Cookies e armazenamento no navegador", [], [
       "O site não usa cookies de publicidade de terceiros.",

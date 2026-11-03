@@ -232,7 +232,7 @@ function rodape() {
                     <p class="footer-slogan">Sistemas, automação e CRM com inteligência artificial que colocam o atendimento e as vendas da sua empresa no automático.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/vcacompany_/" aria-label="Instagram" target="_blank" rel="noopener">${ICONE.insta}</a>
-                        <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." aria-label="WhatsApp" target="_blank" rel="noopener">${ICONE.conversa}</a>
+                        <a href="https://wa.me/5512974030135?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." aria-label="WhatsApp" target="_blank" rel="noopener">${ICONE.conversa}</a>
                         <a href="mailto:vcacompanyofficial@gmail.com" aria-label="E-mail">${ICONE.email}</a>
                     </div>
                 </div>
@@ -252,9 +252,9 @@ function rodape() {
                 <div class="footer-col footer-contact">
                     <p class="footer-heading">Fale conosco</p>
                     <a href="mailto:vcacompanyofficial@gmail.com" class="footer-contact-line">${ICONE.email} vcacompanyofficial@gmail.com</a>
-                    <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="footer-contact-line">${ICONE.fone} (12) 98201-4685</a>
+                    <a href="https://wa.me/5512974030135?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="footer-contact-line">${ICONE.fone} (12) 97403-0135</a>
                     <span class="footer-contact-line">${ICONE.pino} Caraguatatuba e Litoral Norte de SP</span>
-                    <a href="https://wa.me/5512982014685?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="btn btn-primary footer-cta-btn">Fale com nossos especialistas</a>
+                    <a href="https://wa.me/5512974030135?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20VCA%20e%20quero%20saber%20mais%20sobre%20o%20sistema." class="btn btn-primary footer-cta-btn">Fale com nossos especialistas</a>
                 </div>
             </div>
             <div class="footer-base">
@@ -599,28 +599,14 @@ function paginaRevenda() {
     migalha("Seja revendedor", url),
     jsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: R.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }),
   ].map((x) => "    " + x).join("\n");
-  // ícones no traço do lucide (o site não carrega o lucide nas páginas geradas)
-  const svg = (d, t = 20) => `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
-  const IC = {
-    maleta: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
-    usuario: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-    predio: '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>',
-    coroa: '<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>',
-    conversa: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
-    capelo: '<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
-    pessoas: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-    dinheiro: '<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
-  };
   const titSec = (olho, [a, b, c = ""], id) => `<span class="rv-olho">${esc(olho)}</span>
             <h2 id="${id}" class="rv-h2">${esc(a)}<span class="rv-ouro">${esc(b)}</span>${esc(c)}</h2>`;
-  const G = R.ganhos;
   return cabecaComum({ titulo: `${R.titulo_seo} | VCA Company`, descricao: R.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
 <body class="blog-page revenda-page">
 ${topo("Revenda")}
     <main class="rv-main">
         <section class="rv-hero">
             <nav class="rv-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><span>Seja revendedor</span></nav>
-            <span class="rv-selo">${svg(IC.maleta, 15)}${esc(R.selo)}</span>
             <h1 class="rv-h1">${esc(R.h1[0])}<span class="rv-ouro">${esc(R.h1[1])}</span></h1>
             <p class="rv-sub">${esc(R.sub)}</p>
             <div class="rv-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}<a class="btn btn-outline" href="#como-funciona">Ver como funciona</a></div>
@@ -631,29 +617,15 @@ ${topo("Revenda")}
 
         <p class="rv-destaque">${esc(R.destaque)}</p>
 
-        <section class="rv-sec" aria-labelledby="ganhos">
-            ${titSec("Ganhos", G.tit, "ganhos")}
-            <p class="rv-sec-sub">${esc(G.sub)}</p>
-            <div class="rv-ganhos">
-                ${G.cartoes.map(([ic, n], i) => `<div class="rv-ganho${i === G.cartoes.length - 1 ? " forte" : ""}">
-                    <span class="rv-ic">${svg(IC[ic])}</span>
-                    <span class="rv-ganho-cli">${n} clientes</span>
-                    <span class="rv-ganho-v"><strong>${n}</strong> comissões/mês</span>
-                    <span class="rv-ganho-rec">recorrente</span>
-                </div>`).join("\n                ")}
-            </div>
-            <p class="rv-nota">${esc(G.nota)}</p>
-        </section>
-
         <section class="rv-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
             ${titSec("Como funciona", ["Do cadastro à ", "primeira comissão"], "como-funciona-tit")}
-            <ol class="rv-passos">
-                ${R.passos.map(([ic, t, p], i) => `<li>
-                    <div class="rv-passo-topo"><span class="rv-num">${String(i + 1).padStart(2, "0")}</span><span class="rv-ic">${svg(IC[ic])}</span></div>
-                    <h3>${esc(t)}</h3>
-                    <p>${esc(p)}</p>
-                </li>`).join("\n                ")}
-            </ol>
+            <div class="steps-grid rv-passos-metodo">
+                ${R.passos.map(([t, p], i) => `<div class="step-card">
+                    <span class="step-num">${String(i + 1).padStart(2, "0")}</span>
+                    <h3 class="step-title">${esc(t)}</h3>
+                    <p class="step-desc">${esc(p)}</p>
+                </div>`).join("\n                ")}
+            </div>
         </section>
 
         <section class="rv-sec" aria-labelledby="duvidas">
@@ -703,8 +675,8 @@ ${lis.map((l) => `                <li>${legalTexto(l)}</li>`).join("\n")}
             <aside class="post-cta post-cta-final">
                 <span class="post-cta-tag">Dúvidas</span>
                 <p class="post-cta-tit">Ficou alguma dúvida?</p>
-                <p>Fale com a gente pelo WhatsApp (12) 98201-4685 ou pelo e-mail ${EMAIL_CONTATO}. Veja também a página de <a href="${outro[0]}">${outro[1]}</a>.</p>
-                <div class="post-cta-botoes"><a class="btn btn-primary" href="https://wa.me/5512982014685?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre " + (d.slug === "termos" ? "os termos de uso" : "a política de privacidade") + " da VCA Company.")}" target="_blank" rel="noopener">Falar no WhatsApp</a><a class="post-cta-link" href="mailto:${EMAIL_CONTATO}">Mandar um e-mail →</a></div>
+                <p>Fale com a gente pelo WhatsApp (12) 97403-0135 ou pelo e-mail ${EMAIL_CONTATO}. Veja também a página de <a href="${outro[0]}">${outro[1]}</a>.</p>
+                <div class="post-cta-botoes"><a class="btn btn-primary" href="https://wa.me/5512974030135?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre " + (d.slug === "termos" ? "os termos de uso" : "a política de privacidade") + " da VCA Company.")}" target="_blank" rel="noopener">Falar no WhatsApp</a><a class="post-cta-link" href="mailto:${EMAIL_CONTATO}">Mandar um e-mail →</a></div>
             </aside>
         </article>
     </main>
@@ -774,7 +746,7 @@ ${NICHOS.map((n) => `- [${n.h1}](${SITE}/${n.slug}): ${n.descricao}`).join("\n")
 
 ## Como contratar
 - [Diagnóstico gratuito de 30 minutos](${SITE}/#agendar): conversa por vídeo, sem compromisso
-- WhatsApp: +55 12 98201-4685
+- WhatsApp: +55 12 97403-0135
 - E-mail: vcacompanyofficial@gmail.com
 
 ## Blog

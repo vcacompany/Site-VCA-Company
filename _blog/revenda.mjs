@@ -1,30 +1,23 @@
 /* Página de revenda (www.vcacompany.com/revendedores), 02/11/2026. O João: "quero que seja tipo assim [a página de
    revenda da Food Sistemas], o meu ficou com muita informação, poluído". Versão enxuta: topo centralizado com 4 números,
-   um parágrafo em destaque, ganhos, como funciona, perguntas e a chamada final. Texto próprio da VCA, no dourado do logo.
-   O percentual da comissão fica no contrato de revenda: nenhum número inventado aqui (os ganhos contam comissões). */
-const WA = "https://wa.me/5512982014685?text=";
+   um parágrafo em destaque, como funciona (cartões do Método da página inicial), perguntas e a chamada final. Texto próprio da VCA, no dourado do logo.
+   O percentual da comissão fica no contrato de revenda: nenhum número inventado aqui. */
+const WA = "https://wa.me/5512974030135?text=";
 export const REVENDA = {
   slug: "revendedores",
   titulo_seo: "Seja revendedor de sistemas e automação com IA",
   descricao: "Revenda os sistemas, o CRM com IA e as automações de WhatsApp da VCA Company e receba comissão todo mês enquanto o cliente estiver ativo. Cadastro grátis.",
-  selo: "Programa de parceiros",
   h1: ["Revenda sistemas com IA", "e ganhe todo mês"],
   sub: "Comissão recorrente, cadastro gratuito e suporte da VCA. CRM, WhatsApp com IA, agenda, financeiro e sistemas prontos para 6 nichos.",
   wa_quero: WA + encodeURIComponent("Olá! Vim pelo site e quero ser revendedor da VCA Company."),
   wa_duvida: WA + encodeURIComponent("Olá! Vim pelo site e tenho uma dúvida sobre a revenda da VCA Company."),
   numeros: [["Recorrente", "Comissão"], ["6 nichos", "Sistemas prontos"], ["Grátis", "Cadastro"], ["100% online", "Brasil todo"]],
   destaque: "O programa de revenda da VCA paga uma comissão sobre a mensalidade de cada cliente ativo, todo mês, enquanto ele continuar com a gente. O cadastro é gratuito, não tem taxa de entrada nem meta mínima, e você não precisa programar: diagnóstico, implantação, treinamento e suporte ficam com a VCA. Você apresenta e indica. Como o atendimento é 100% online, dá para revender de qualquer cidade do Brasil.",
-  ganhos: {
-    tit: ["Quanto rende ", "cada cliente ativo", "?"],
-    sub: "Uma comissão por cliente, todo mês, enquanto ele estiver ativo.",
-    cartoes: [["usuario", 5], ["predio", 15], ["coroa", 30]],
-    nota: "O percentual de cada comissão fica no contrato de revenda. Projeção, não é promessa de resultado.",
-  },
   passos: [
-    ["conversa", "Fale com a gente", "Uma conversa rápida pelo WhatsApp para entender o seu perfil."],
-    ["capelo", "Receba o treinamento", "Você aprende a apresentar os sistemas. Sem custo."],
-    ["pessoas", "Indique o cliente", "Você apresenta e a VCA faz o diagnóstico e a demonstração junto, se quiser."],
-    ["dinheiro", "Receba todo mês", "Cliente ativo, comissão na conta. Enquanto durar."],
+    ["Fale com a gente", "Uma conversa rápida pelo WhatsApp para entender o seu perfil."],
+    ["Receba o treinamento", "Você aprende a apresentar os sistemas. Sem custo."],
+    ["Indique o cliente", "Você apresenta e a VCA faz o diagnóstico e a demonstração junto, se quiser."],
+    ["Receba todo mês", "Cliente ativo, comissão na conta. Enquanto durar."],
   ],
   faq: [
     ["Quanto eu ganho por cliente?", "Você recebe um percentual da mensalidade de cada cliente que trouxe, todo mês, enquanto ele estiver ativo. O percentual fica no contrato de revenda e explicamos tudo na primeira conversa."],
