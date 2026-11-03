@@ -27,7 +27,7 @@
 
     var meta = document.querySelector('meta[name="theme-color"]');
     var corDoTema = function () {
-        if (meta) meta.setAttribute('content', raiz.getAttribute('data-theme') === 'light' ? '#F6F7F9' : '#0A0D13');
+        if (meta) meta.setAttribute('content', raiz.getAttribute('data-theme') === 'light' ? '#F6F7F9' : '#0A0A0B');
     };
     corDoTema();
     document.querySelectorAll('.theme-toggle').forEach(function (btn) {

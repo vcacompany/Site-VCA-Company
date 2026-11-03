@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyThemeMeta = () => {
         if (themeMeta) {
             themeMeta.setAttribute('content',
-                document.documentElement.getAttribute('data-theme') === 'light' ? '#F6F7F9' : '#0A0D13');
+                document.documentElement.getAttribute('data-theme') === 'light' ? '#F6F7F9' : '#0A0A0B');
         }
     };
     applyThemeMeta();
