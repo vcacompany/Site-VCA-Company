@@ -187,8 +187,9 @@ ${extra}
 }
 
 function topo(ativo, nicho) {
-  const links = [["/solucoes", "Soluções"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
-  const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
+  // "Revenda" em destaque (02/11, o João: "coloque no topo com destaque"): pílula dourada no menu
+  const links = [["/solucoes", "Soluções"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/revendedores", "Revenda"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
+  const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${h === "/revendedores" ? " nav-destaque" : ""}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
   return `
     <nav class="navbar">
         <div class="container">
@@ -602,7 +603,7 @@ function paginaRevenda() {
   };
   return cabecaComum({ titulo: `${R.titulo_seo} | VCA Company`, descricao: R.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
 <body class="blog-page nicho-page revenda-page">
-${topo("")}
+${topo("Revenda")}
     <main class="nicho-main">
         <section class="nicho-hero">
             <div class="nicho-hero-txt">
