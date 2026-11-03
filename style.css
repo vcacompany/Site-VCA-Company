@@ -4156,7 +4156,7 @@ html[data-theme="light"] .navbar.navbar-scrolled .container { background: rgba(2
 .rv-video video { display: block; width: 100%; height: 100%; object-fit: cover; background: #FFFFFF; cursor: pointer; }
 .rv-video .rv-play { position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); padding: var(--esp-4) var(--esp-6) var(--esp-4) var(--esp-5); gap: var(--esp-3); border-radius: 999px; box-shadow: 0 16px 34px -18px rgba(202, 158, 53, 0.9); white-space: nowrap; transition: opacity .25s ease, background .25s ease; }
 .rv-video .rv-play svg { width: 16px; height: 16px; fill: currentColor; }
-.rv-video.tocando .rv-play { opacity: 0; pointer-events: none; }
+.rv-video.comecou .rv-play { opacity: 0; pointer-events: none; }
 .rv-video ~ .rv-passos-metodo { margin-top: var(--esp-9); }
 
 @media (max-width: 720px) {
@@ -4170,4 +4170,43 @@ html[data-theme="light"] .navbar.navbar-scrolled .container { background: rgba(2
   .rv-video .rv-play { bottom: 8%; padding: var(--esp-2) var(--esp-4) var(--esp-2) var(--esp-3); gap: var(--esp-2); font-size: 10px; letter-spacing: 0.12em; }
   .rv-video .rv-play svg { width: 12px; height: 12px; }
   .rv-video ~ .rv-passos-metodo { margin-top: var(--esp-8); }
+}
+
+/* controles próprios do vídeo (03/11, o João: "quero poder colocar em tela cheia, abaixar o som como estava antes"):
+   barra clara como o vídeo, no lugar da barra preta do navegador; aparece depois que o vídeo começa, fica enquanto está
+   pausado e, tocando, some 2,5 s depois do último movimento do mouse. Espaços da régua (--esp-*). */
+.rv-ctl { position: absolute; left: var(--esp-4); right: var(--esp-4); bottom: var(--esp-4); display: flex; align-items: center; gap: var(--esp-3); height: 48px; padding: 0 var(--esp-4) 0 var(--esp-2); border-radius: 999px; background: rgba(255, 255, 255, 0.92); border: 1px solid rgba(21, 22, 26, 0.08); box-shadow: 0 12px 30px -16px rgba(21, 22, 26, 0.35); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #15161A; opacity: 0; transform: translateY(var(--esp-2)); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+.rv-video.comecou:not(.tocando) .rv-ctl, .rv-video.comecou.mexendo .rv-ctl, .rv-video.comecou .rv-ctl:focus-within { opacity: 1; transform: none; pointer-events: auto; }
+.rv-ctl-bt { flex: 0 0 auto; display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; transition: background .2s ease; }
+.rv-ctl-bt:hover, .rv-ctl-bt:focus-visible { background: rgba(202, 158, 53, 0.16); outline: none; }
+.rv-ctl-bt svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rv-ctl-bt svg.f { fill: currentColor; stroke: none; width: 18px; height: 18px; }
+.rv-ctl .i-pausa, .rv-ctl .i-mudo, .rv-ctl .i-sair { display: none; }
+.rv-video.tocando .rv-ctl .i-tocar { display: none; }
+.rv-video.tocando .rv-ctl .i-pausa { display: block; }
+.rv-ctl-bt.mudo .i-som { display: none; }
+.rv-ctl-bt.mudo .i-mudo { display: block; }
+.rv-ctl input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; margin: 0; border-radius: 999px; background: linear-gradient(90deg, #CA9E35 var(--p, 0%), #E6E1D6 var(--p, 0%)); cursor: pointer; }
+.rv-ctl input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CA9E35; box-shadow: 0 1px 4px rgba(21, 22, 26, 0.25); }
+.rv-ctl input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 2px solid #CA9E35; box-shadow: 0 1px 4px rgba(21, 22, 26, 0.25); }
+.rv-ctl input[type="range"]:focus-visible { outline: 2px solid rgba(202, 158, 53, 0.5); outline-offset: 4px; }
+.rv-ctl-pos { flex: 1 1 auto; min-width: 48px; }
+.rv-ctl-vol { flex: 0 0 72px; width: 72px; }
+.rv-ctl-tempo { flex: 0 0 auto; min-width: 76px; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: #5E626C; text-align: center; }
+/* tela cheia: o quadro inteiro (vídeo + barra) ocupa a tela, fundo branco como o vídeo */
+.rv-video:fullscreen { max-width: none; width: 100%; height: 100%; margin: 0; border: 0; border-radius: 0; aspect-ratio: auto; background: #FFFFFF; }
+.rv-video:-webkit-full-screen { max-width: none; width: 100%; height: 100%; margin: 0; border: 0; border-radius: 0; aspect-ratio: auto; background: #FFFFFF; }
+.rv-video:fullscreen video { object-fit: contain; }
+.rv-video:-webkit-full-screen video { object-fit: contain; }
+.rv-video:fullscreen .rv-ctl { left: max(var(--esp-4), calc(50% - 480px)); right: max(var(--esp-4), calc(50% - 480px)); bottom: var(--esp-6); }
+.rv-video:-webkit-full-screen .rv-ctl { left: max(var(--esp-4), calc(50% - 480px)); right: max(var(--esp-4), calc(50% - 480px)); bottom: var(--esp-6); }
+.rv-video:fullscreen .rv-ctl .i-cheia { display: none; }
+.rv-video:fullscreen .rv-ctl .i-sair { display: block; }
+.rv-video:-webkit-full-screen .rv-ctl .i-cheia { display: none; }
+.rv-video:-webkit-full-screen .rv-ctl .i-sair { display: block; }
+@media (max-width: 720px) {
+  .rv-ctl { left: var(--esp-2); right: var(--esp-2); bottom: var(--esp-2); height: 40px; gap: var(--esp-2); padding: 0 var(--esp-3) 0 var(--esp-1); }
+  .rv-ctl-bt { width: 32px; height: 32px; }
+  .rv-ctl-vol { display: none; }
+  .rv-ctl-tempo { min-width: 0; font-size: 11px; }
 }
