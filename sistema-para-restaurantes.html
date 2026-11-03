@@ -35,6 +35,7 @@
 </head>
 <body class="blog-page nicho-page">
 
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
     <nav class="navbar">
         <div class="container">
             <a href="/" class="logo"><img src="/imagens/logo-vca.webp" alt="VCA Company" width="123" height="42" style="height: 42px; width: auto;"></a>
@@ -43,12 +44,12 @@
                 <a href="/#metodo" class="nav-link">Método</a>
                 <a href="/#depoimentos" class="nav-link">Depoimentos</a>
                 <a href="/blog" class="nav-link">Blog</a>
-                <a href="/revendedores" class="nav-link nav-destaque">Revenda</a>
                 <a href="/#agendar" class="nav-link">Agendar</a>
                 <a href="/#faq" class="nav-link">Dúvidas</a>
             </div>
             <div class="nav-actions">
                 <a href="/?nicho=restaurante#agendar" class="btn btn-primary" style="padding: 0.75rem 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
+                <a href="/revendedores" class="btn btn-outline nav-revenda" style="padding: 0.75rem 1.5rem;">Seja revendedor</a>
                 <button class="theme-toggle" type="button" aria-label="Alternar modo claro/escuro"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
             </div>
             <button class="theme-toggle theme-toggle-mobile" type="button" aria-label="Alternar modo claro/escuro"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button>
@@ -65,10 +66,10 @@
                 <a href="/#metodo" class="mobile-nav-link">Método</a>
                 <a href="/#depoimentos" class="mobile-nav-link">Depoimentos</a>
                 <a href="/blog" class="mobile-nav-link">Blog</a>
-                <a href="/revendedores" class="mobile-nav-link nav-destaque">Revenda</a>
                 <a href="/#agendar" class="mobile-nav-link">Agendar</a>
                 <a href="/#faq" class="mobile-nav-link">Dúvidas</a>
             <a href="/?nicho=restaurante#agendar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
+            <a href="/revendedores" class="btn btn-outline nav-revenda" style="width: 100%; margin-top: 0.75rem; justify-content: center;">Seja revendedor</a>
         </div>
     </div>
     <main class="nicho-main">

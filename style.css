@@ -3987,9 +3987,90 @@ html[data-theme="light"] .logo-img-dark { display: none; }
 .revenda-perfis { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 .revenda-tela img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
 
-/* "Revenda" em destaque no menu (02/11, o João: "coloque no topo com destaque"): pílula dourada clara, sem o sublinhado */
-.nav-link.nav-destaque { display: inline-flex; align-items: center; padding: 0.55rem 1rem; margin: -0.55rem 0; border-radius: 999px; color: var(--color-brand-gold); background: rgba(202, 158, 53, 0.12); box-shadow: inset 0 0 0 1px rgba(202, 158, 53, 0.4); }
-.nav-link.nav-destaque::after { display: none; }
-.nav-link.nav-destaque:hover, .nav-link.nav-destaque.is-active { color: #0F1115; background: var(--color-brand-gold); box-shadow: none; }
-.mobile-nav-link.nav-destaque { color: var(--color-brand-gold); }
-.mobile-nav-link.nav-destaque::after { content: "novo"; display: inline-block; margin-left: 0.75rem; padding: 0.25rem 0.65rem; border-radius: 999px; background: rgba(202, 158, 53, 0.14); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle; }
+
+/* ===================== REVENDA, VERSÃO ENXUTA (02/11/2026) =====================
+   O João: "quero que seja tipo assim [Food Sistemas], o meu ficou com muita informação, poluído". Topo centralizado
+   com 4 números, parágrafo em destaque, ganhos, como funciona, perguntas em cartões e a chamada final. Dourado do logo. */
+.rv-main { width: 100%; max-width: 1120px; margin: 0 auto; padding: 8.5rem 1.5rem 6rem; overflow-x: clip; }
+.rv-main section { padding: 0; }
+.rv-ouro { background: linear-gradient(90deg, #CA9E35, #D8B86B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rv-hero { position: relative; text-align: center; max-width: 52rem; margin: 0 auto; }
+.rv-hero::before { content: ""; position: absolute; inset: -6rem -4rem auto; height: 26rem; background: radial-gradient(ellipse at 50% 40%, rgba(202, 158, 53, 0.14), transparent 65%); z-index: -1; pointer-events: none; }
+.rv-trilha { display: flex; justify-content: center; gap: 0.45rem; font-size: 0.85rem; color: var(--color-text-sec); }
+.rv-trilha a { color: inherit; text-decoration: none; }
+.rv-trilha a:hover { color: var(--color-brand-gold); }
+.rv-trilha span:last-child { color: var(--color-text-main); }
+.rv-selo { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; padding: 0.6rem 1.15rem; border-radius: 999px; background: var(--color-card); border: 1px solid var(--color-white-05); font-size: 0.88rem; font-weight: 600; color: var(--color-text-main); }
+.rv-selo svg { color: var(--color-brand-gold); }
+.rv-h1 { margin-top: 1.6rem; font-family: var(--font-display); font-size: clamp(2.3rem, 5.4vw, 3.9rem); font-weight: 600; line-height: 1.06; letter-spacing: -0.035em; }
+.rv-h1 .rv-ouro { display: block; }
+.rv-sub { max-width: 40rem; margin: 1.4rem auto 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); line-height: 1.65; color: var(--color-text-sec); }
+.rv-botoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem; margin-top: 2.1rem; }
+.rv-botoes .btn { padding: 1.1rem 2rem; }
+.rv-numeros { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 150px)); justify-content: center; gap: 0.85rem; margin: 2.75rem auto 0; padding: 0; }
+.rv-numeros li { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 1.1rem 0.75rem; border-radius: 14px; background: var(--color-card); border: 1px solid var(--color-white-05); }
+.rv-numeros strong { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--color-brand-gold); white-space: nowrap; }
+.rv-numeros span { font-size: 0.78rem; font-weight: 600; color: var(--color-text-sec); }
+
+.rv-destaque { max-width: 56rem; margin: 5rem auto 0; padding: 1.4rem 1.6rem; border-radius: 0 14px 14px 0; border-left: 3px solid var(--color-brand-gold); background: rgba(202, 158, 53, 0.07); font-size: 1rem; line-height: 1.75; color: var(--color-text-main); }
+
+.rv-sec { margin-top: 6rem; text-align: center; scroll-margin-top: 7rem; }
+.rv-olho { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand-gold); }
+.rv-olho::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
+.rv-h2 { margin-top: 0.75rem; font-family: var(--font-display); font-size: clamp(1.75rem, 3.6vw, 2.5rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; }
+.rv-sec-sub { max-width: 34rem; margin: 0.9rem auto 0; font-size: 1.02rem; line-height: 1.6; color: var(--color-text-sec); }
+.rv-nota { max-width: 34rem; margin: 1.5rem auto 0; font-size: 0.92rem; line-height: 1.6; color: var(--color-text-sec); }
+
+.rv-ic { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(202, 158, 53, 0.12); color: var(--color-brand-gold); flex-shrink: 0; }
+.rv-ganhos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 2.75rem; text-align: center; }
+.rv-ganho { display: flex; flex-direction: column; align-items: center; padding: 1.6rem 1.25rem 1.5rem; border-radius: 18px; background: var(--color-card); border: 1px solid var(--color-white-05); box-shadow: 0 18px 40px -30px rgba(15, 17, 21, 0.35); }
+.rv-ganho .rv-ic { align-self: flex-start; }
+.rv-ganho.forte { border: 1.5px solid rgba(202, 158, 53, 0.65); background: linear-gradient(180deg, rgba(202, 158, 53, 0.1), rgba(202, 158, 53, 0.04)); }
+.rv-ganho-cli { margin-top: 1rem; font-size: 0.9rem; font-weight: 600; color: var(--color-text-sec); }
+.rv-ganho-v { margin-top: 1rem; font-size: 1rem; font-weight: 600; color: var(--color-text-main); }
+.rv-ganho-v strong { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; letter-spacing: -0.03em; color: var(--color-brand-gold); margin-right: 0.3rem; }
+.rv-ganho-rec { margin-top: 0.5rem; font-size: 0.8rem; color: var(--color-text-sec); }
+
+.rv-passos { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; margin: 2.75rem 0 0; padding: 0; text-align: left; }
+.rv-passos li { padding: 1.4rem 1.35rem 1.5rem; border-radius: 16px; background: var(--color-card); border: 1px solid var(--color-white-05); box-shadow: 0 18px 40px -30px rgba(15, 17, 21, 0.35); }
+.rv-passo-topo { display: flex; align-items: center; gap: 0.75rem; }
+.rv-num { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 999px; background: var(--color-brand-gold); color: #0F1115; font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; }
+.rv-passos h3 { margin-top: 1.15rem; font-size: 1.05rem; font-weight: 600; }
+.rv-passos p { margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6; color: var(--color-text-sec); }
+
+.rv-faq { display: flex; flex-direction: column; gap: 0.75rem; max-width: 44rem; margin: 2.75rem auto 0; text-align: left; }
+.rv-faq details { border-radius: 16px; background: var(--color-card); border: 1px solid var(--color-white-05); box-shadow: 0 14px 34px -30px rgba(15, 17, 21, 0.35); }
+.rv-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; list-style: none; }
+.rv-faq summary::-webkit-details-marker { display: none; }
+.rv-faq summary h3 { font-size: 1.02rem; font-weight: 600; }
+.rv-mais { position: relative; width: 14px; height: 14px; flex-shrink: 0; }
+.rv-mais::before, .rv-mais::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: var(--color-brand-gold); transition: transform .25s ease; }
+.rv-mais::after { transform: rotate(90deg); }
+.rv-faq details[open] .rv-mais::after { transform: rotate(0deg); }
+.rv-faq details p { padding: 0 1.5rem 1.35rem; font-size: 0.98rem; line-height: 1.65; color: var(--color-text-sec); }
+
+.rv-final { margin-top: 6rem; padding: 3.25rem 1.5rem; border-radius: 22px; text-align: center; background: linear-gradient(135deg, rgba(202, 158, 53, 0.13), rgba(232, 211, 163, 0.06)); border: 1px solid rgba(202, 158, 53, 0.28); }
+.rv-final .rv-h2 { margin-top: 0; }
+
+@media (max-width: 960px) {
+  .rv-passos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .rv-main { padding: 7rem 1rem 5rem; }
+  .rv-numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rv-ganhos, .rv-passos { grid-template-columns: 1fr; }
+  .rv-botoes .btn { width: 100%; justify-content: center; }
+  .rv-destaque { margin-top: 3.5rem; }
+  .rv-sec, .rv-final { margin-top: 4.5rem; }
+}
+
+/* "Seja revendedor" no topo, depois do Diagnóstico Gratuito (02/11): contorno dourado; cheio de leve na própria página */
+.btn.nav-revenda { color: var(--color-brand-gold); border-color: rgba(202, 158, 53, 0.55); }
+.btn.nav-revenda:hover, .btn.nav-revenda.is-active { background: rgba(202, 158, 53, 0.12); color: var(--color-brand-gold); }
+.rv-main .rv-final { padding: 3.25rem 1.5rem; }
+/* de 1024 a 1199 px os dois botões do topo não cabiam: botões e menu mais compactos só nessa faixa */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .navbar .nav-actions { gap: 0.6rem; }
+  .navbar .nav-actions .btn { padding: 0.7rem 0.95rem !important; letter-spacing: 0.1em; }
+  .nav-links { margin: 0 0.6rem; gap: 0.85rem; letter-spacing: 1.2px; }
+}

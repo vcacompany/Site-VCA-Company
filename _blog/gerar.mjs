@@ -187,10 +187,13 @@ ${extra}
 }
 
 function topo(ativo, nicho) {
-  // "Revenda" em destaque (02/11, o João: "coloque no topo com destaque"): pílula dourada no menu
-  const links = [["/solucoes", "Soluções"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/revendedores", "Revenda"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
-  const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${h === "/revendedores" ? " nav-destaque" : ""}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
+  const links = [["/solucoes", "Soluções"], ["/#metodo", "Método"], ["/#depoimentos", "Depoimentos"], ["/blog", "Blog"], ["/#agendar", "Agendar"], ["/#faq", "Dúvidas"]];
+  const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
+  // "Seja revendedor" logo depois do Diagnóstico Gratuito (02/11, o João: "quero um seja revendedor depois de diagnóstico gratuito")
+  const rev = (estilo) => `<a href="/revendedores" class="btn btn-outline nav-revenda${ativo === "Revenda" ? " is-active" : ""}"${ativo === "Revenda" ? ' aria-current="page"' : ""} style="${estilo}">Seja revendedor</a>`;
+  // os pontinhos dourados ligados por linhas do fundo da página inicial, em todas as páginas (só no computador; blog.js desenha)
   return `
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
     <nav class="navbar">
         <div class="container">
             <a href="/" class="logo"><img src="/imagens/logo-vca.webp" alt="VCA Company" width="123" height="42" style="height: 42px; width: auto;"></a>
@@ -199,6 +202,7 @@ function topo(ativo, nicho) {
             </div>
             <div class="nav-actions">
                 <a href="${linkDiag(nicho)}" class="btn btn-primary" style="padding: 0.75rem 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
+                ${rev("padding: 0.75rem 1.5rem;")}
                 <button class="theme-toggle" type="button" aria-label="Alternar modo claro/escuro">${ICONE.sol}${ICONE.lua}</button>
             </div>
             <button class="theme-toggle theme-toggle-mobile" type="button" aria-label="Alternar modo claro/escuro">${ICONE.sol}${ICONE.lua}</button>
@@ -213,6 +217,7 @@ function topo(ativo, nicho) {
         <div class="mobile-menu-links">
             ${lk("mobile-nav-link")}
             <a href="${linkDiag(nicho)}" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-cta="diagnostico">Diagnóstico Gratuito</a>
+            ${rev("width: 100%; margin-top: 0.75rem; justify-content: center;")}
         </div>
     </div>`;
 }
@@ -590,80 +595,78 @@ const linkWa = (href, txt, cls, cta) => `<a class="${cls}" href="${href}" target
 function paginaRevenda() {
   const R = REVENDA, url = `${SITE}/${R.slug}`;
   const ld = [
-    jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: R.h1, url, description: R.descricao, inLanguage: "pt-BR", about: { "@id": SITE + "/#organizacao" } }),
+    jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: R.h1.join(" "), url, description: R.descricao, inLanguage: "pt-BR", about: { "@id": SITE + "/#organizacao" } }),
     migalha("Seja revendedor", url),
     jsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: R.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }),
   ].map((x) => "    " + x).join("\n");
-  const tela = ([src, alt, cat, tit, txt]) => {
-    const t = tamanhoImg(src);
-    return `<figure class="revenda-tela">
-                    <a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" width="${t.w}" height="${t.h}" loading="lazy" decoding="async"></a>
-                    <figcaption><span class="revenda-tela-cat">${esc(cat)}</span><strong>${esc(tit)}</strong><span>${esc(txt)}</span></figcaption>
-                </figure>`;
+  // ícones no traço do lucide (o site não carrega o lucide nas páginas geradas)
+  const svg = (d, t = 20) => `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const IC = {
+    maleta: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+    usuario: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    predio: '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>',
+    coroa: '<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>',
+    conversa: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+    capelo: '<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
+    pessoas: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    dinheiro: '<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
   };
+  const titSec = (olho, [a, b, c = ""], id) => `<span class="rv-olho">${esc(olho)}</span>
+            <h2 id="${id}" class="rv-h2">${esc(a)}<span class="rv-ouro">${esc(b)}</span>${esc(c)}</h2>`;
+  const G = R.ganhos;
   return cabecaComum({ titulo: `${R.titulo_seo} | VCA Company`, descricao: R.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
-<body class="blog-page nicho-page revenda-page">
+<body class="blog-page revenda-page">
 ${topo("Revenda")}
-    <main class="nicho-main">
-        <section class="nicho-hero">
-            <div class="nicho-hero-txt">
-                <nav class="post-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><span>Seja revendedor</span></nav>
-                <span class="post-cat">Programa de revenda</span>
-                <h1 class="nicho-tit">${esc(R.h1)}</h1>
-                <p class="nicho-sub">${esc(R.sub)}</p>
-                <div class="nicho-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}<a class="btn btn-outline" href="#como-funciona">Ver como funciona</a></div>
+    <main class="rv-main">
+        <section class="rv-hero">
+            <nav class="rv-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><span>Seja revendedor</span></nav>
+            <span class="rv-selo">${svg(IC.maleta, 15)}${esc(R.selo)}</span>
+            <h1 class="rv-h1">${esc(R.h1[0])}<span class="rv-ouro">${esc(R.h1[1])}</span></h1>
+            <p class="rv-sub">${esc(R.sub)}</p>
+            <div class="rv-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}<a class="btn btn-outline" href="#como-funciona">Ver como funciona</a></div>
+            <ul class="rv-numeros">
+                ${R.numeros.map(([n, t]) => `<li><strong>${esc(n)}</strong><span>${esc(t)}</span></li>`).join("\n                ")}
+            </ul>
+        </section>
+
+        <p class="rv-destaque">${esc(R.destaque)}</p>
+
+        <section class="rv-sec" aria-labelledby="ganhos">
+            ${titSec("Ganhos", G.tit, "ganhos")}
+            <p class="rv-sec-sub">${esc(G.sub)}</p>
+            <div class="rv-ganhos">
+                ${G.cartoes.map(([ic, n], i) => `<div class="rv-ganho${i === G.cartoes.length - 1 ? " forte" : ""}">
+                    <span class="rv-ic">${svg(IC[ic])}</span>
+                    <span class="rv-ganho-cli">${n} clientes</span>
+                    <span class="rv-ganho-v"><strong>${n}</strong> comissões/mês</span>
+                    <span class="rv-ganho-rec">recorrente</span>
+                </div>`).join("\n                ")}
             </div>
-            ${figura("/blog/img/funil-de-vendas-no-whatsapp/funil-crm.webp", "Funil de vendas no CRM com os contatos separados por etapa", "Tela real do sistema, com dados de exemplo.", { classe: "post-fig nicho-hero-fig", prioridade: true })}
+            <p class="rv-nota">${esc(G.nota)}</p>
         </section>
 
-        <ul class="revenda-numeros">
-            ${R.numeros.map(([n, t]) => `<li><strong>${esc(n)}</strong><span>${esc(t)}</span></li>`).join("\n            ")}
-        </ul>
-
-        <section class="nicho-sec revenda-texto">
-            ${R.texto.map((p) => `<p>${esc(p)}</p>`).join("\n            ")}
-        </section>
-
-        <section class="nicho-sec" aria-labelledby="perfis">
-            <h2 id="perfis" class="nicho-h2">Para quem é</h2>
-            <div class="nicho-dores revenda-perfis">
-                ${R.perfis.map(([t, p]) => `<div class="nicho-dor"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join("\n                ")}
-            </div>
-        </section>
-
-        <section class="nicho-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
-            <h2 id="como-funciona-tit" class="nicho-h2">Do cadastro à primeira comissão</h2>
-            <ol class="nicho-passos">
-                ${R.passos.map(([t, p]) => `<li><h3>${esc(t)}</h3><p>${esc(p)}</p></li>`).join("\n                ")}
+        <section class="rv-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
+            ${titSec("Como funciona", ["Do cadastro à ", "primeira comissão"], "como-funciona-tit")}
+            <ol class="rv-passos">
+                ${R.passos.map(([ic, t, p], i) => `<li>
+                    <div class="rv-passo-topo"><span class="rv-num">${String(i + 1).padStart(2, "0")}</span><span class="rv-ic">${svg(IC[ic])}</span></div>
+                    <h3>${esc(t)}</h3>
+                    <p>${esc(p)}</p>
+                </li>`).join("\n                ")}
             </ol>
-            <p class="revenda-link">${linkWa(R.wa_quero, "Quero ser revendedor →", "post-cta-link", "revenda")}</p>
         </section>
 
-        <section class="nicho-sec" aria-labelledby="oferta">
-            <h2 id="oferta" class="nicho-h2">O que você revende</h2>
-            <ul class="revenda-oferta">${R.oferta.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>
-            <p class="revenda-nichos">Com sistema pronto para ${NICHOS.map((n) => `<a href="/${n.slug}">${esc(n.curto)}</a>`).join(", ").replace(/, ([^,]*)$/, " e $1")}.</p>
-        </section>
-
-        <section class="nicho-sec" aria-labelledby="telas">
-            <h2 id="telas" class="nicho-h2">O que o seu cliente vai usar</h2>
-            <div class="revenda-telas">
-                ${R.telas.map(tela).join("\n                ")}
+        <section class="rv-sec" aria-labelledby="duvidas">
+            ${titSec("Dúvidas frequentes", ["Perguntas sobre a ", "revenda"], "duvidas")}
+            <div class="rv-faq">
+                ${R.faq.map(([q, a]) => `<details><summary><h3>${esc(q)}</h3><span class="rv-mais" aria-hidden="true"></span></summary><p>${esc(a)}</p></details>`).join("\n                ")}
             </div>
         </section>
 
-        <section class="nicho-sec nicho-faq" aria-labelledby="duvidas">
-            <h2 id="duvidas" class="nicho-h2">Perguntas sobre a revenda</h2>
-            ${R.faq.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><h3>${esc(q)}</h3></summary><p>${esc(a)}</p></details>`).join("\n            ")}
-        </section>
-
-        <section class="nicho-sec">
-            <aside class="post-cta post-cta-final">
-                <span class="post-cta-tag">Programa de revenda</span>
-                <p class="post-cta-tit">Comece a revender sem custo</p>
-                <p>Cadastro gratuito, sem meta mínima e com comissão todo mês por cliente ativo. A parte técnica fica com a VCA.</p>
-                <div class="post-cta-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}${linkWa(R.wa_duvida, "Tirar uma dúvida antes →", "post-cta-link", "revenda-duvida")}</div>
-            </aside>
+        <section class="rv-final">
+            <h2 class="rv-h2">${esc(R.final.tit)}</h2>
+            <p class="rv-sec-sub">${esc(R.final.sub)}</p>
+            <div class="rv-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}${linkWa(R.wa_duvida, "Tirar uma dúvida antes", "btn btn-outline", "revenda-duvida")}</div>
         </section>
     </main>
     <div class="nicho-fixo">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}</div>
