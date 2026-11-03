@@ -4172,6 +4172,22 @@ html[data-theme="light"] .navbar.navbar-scrolled .container { background: rgba(2
   .rv-video ~ .rv-passos-metodo { margin-top: var(--esp-8); }
 }
 
+/* quem faz o quê (03/11, o João: "não é só indicar, você tem que fechar, deixar tudo explicadinho"): duas colunas,
+   a do parceiro com o dourado do logo; espaços da régua (--esp-*) */
+.rv-papeis { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--esp-6); max-width: 60rem; margin: var(--titulo-conteudo) auto 0; text-align: left; }
+.rv-papel { padding: var(--esp-7) var(--esp-6); border-radius: 18px; background: var(--color-card); border: 1px solid var(--color-white-05); box-shadow: 0 14px 34px -30px rgba(15, 17, 21, 0.35); }
+.rv-papel.voce { border-color: rgba(202, 158, 53, 0.45); background: linear-gradient(180deg, rgba(202, 158, 53, 0.09), rgba(202, 158, 53, 0) 70%), var(--color-card); }
+.rv-papel-rot { font-size: var(--tipo-rotulo); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand-gold); }
+.rv-papel h3 { margin-top: var(--esp-3); font-size: var(--tipo-sub); }
+.rv-papel ul { list-style: none; margin: var(--esp-5) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--esp-4); }
+.rv-papel li { position: relative; padding-left: var(--esp-6); font-size: var(--tipo-texto); line-height: 1.6; color: var(--color-text-sec); }
+.rv-papel li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 20px; height: 20px; border-radius: 50%; background: rgba(202, 158, 53, 0.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CA9E35' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.rv-papel li strong { color: var(--color-text-main); font-weight: 600; }
+@media (max-width: 720px) {
+  .rv-papeis { grid-template-columns: 1fr; gap: var(--esp-4); }
+  .rv-papel { padding: var(--esp-6) var(--esp-5); }
+}
+
 /* controles próprios do vídeo (03/11, o João: "quero poder colocar em tela cheia, abaixar o som como estava antes"):
    barra clara como o vídeo, no lugar da barra preta do navegador; aparece depois que o vídeo começa, fica enquanto está
    pausado e, tocando, some 2,5 s depois do último movimento do mouse. Espaços da régua (--esp-*). */

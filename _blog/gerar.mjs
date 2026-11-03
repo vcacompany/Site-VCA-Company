@@ -621,6 +621,18 @@ ${topo("Revenda")}
 
         <p class="rv-destaque">${esc(R.destaque)}</p>
 
+        <section class="rv-sec" id="quem-faz" aria-labelledby="quem-faz-tit">
+            ${titSec(R.papeis.olho, R.papeis.titulo, "quem-faz-tit")}
+            <p class="rv-sec-sub">${esc(R.papeis.sub)}</p>
+            <div class="rv-papeis">
+                ${["voce", "vca"].map((k) => { const P = R.papeis[k]; return `<div class="rv-papel ${k}">
+                    <span class="rv-papel-rot">${esc(P.rotulo)}</span>
+                    <h3>${esc(P.tit)}</h3>
+                    <ul>${P.itens.map(([t, d]) => `<li><strong>${esc(t)}:</strong> ${esc(d)}</li>`).join("")}</ul>
+                </div>`; }).join("\n                ")}
+            </div>
+        </section>
+
         <section class="rv-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
             ${titSec("Como funciona", ["Do cadastro à ", "primeira comissão"], "como-funciona-tit")}
             <figure class="rv-video">
