@@ -162,7 +162,9 @@ function cabecaComum({ titulo, descricao, url, imagem, tipo = "website", extra =
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="theme-color" content="#F6F7F9">
     <link rel="canonical" href="${url}">
-    <link rel="icon" type="image/svg+xml" href="/Camada%202.svg">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/Favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="alternate" type="application/rss+xml" title="Blog da VCA Company" href="${SITE}/blog/feed.xml">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="VCA Company">
