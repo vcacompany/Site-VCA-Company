@@ -3947,3 +3947,42 @@ html[data-theme="light"] .logo-img-dark { display: none; }
 }
 /* o site dá 6–7rem de espaço a toda <section>; nas páginas do blog e de nicho o espaço vem das próprias classes */
 .blog-main section, .nicho-main section { padding: 0; }
+
+/* ===================== REVENDA E LEGAIS (02/11/2026) =====================
+   /revendedores reaproveita o visual das páginas de nicho (.nicho-*); /termos e /privacidade, o texto do blog
+   (.post-corpo). Aqui só o que é novo: a faixa de números, a lista do que se revende, as telas e o rodapé legal. */
+.revenda-numeros { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 3.5rem; }
+.revenda-numeros li { padding: 1.4rem 1.5rem; border-radius: 18px; background: var(--color-card); border: 1px solid var(--color-white-05); }
+.revenda-numeros strong { display: block; font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 500; letter-spacing: -0.01em; color: var(--color-brand-gold); line-height: 1.15; }
+.revenda-numeros span { display: block; margin-top: 0.35rem; font-size: 0.92rem; line-height: 1.45; color: var(--color-text-sec); }
+.revenda-texto { max-width: 48rem; }
+.revenda-texto p { font-size: 1.12rem; line-height: 1.75; color: var(--color-text-sec); }
+.revenda-texto p + p { margin-top: 1rem; }
+.revenda-perfis .nicho-dor { box-shadow: inset 0 3px 0 rgba(202, 158, 53, 0.55); }
+.revenda-link { margin-top: 1.5rem; }
+.revenda-oferta { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0.75rem; }
+.revenda-oferta li { padding: 0.95rem 1.15rem; border-radius: 14px; background: var(--color-card); border: 1px solid var(--color-white-05); font-size: 0.98rem; }
+.revenda-oferta li::before { content: "✓"; color: var(--color-brand-gold); font-weight: 700; margin-right: 0.55rem; }
+.revenda-nichos { margin-top: 1.4rem; color: var(--color-text-sec); font-size: 0.98rem; line-height: 1.6; }
+.revenda-nichos a { color: var(--color-brand-gold); text-underline-offset: 3px; }
+.revenda-telas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 2rem 1.5rem; }
+.revenda-tela { margin: 0; }
+.revenda-tela a { display: block; border-radius: 14px; overflow: hidden; border: 1px solid var(--color-white-05); box-shadow: 0 18px 44px -28px rgba(15, 17, 21, 0.45); background: var(--color-card); }
+.revenda-tela img { width: 100%; height: auto; transition: transform .5s ease; }
+.revenda-tela a:hover img { transform: scale(1.012); }
+.revenda-tela figcaption { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.95rem; }
+.revenda-tela-cat { color: var(--color-brand-gold); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; }
+.revenda-tela strong { font-size: 1.1rem; font-weight: 600; }
+.revenda-tela figcaption span:last-child { color: var(--color-text-sec); font-size: 0.95rem; line-height: 1.55; }
+@media (max-width: 860px) { .revenda-numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.legal-cab .post-trilha { justify-content: center; }
+.legal-data { margin-top: -0.25rem; font-size: 0.92rem; color: var(--color-text-sec); }
+.legal-selos { justify-content: center; margin-top: 1.25rem; }
+.legal-corpo h2 { font-size: clamp(1.25rem, 2.3vw, 1.5rem); margin-top: 2.6rem; }
+
+.footer-legal a { color: inherit; text-decoration: none; }
+.footer-legal a:hover { color: var(--color-brand-gold); }
+.agenda-obs a { color: var(--color-brand-gold); text-underline-offset: 3px; }
+.revenda-perfis { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.revenda-tela img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }

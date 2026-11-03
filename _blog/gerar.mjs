@@ -10,6 +10,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { NICHOS } from "./nichos.mjs";
+import { REVENDA } from "./revenda.mjs";
+import { TERMOS, PRIVACIDADE, EMAIL_CONTATO } from "./legais.mjs";
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://www.vcacompany.com";
@@ -233,6 +235,7 @@ function rodape() {
                     <a href="/solucoes" class="footer-nav-link">Soluções</a>
                     <a href="/#metodo" class="footer-nav-link">Método VCA</a>
                     <a href="/blog" class="footer-nav-link">Blog</a>
+                    <a href="/revendedores" class="footer-nav-link">Seja revendedor</a>
                     <a href="/#agendar" class="footer-nav-link">Agendar</a>
                     <a href="/#faq" class="footer-nav-link">Dúvidas</a>
                 </div>
@@ -249,7 +252,7 @@ function rodape() {
                 </div>
             </div>
             <div class="footer-base">
-                <span class="footer-copyright">© <span id="year">${new Date().getFullYear()}</span> VCA Company. Todos os direitos reservados.</span>
+                <span class="footer-copyright">© <span id="year">${new Date().getFullYear()}</span> VCA Company. Todos os direitos reservados. <span class="footer-legal">· <a href="/termos">Termos</a> · <a href="/privacidade">Privacidade</a></span></span>
                 <span class="footer-cnpj">CNPJ: 65.431.552/0001-08</span>
             </div>
         </div>
@@ -571,6 +574,139 @@ ${topo("Soluções")}
 ${rodape()}`;
 }
 
+/* ---------- revenda, termos e privacidade (02/11/2026) ----------
+   Pedido do João: "quero uma página assim no meu site [revenda da Food Sistemas] e as políticas de privacidade e
+   termos clicáveis". Textos em _blog/revenda.mjs e _blog/legais.mjs; o visual reaproveita o das páginas de nicho
+   (.nicho-*) e o do texto do blog (.post-corpo), com o que falta no fim do style.css (seção REVENDA E LEGAIS). */
+const migalha = (nome, url) => jsonLd({
+  "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Início", item: SITE + "/" },
+    { "@type": "ListItem", position: 2, name: nome, item: url },
+  ],
+});
+const linkWa = (href, txt, cls, cta) => `<a class="${cls}" href="${href}" target="_blank" rel="noopener" data-cta="${cta}">${txt}</a>`;
+
+function paginaRevenda() {
+  const R = REVENDA, url = `${SITE}/${R.slug}`;
+  const ld = [
+    jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: R.h1, url, description: R.descricao, inLanguage: "pt-BR", about: { "@id": SITE + "/#organizacao" } }),
+    migalha("Seja revendedor", url),
+    jsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: R.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }),
+  ].map((x) => "    " + x).join("\n");
+  const tela = ([src, alt, cat, tit, txt]) => {
+    const t = tamanhoImg(src);
+    return `<figure class="revenda-tela">
+                    <a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(alt)}" width="${t.w}" height="${t.h}" loading="lazy" decoding="async"></a>
+                    <figcaption><span class="revenda-tela-cat">${esc(cat)}</span><strong>${esc(tit)}</strong><span>${esc(txt)}</span></figcaption>
+                </figure>`;
+  };
+  return cabecaComum({ titulo: `${R.titulo_seo} | VCA Company`, descricao: R.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
+<body class="blog-page nicho-page revenda-page">
+${topo("")}
+    <main class="nicho-main">
+        <section class="nicho-hero">
+            <div class="nicho-hero-txt">
+                <nav class="post-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><span>Seja revendedor</span></nav>
+                <span class="post-cat">Programa de revenda</span>
+                <h1 class="nicho-tit">${esc(R.h1)}</h1>
+                <p class="nicho-sub">${esc(R.sub)}</p>
+                <div class="nicho-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}<a class="btn btn-outline" href="#como-funciona">Ver como funciona</a></div>
+            </div>
+            ${figura("/blog/img/funil-de-vendas-no-whatsapp/funil-crm.webp", "Funil de vendas no CRM com os contatos separados por etapa", "Tela real do sistema, com dados de exemplo.", { classe: "post-fig nicho-hero-fig", prioridade: true })}
+        </section>
+
+        <ul class="revenda-numeros">
+            ${R.numeros.map(([n, t]) => `<li><strong>${esc(n)}</strong><span>${esc(t)}</span></li>`).join("\n            ")}
+        </ul>
+
+        <section class="nicho-sec revenda-texto">
+            ${R.texto.map((p) => `<p>${esc(p)}</p>`).join("\n            ")}
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="perfis">
+            <h2 id="perfis" class="nicho-h2">Para quem é</h2>
+            <div class="nicho-dores revenda-perfis">
+                ${R.perfis.map(([t, p]) => `<div class="nicho-dor"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join("\n                ")}
+            </div>
+        </section>
+
+        <section class="nicho-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
+            <h2 id="como-funciona-tit" class="nicho-h2">Do cadastro à primeira comissão</h2>
+            <ol class="nicho-passos">
+                ${R.passos.map(([t, p]) => `<li><h3>${esc(t)}</h3><p>${esc(p)}</p></li>`).join("\n                ")}
+            </ol>
+            <p class="revenda-link">${linkWa(R.wa_quero, "Quero ser revendedor →", "post-cta-link", "revenda")}</p>
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="oferta">
+            <h2 id="oferta" class="nicho-h2">O que você revende</h2>
+            <ul class="revenda-oferta">${R.oferta.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>
+            <p class="revenda-nichos">Com sistema pronto para ${NICHOS.map((n) => `<a href="/${n.slug}">${esc(n.curto)}</a>`).join(", ").replace(/, ([^,]*)$/, " e $1")}.</p>
+        </section>
+
+        <section class="nicho-sec" aria-labelledby="telas">
+            <h2 id="telas" class="nicho-h2">O que o seu cliente vai usar</h2>
+            <div class="revenda-telas">
+                ${R.telas.map(tela).join("\n                ")}
+            </div>
+        </section>
+
+        <section class="nicho-sec nicho-faq" aria-labelledby="duvidas">
+            <h2 id="duvidas" class="nicho-h2">Perguntas sobre a revenda</h2>
+            ${R.faq.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><h3>${esc(q)}</h3></summary><p>${esc(a)}</p></details>`).join("\n            ")}
+        </section>
+
+        <section class="nicho-sec">
+            <aside class="post-cta post-cta-final">
+                <span class="post-cta-tag">Programa de revenda</span>
+                <p class="post-cta-tit">Comece a revender sem custo</p>
+                <p>Cadastro gratuito, sem meta mínima e com comissão todo mês por cliente ativo. A parte técnica fica com a VCA.</p>
+                <div class="post-cta-botoes">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}${linkWa(R.wa_duvida, "Tirar uma dúvida antes →", "post-cta-link", "revenda-duvida")}</div>
+            </aside>
+        </section>
+    </main>
+    <div class="nicho-fixo">${linkWa(R.wa_quero, "Quero ser revendedor", "btn btn-primary", "revenda")}</div>
+${rodape()}`;
+}
+
+/* termos e privacidade: o e-mail vira link e "Política de Privacidade" aponta para /privacidade */
+const legalTexto = (s) => esc(s)
+  .replace(EMAIL_CONTATO, `<a href="mailto:${EMAIL_CONTATO}">${EMAIL_CONTATO}</a>`)
+  .replace("Política de Privacidade", '<a href="/privacidade">Política de Privacidade</a>');
+function paginaLegal(d) {
+  const url = `${SITE}/${d.slug}`;
+  const ld = [
+    jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: d.nome, url, description: d.descricao, inLanguage: "pt-BR", dateModified: d.atualizado, publisher: { "@id": SITE + "/#organizacao" } }),
+    migalha(d.nome, url),
+  ].map((x) => "    " + x).join("\n");
+  const outro = d.slug === "termos" ? ["/privacidade", "Política de Privacidade"] : ["/termos", "Termos de uso"];
+  return cabecaComum({ titulo: `${d.titulo_seo} | VCA Company`, descricao: d.descricao, url, imagem: OG_PADRAO, extra: ld }) + `
+<body class="blog-page legal-page">
+${topo("")}
+    <main class="blog-main legal-main">
+        <header class="blog-cab legal-cab">
+            <nav class="post-trilha" aria-label="Você está em"><a href="/">Início</a><span aria-hidden="true">/</span><span>${esc(d.nome)}</span></nav>
+            <h1 class="blog-cab-tit">${esc(d.nome)}</h1>
+            <p class="legal-data">Última atualização: ${dataBR(d.atualizado)}</p>
+            <ul class="nicho-selos legal-selos">${d.selos.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+        </header>
+        <article class="post-corpo legal-corpo">
+            <p>${legalTexto(d.intro)}</p>
+${d.secoes.map(([t, ps, lis]) => `            <h2>${esc(t)}</h2>
+${ps.map((p) => `            <p>${legalTexto(p)}</p>`).join("\n")}${ps.length && lis.length ? "\n" : ""}${lis.length ? `            <ul>
+${lis.map((l) => `                <li>${legalTexto(l)}</li>`).join("\n")}
+            </ul>` : ""}`).join("\n")}
+            <aside class="post-cta post-cta-final">
+                <span class="post-cta-tag">Dúvidas</span>
+                <p class="post-cta-tit">Ficou alguma dúvida?</p>
+                <p>Fale com a gente pelo WhatsApp (12) 98201-4685 ou pelo e-mail ${EMAIL_CONTATO}. Veja também a página de <a href="${outro[0]}">${outro[1]}</a>.</p>
+                <div class="post-cta-botoes"><a class="btn btn-primary" href="https://wa.me/5512982014685?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre " + (d.slug === "termos" ? "os termos de uso" : "a política de privacidade") + " da VCA Company.")}" target="_blank" rel="noopener">Falar no WhatsApp</a><a class="post-cta-link" href="mailto:${EMAIL_CONTATO}">Mandar um e-mail →</a></div>
+            </aside>
+        </article>
+    </main>
+${rodape()}`;
+}
+
 /* ---------- RSS, sitemap, llms.txt e o bloco da página inicial ---------- */
 const rfc822 = (iso) => new Date(iso + "T09:00:00-03:00").toUTCString();
 function feed(posts) {
@@ -602,6 +738,9 @@ function sitemap(posts) {
     [SITE + "/", hoje, "1.0"],
     [SITE + "/solucoes", hoje, "0.9"],
     ...NICHOS.map((n) => [`${SITE}/${n.slug}`, hoje, "0.9"]),
+    [SITE + "/revendedores", hoje, "0.8"],
+    [SITE + "/termos", TERMOS.atualizado, "0.3"],
+    [SITE + "/privacidade", PRIVACIDADE.atualizado, "0.3"],
     [SITE + "/blog", maisNovo, "0.8"],
     ...posts.map((p) => [`${SITE}/blog/${p.slug}`, p.atualizado, "0.7"]),
   ];
@@ -625,6 +764,9 @@ function llms(posts) {
 
 ## Sistemas por nicho
 ${NICHOS.map((n) => `- [${n.h1}](${SITE}/${n.slug}): ${n.descricao}`).join("\n")}
+
+## Programa de revenda
+- [Seja revendedor](${SITE}/revendedores): ${REVENDA.descricao}
 
 ## Como contratar
 - [Diagnóstico gratuito de 30 minutos](${SITE}/#agendar): conversa por vídeo, sem compromisso
@@ -662,6 +804,9 @@ escreve("blog/index.html", paginaLista(posts));
 escreve("blog/feed.xml", feed(posts));
 for (const n of NICHOS) escreve(`${n.slug}.html`, paginaNicho(n, posts));
 escreve("solucoes.html", paginaSolucoes(posts));
+escreve("revendedores.html", paginaRevenda());
+escreve("termos.html", paginaLegal(TERMOS));
+escreve("privacidade.html", paginaLegal(PRIVACIDADE));
 escreve("404.html", pagina404(posts));
 escreve("sitemap.xml", sitemap(posts));
 escreve("llms.txt", llms(posts));
