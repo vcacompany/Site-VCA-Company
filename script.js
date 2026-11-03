@@ -95,7 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15 });
 
+    // o vídeo com tocador próprio (.rv-video, 03/11) só toca quando a pessoa aperta o botão
     document.querySelectorAll('video').forEach(video => {
+        if (video.closest('.rv-video')) return;
         videoObserver.observe(video);
     });
 

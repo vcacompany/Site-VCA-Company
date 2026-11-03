@@ -4210,3 +4210,6 @@ html[data-theme="light"] .navbar.navbar-scrolled .container { background: rgba(2
   .rv-ctl-vol { display: none; }
   .rv-ctl-tempo { min-width: 0; font-size: 11px; }
 }
+
+/* página inicial (03/11): o vídeo do sistema no lugar do seletor de nichos; o título da seção já dá os 64 px até o vídeo */
+.sv-section .rv-video { margin-top: 0; }

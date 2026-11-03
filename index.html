@@ -44,7 +44,6 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"></noscript>
     <script>/* modo claro é o padrão; só fica escuro quem escolheu escuro no botão */(function(){var t=null;try{t=localStorage.getItem('vca-theme');}catch(e){}if(t!=='dark'){document.documentElement.setAttribute('data-theme','light');}})();</script>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="nichos.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -218,6 +217,7 @@
     </script>
     <!-- Lucide Icons (versão fixa e sem travar a página: o script.js só desenha os ícones no DOMContentLoaded) -->
     <script defer src="https://unpkg.com/lucide@1.66.0/dist/umd/lucide.js"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Como funciona o sistema VCA","description":"Do primeiro contato ao pagamento: o cliente chega, o atendimento é marcado, o lembrete sai sozinho e o pagamento cai com baixa automática, em um sistema montado para cada tipo de negócio.","thumbnailUrl":"https://www.vcacompany.com/videos/sistema-vca-capa.webp?v=1","contentUrl":"https://www.vcacompany.com/videos/sistema-vca.mp4?v=1","uploadDate":"2026-11-03","duration":"PT60S","inLanguage":"pt-BR","publisher":{"@id":"https://www.vcacompany.com/#organizacao"}}</script>
 </head>
 
 <body class="custom-cursor-active">
@@ -377,18 +377,54 @@
             </div>
         </section>
 
-        <!-- Para qualquer negócio: a pessoa escolhe o nicho e lê como o sistema funciona nele e com o que se conecta -->
-        <section id="sistema" class="nx-section">
+        <!-- Para qualquer negócio: vídeo do sistema VCA (03/11, o João: "quero que faça um vídeo agora ao invés disso").
+             Feito em HyperFrames em VCA Company/videos/sistema-vca, na batida da música; os nichos seguem no rodapé. -->
+        <section id="sistema" class="sv-section">
             <div class="container">
                 <div class="section-heading" data-animate>
                     <span class="section-badge">Para qualquer negócio</span>
-                    <h2 class="section-title">Escolha o seu negócio e veja<br>o sistema VCA funcionando nele</h2>
-                    <p class="section-subtitle">Um único sistema que se adapta ao seu nicho e se conecta às ferramentas que você já usa. Escolha o seu e veja como funciona.</p>
+                    <h2 class="section-title">Veja o sistema VCA<br>funcionando no seu negócio</h2>
+                    <p class="section-subtitle">Um único sistema que se adapta ao seu nicho e se conecta às ferramentas que você já usa.</p>
                 </div>
-                <div class="nx" data-nx data-animate>
-                    <div class="nx-nichos" role="tablist" aria-label="Tipo de negócio" aria-orientation="vertical"></div>
-                    <div class="nx-palco" id="nx-palco" role="tabpanel" aria-live="polite"></div>
-                </div>
+                <figure class="rv-video">
+                    <video playsinline preload="none" poster="/videos/sistema-vca-capa.webp?v=1" width="1920" height="1080" aria-label="Como funciona o sistema VCA"><source src="/videos/sistema-vca.mp4?v=1" type="video/mp4"></video>
+                    <button type="button" class="btn btn-primary rv-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Assistir ao vídeo</button>
+                    <div class="rv-ctl">
+                        <button type="button" class="rv-ctl-bt" data-acao="tocar" aria-label="Tocar"><svg class="i-tocar f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg><svg class="i-pausa f" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4h4v16h-4zM13.5 4h4v16h-4z"/></svg></button>
+                        <input type="range" class="rv-ctl-pos" min="0" max="1000" step="1" value="0" aria-label="Posição do vídeo">
+                        <span class="rv-ctl-tempo">0:00</span>
+                        <button type="button" class="rv-ctl-bt" data-acao="som" aria-label="Tirar o som"><svg class="i-som" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg><svg class="i-mudo" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg></button>
+                        <input type="range" class="rv-ctl-vol" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+                        <button type="button" class="rv-ctl-bt" data-acao="tela" aria-label="Tela cheia"><svg class="i-cheia" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg><svg class="i-sair" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/></svg></button>
+                    </div>
+                </figure>
+                <script>/* controles próprios, claros como o vídeo (03/11, o João: "sem esse negócio preto embaixo" e depois "quero poder colocar em tela cheia, abaixar o som"): a barra aparece depois que o vídeo começa, some sozinha enquanto toca e volta ao mexer o mouse */(function(){
+var f=document.querySelector('.rv-video');if(!f)return;
+var v=f.querySelector('video'),bt=f.querySelector('.rv-play'),bar=f.querySelector('.rv-ctl');
+var btTocar=bar.querySelector('[data-acao="tocar"]'),btSom=bar.querySelector('[data-acao="som"]'),btTela=bar.querySelector('[data-acao="tela"]');
+var pos=bar.querySelector('.rv-ctl-pos'),vol=bar.querySelector('.rv-ctl-vol'),tempo=bar.querySelector('.rv-ctl-tempo'),parado=0;
+function mmss(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+function pinta(el,p){el.style.setProperty('--p',(Math.max(0,Math.min(1,p))*100).toFixed(2)+'%');}
+function acorda(){f.classList.add('mexendo');clearTimeout(parado);if(!v.paused)parado=setTimeout(function(){f.classList.remove('mexendo');},2500);}
+function alterna(){if(v.paused)v.play();else v.pause();}
+function mostraSom(){var mudo=v.muted||v.volume===0;btSom.classList.toggle('mudo',mudo);btSom.setAttribute('aria-label',mudo?'Ligar o som':'Tirar o som');vol.value=mudo?0:v.volume;pinta(vol,mudo?0:v.volume);}
+bt.addEventListener('click',function(){f.classList.add('comecou');v.play();});
+v.addEventListener('click',alterna);btTocar.addEventListener('click',alterna);
+v.addEventListener('play',function(){f.classList.add('tocando','comecou');btTocar.setAttribute('aria-label','Pausar');acorda();});
+v.addEventListener('pause',function(){f.classList.remove('tocando');btTocar.setAttribute('aria-label','Tocar');acorda();});
+v.addEventListener('ended',function(){f.classList.remove('comecou','mexendo');pinta(pos,0);pos.value=0;v.load();});
+v.addEventListener('loadedmetadata',function(){tempo.textContent=mmss(v.currentTime)+' / '+mmss(v.duration);});
+v.addEventListener('timeupdate',function(){var d=v.duration||0;if(d){pos.value=Math.round(v.currentTime/d*1000);pinta(pos,v.currentTime/d);tempo.textContent=mmss(v.currentTime)+' / '+mmss(d);}});
+pos.addEventListener('input',function(){if(v.duration){v.currentTime=pos.value/1000*v.duration;pinta(pos,pos.value/1000);}acorda();});
+btSom.addEventListener('click',function(){if(v.muted||v.volume===0){v.muted=false;if(v.volume===0)v.volume=0.6;}else{v.muted=true;}mostraSom();});
+vol.addEventListener('input',function(){v.volume=+vol.value;v.muted=(+vol.value===0);mostraSom();acorda();});
+v.addEventListener('volumechange',mostraSom);
+btTela.addEventListener('click',function(){
+if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return;}
+if(f.requestFullscreen)f.requestFullscreen();else if(f.webkitRequestFullscreen)f.webkitRequestFullscreen();else if(v.webkitEnterFullscreen)v.webkitEnterFullscreen();});
+f.addEventListener('mousemove',acorda);f.addEventListener('touchstart',acorda,{passive:true});
+mostraSom();pinta(pos,0);
+})();</script>
             </div>
         </section>
 
@@ -905,7 +941,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="nichos.js"></script>
 </body>
 
 </html>
