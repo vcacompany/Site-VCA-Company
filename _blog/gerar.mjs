@@ -597,6 +597,8 @@ function paginaRevenda() {
   const ld = [
     jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: R.h1.join(" "), url, description: R.descricao, inLanguage: "pt-BR", about: { "@id": SITE + "/#organizacao" } }),
     migalha("Seja revendedor", url),
+    // vídeo "Como funciona" (03/11, roteiro do João): feito em HyperFrames em VCA Company/videos/parceiros-vca
+    jsonLd({ "@context": "https://schema.org", "@type": "VideoObject", name: R.video.titulo, description: R.video.descricao, thumbnailUrl: SITE + R.video.capa, contentUrl: SITE + R.video.src, uploadDate: R.video.data, duration: R.video.duracao, inLanguage: "pt-BR", publisher: { "@id": SITE + "/#organizacao" } }),
     jsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: R.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }),
   ].map((x) => "    " + x).join("\n");
   const titSec = (olho, [a, b, c = ""], id) => `<span class="rv-olho">${esc(olho)}</span>
@@ -619,6 +621,9 @@ ${topo("Revenda")}
 
         <section class="rv-sec" id="como-funciona" aria-labelledby="como-funciona-tit">
             ${titSec("Como funciona", ["Do cadastro à ", "primeira comissão"], "como-funciona-tit")}
+            <figure class="rv-video">
+                <video controls playsinline preload="none" poster="${R.video.capa}" width="1920" height="1080" aria-label="${esc(R.video.titulo)}"><source src="${R.video.src}" type="video/mp4"></video>
+            </figure>
             <div class="steps-grid rv-passos-metodo">
                 ${R.passos.map(([t, p], i) => `<div class="step-card">
                     <span class="step-num">${String(i + 1).padStart(2, "0")}</span>

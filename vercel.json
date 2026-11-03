@@ -3,6 +3,7 @@
   "trailingSlash": false,
   "headers": [
     { "source": "/imagens/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/videos/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
     { "source": "/blog/og/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
     { "source": "/blog/feed.xml", "headers": [{ "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }] }
   ]
