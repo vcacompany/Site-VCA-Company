@@ -291,7 +291,9 @@ const ORG = {
   "@type": "Organization", "@id": SITE + "/#organizacao", name: "VCA Company", url: SITE + "/",
   logo: { "@type": "ImageObject", url: SITE + "/imagens/logo-vca.png" },
 };
-const capaDe = (p) => fs.existsSync(path.join(RAIZ, "blog/og", p.slug + ".png")) ? "/blog/og/" + p.slug + ".png" : OG_PADRAO;
+// imagem de compartilhamento: o .png desenhado (artigos feitos à mão) ou o .jpg que o publicador corta da foto de capa (artigos do agente, 22/11)
+const capaDe = (p) => fs.existsSync(path.join(RAIZ, "blog/og", p.slug + ".png")) ? "/blog/og/" + p.slug + ".png"
+  : fs.existsSync(path.join(RAIZ, "blog/og", p.slug + ".jpg")) ? "/blog/og/" + p.slug + ".jpg" : OG_PADRAO;
 
 function cartao(p, nivel = "h3") {
   const t = p.capa && tamanhoImg(p.capa);
