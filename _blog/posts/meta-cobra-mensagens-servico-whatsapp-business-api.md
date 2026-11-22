@@ -7,7 +7,12 @@ resumo: A Meta passou a cobrar mensagens de serviço na API do WhatsApp Business
 categoria: Notícias
 nicho: sistema-para-clinicas
 palavra_chave: cobrança mensagens serviço WhatsApp Business API
+capa: /blog/img/meta-cobra-mensagens-servico-whatsapp-business-api/capa.webp
+capa_alt: Foto ilustrativa: cobrança mensagens serviço WhatsApp Business API
+capa_credito: Foto: EVG Photos / StockSnap
+capa_link: https://stocksnap.io/photo/doctor-looking-GSBJXWRSDV
 data: 2026-11-21
+atualizado: 2026-11-22
 ---
 Em outubro de 2026, a Meta ativou a cobrança pelas mensagens de serviço trocadas na API oficial do WhatsApp Business. A medida vale para empresas que integram o aplicativo a CRMs, chatbots e sistemas de gestão. A primeira versão da mudança previa taxa sobre toda resposta enviada dentro da janela de 24 horas aberta pelo cliente. Depois de forte reação do mercado, a Meta introduziu uma franquia mensal: cada número comercial ganha 1.000 mensagens de serviço sem custo, e a cobrança começa apenas quando essa cota acaba, segundo o [Bem Paraná](https://www.bemparana.com.br/noticias/economia/whatsapp-meta-recua-cobranca/).
 
