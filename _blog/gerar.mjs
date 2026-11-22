@@ -193,9 +193,11 @@ function topo(ativo, nicho) {
   const lk = (cls) => links.map(([h, t]) => `<a href="${h}" class="${cls}${t === ativo ? " is-active" : ""}"${t === ativo ? ' aria-current="page"' : ""}>${t}</a>`).join("\n                ");
   // "Seja revendedor" logo depois do Diagnóstico Gratuito (02/11, o João: "quero um seja revendedor depois de diagnóstico gratuito")
   const rev = (estilo) => `<a href="/revendedores" class="btn btn-outline nav-revenda${ativo === "Revenda" ? " is-active" : ""}"${ativo === "Revenda" ? ' aria-current="page"' : ""} style="${estilo}">Seja revendedor</a>`;
-  // os pontinhos dourados ligados por linhas do fundo da página inicial, em todas as páginas (só no computador; blog.js desenha)
-  return `
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  // os pontinhos dourados ligados por linhas do fundo da página inicial (só no computador; blog.js desenha).
+  // No blog (lista e artigos) não entram: em 22/11 o João pediu "no blog quero sem esses pontinhos". As outras páginas continuam.
+  const pontinhos = ativo === "Blog" ? "" : `
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>`;
+  return `${pontinhos}
     <nav class="navbar">
         <div class="container">
             <a href="/" class="logo"><img src="/imagens/logo-vca.webp" alt="VCA Company" width="123" height="42" style="height: 42px; width: auto;"></a>
