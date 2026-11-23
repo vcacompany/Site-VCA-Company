@@ -7,10 +7,6 @@ resumo: A Meta passou a cobrar mensagens de serviço na API do WhatsApp Business
 categoria: Notícias
 nicho: sistema-para-clinicas
 palavra_chave: cobrança mensagens serviço WhatsApp Business API
-capa: /blog/img/meta-cobra-mensagens-servico-whatsapp-business-api/capa.webp
-capa_alt: Foto ilustrativa: cobrança mensagens serviço WhatsApp Business API
-capa_credito: Foto: Oles kanebckuu / StockSnap
-capa_link: https://stocksnap.io/photo/doctors-hospital-5YUFL6LC0E
 data: 2026-11-21
 atualizado: 2026-11-23
 ---
