@@ -25,6 +25,7 @@
 - E-mail: vcacompanyofficial@gmail.com
 
 ## Blog
+- [Pix em 2027: pagamento offline, boleto híbrido, alerta de fraude e conta-salário](https://www.vcacompany.com/blog/pix-2027-offline-boleto-hibrido-e-conta-salario): Quatro mudanças no Pix até julho de 2027: pagamento offline por NFC, boleto com QR Code, aviso de marcação por fraude e Pix Automático em conta-salário.
 - [Meta começa a cobrar mensagens de serviço na API do WhatsApp Business: o que muda para empresas](https://www.vcacompany.com/blog/meta-cobra-mensagens-servico-whatsapp-business-api): Entenda a nova cobrança da Meta nas mensagens de serviço da API do WhatsApp Business, a franquia de 1.000 mensagens grátis e como preparar seu atendimento.
 - [Agendamento online para clínicas: como funciona e o que muda na recepção](https://www.vcacompany.com/blog/agendamento-online-para-clinicas): Entenda como funciona o agendamento online para clínicas pelo site e pelo WhatsApp, o que ele muda na recepção e os cuidados para a agenda não virar bagunça.
 - [Automação de WhatsApp para empresas: como atender 24 horas sem perder o toque humano](https://www.vcacompany.com/blog/automacao-whatsapp-para-empresas): O que automatizar no WhatsApp da empresa, o que deixar com pessoas, API oficial x ferramentas piratas e como começar sem travar o atendimento.
